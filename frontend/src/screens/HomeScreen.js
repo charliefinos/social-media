@@ -8,6 +8,7 @@ const HomeScreen = () => {
         <>
             <h1>Home Page</h1>
             <Link to='/login' className='btn btn-dark my-3'>Login</Link>
+            <Link to='/signup' className='btn btn-dark my-3'>Signup</Link>
         </>
     )
 }
