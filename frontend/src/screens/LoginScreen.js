@@ -1,13 +1,32 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import FormContainer from '../components/FormContainer'
+import { login } from '../actions/userActions'
 
-
-const HomeScreen = () => {
+const HomeScreen = ({ location, history }) => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
+    const dispatch = useDispatch()
+
+    const userLogin = useSelector(state => state.userLogin)
+    const { loading, error, userInfo } = userLogin
+
+    const redirect = location.search ? location.search.split('=')[1] : '/'
+
+    useEffect(() => {
+        if (userInfo) {
+            history.push(redirect)
+        }
+    }, [history, userInfo, redirect])
+
+    const submitHandler = (e) => {
+        e.preventDefault()
+        dispatch(login(email, password))
+    }
 
     return (
         <>
@@ -43,8 +62,6 @@ const HomeScreen = () => {
                         You are new here?{' '}<Link to='/signup'>Signup</Link>
                     </Col>
                 </Row>
-
-
             </FormContainer>
         </>
     )
