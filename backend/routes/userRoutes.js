@@ -3,11 +3,13 @@ const router = express.Router()
 import {
     authUser,
     registerUser,
-    getUsers
+    getUsers,
+    getUserProfile
 } from '../controllers/userController.js'
 
 router.post('/login', authUser)
-// router.route('/signup').post(registerUser)
-// router.route('/').get(getUsers)
+router.route('/profile').get(getUserProfile)
+router.route('/signup').post(registerUser)
+router.route('/').get(getUsers)
 
 export default router
