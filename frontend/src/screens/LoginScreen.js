@@ -16,10 +16,15 @@ const LoginScreen = ({ location, history }) => {
     const { loading, error, userInfo } = userLogin
 
 
+    useEffect(() => {
+        if (userInfo) {
+            history.push('/')
+        }
+    }, [userInfo, history])
+
     const submitHandler = (e) => {
         e.preventDefault()
         dispatch(login(email, password))
-        console.log(email, password)
     }
 
     return (
@@ -50,8 +55,6 @@ const LoginScreen = ({ location, history }) => {
                 <Button type='submit' variant='primary'>
                     Login
                     </Button>
-                <h1>{email}</h1>
-                <h1>{password}</h1>
             </Form>
             <Row>
                 <Col>
