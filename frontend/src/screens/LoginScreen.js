@@ -19,7 +19,7 @@ const HomeScreen = ({ location, history }) => {
 
     useEffect(() => {
         if (userInfo) {
-            history.push(redirect)
+            history.push('/')
         }
     }, [history, userInfo, redirect])
 
@@ -31,8 +31,8 @@ const HomeScreen = ({ location, history }) => {
     return (
         <>
             <FormContainer>
-                <h1>Sign In</h1>
-                <Form>
+                <h1>Log In</h1>
+                <Form onSubmit={submitHandler}>
                     <Form.Group controlId='email'>
                         <Form.Label>Email</Form.Label>
                         <Form.Control

@@ -11,12 +11,16 @@ const HomeScreen = () => {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
 
+    const submitHandler = (e) => {
+        //On submit
+    }
 
     return (
         <>
             <FormContainer>
                 <h1>Sign Up</h1>
-                <Form>
+
+                <Form onSubmit={submitHandler}>
 
                     <Form.Group controlId='name'>
                         <Form.Label>Name</Form.Label>
