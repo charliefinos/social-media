@@ -4,7 +4,7 @@ import { Form, Button, Row, Col } from 'react-bootstrap'
 import FormContainer from '../components/FormContainer'
 
 
-const HomeScreen = () => {
+const SignupScreen = () => {
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -76,4 +76,4 @@ const HomeScreen = () => {
     )
 }
 
-export default HomeScreen
+export default SignupScreen
