@@ -6,8 +6,8 @@ import {
     getUsers
 } from '../controllers/userController.js'
 
-router.route('/login').get(authUser)
-router.route('/signup').post(registerUser)
-router.route('/').get(getUsers)
+router.post('/login', authUser)
+// router.route('/signup').post(registerUser)
+// router.route('/').get(getUsers)
 
 export default router

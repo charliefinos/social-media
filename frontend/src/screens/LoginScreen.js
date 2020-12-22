@@ -19,7 +19,7 @@ const HomeScreen = ({ location, history }) => {
 
     useEffect(() => {
         if (userInfo) {
-            history.push('/')
+            history.push(redirect)
         }
     }, [history, userInfo, redirect])
 
