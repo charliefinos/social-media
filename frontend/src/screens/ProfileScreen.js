@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useHistory } from 'react-router-dom'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import FormContainer from '../components/FormContainer'
+import { getUserDetails } from '../actions/userActions'
+import { userProfileReducer } from '../reducers/UserReducers'
 
 
-const SignupScreen = () => {
+const ProfileScreen = () => {
+    const history = useHistory()
     const dispatch = useDispatch()
 
     const [name, setName] = useState('')
@@ -13,23 +16,39 @@ const SignupScreen = () => {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
 
-    const submitHandler = (e) => {
-        e.preventDefault()
-        dispatch()
+    const userDetails = useSelector(state => state.userDetails)
+    const { loading, error, user } = userDetails
+
+    const userLogin = useSelector(state => state.userLogin)
+    const { userInfo } = userLogin
+
+    useEffect(() => {
+        if (!userInfo) {
+            history.push('/login')
+        } else {
+            if (!user.name) {
+                dispatch(getUserDetails('profile'))
+            } else {
+                setName(user.name)
+                setEmail(user.email)
+            }
+        }
+    })
+
+    const submitHandler = () => {
+
     }
 
     return (
-        <>
+        <Col>
             <FormContainer>
-                <h1>Sign Up</h1>
-
+                <h1>Profile</h1>
                 <Form onSubmit={submitHandler}>
-
                     <Form.Group controlId='name'>
                         <Form.Label>Name</Form.Label>
                         <Form.Control
                             type='name'
-                            placeholder='Enter Name'
+                            placeholder='Enter name'
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                         ></Form.Control>
@@ -49,34 +68,30 @@ const SignupScreen = () => {
                         <Form.Label>Password</Form.Label>
                         <Form.Control
                             type='password'
-                            placeholder='Enter Password'
+                            placeholder='Enter New Password'
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         ></Form.Control>
                     </Form.Group>
 
-                    <Form.Group controlId='confirmPassword'>
+                    <Form.Group controlId='confirmpassword'>
                         <Form.Label>Password</Form.Label>
                         <Form.Control
                             type='password'
                             placeholder='Confirm Password'
-                            value={confirmPassword}
+                            value={password}
                             onChange={(e) => setConfirmPassword(e.target.value)}
                         ></Form.Control>
                     </Form.Group>
 
                     <Button type='submit' variant='primary'>
-                        Register
+                        Update
                     </Button>
                 </Form>
-                <Row>
-                    <Col className='mt-2'>
-                        Already have an account?{' '}<Link to='/login'>Login</Link>
-                    </Col>
-                </Row>
+
             </FormContainer>
-        </>
+        </Col>
     )
 }
 
-export default SignupScreen
+export default ProfileScreen
