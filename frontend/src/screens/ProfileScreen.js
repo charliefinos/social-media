@@ -15,6 +15,7 @@ const ProfileScreen = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
+    const [message, setMessage] = useState('')
 
     const userDetails = useSelector(state => state.userDetails)
     const { loading, error, user } = userDetails
@@ -32,11 +33,16 @@ const ProfileScreen = () => {
                 setName(user.name)
                 setEmail(user.email)
             }
+
         }
-    })
+    }, [dispatch, history, userInfo, user])
 
     const submitHandler = () => {
-
+        if (password !== confirmPassword) {
+            setMessage('Passwords do not match')
+        } else {
+            // Update profile
+        }
     }
 
     return (
@@ -79,7 +85,7 @@ const ProfileScreen = () => {
                         <Form.Control
                             type='password'
                             placeholder='Confirm Password'
-                            value={password}
+                            value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
                         ></Form.Control>
                     </Form.Group>
