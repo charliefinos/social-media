@@ -2,7 +2,7 @@ import asyncHandler from 'express-async-handler'
 import User from '../models/userModel.js'
 import generateToken from '../utils/generateToken.js'
 
-
+//Login: Check the email, and if it exists check if the password is correct
 const authUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body
 
@@ -21,7 +21,9 @@ const authUser = asyncHandler(async (req, res) => {
     }
 })
 
+//Create a new user
 const registerUser = asyncHandler(async (req, res) => {
+
     const { name, email, password } = req.body
     const userExists = await User.findOne({ email })
 
@@ -48,6 +50,7 @@ const registerUser = asyncHandler(async (req, res) => {
     }
 })
 
+// Get the user profile
 const getUserProfile = asyncHandler(async (req, res) => {
 
     const user = await User.findById(req.user._id)
@@ -66,11 +69,13 @@ const getUserProfile = asyncHandler(async (req, res) => {
     }
 })
 
+// Get all users profiles
 const getUsers = asyncHandler(async (req, res) => {
     const users = await User.find({})
     res.json(users)
 })
 
+// Update the profile
 const updateUserProfile = asyncHandler(async (req, res) => {
 
     const user = await User.findById(req.user._id)

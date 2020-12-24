@@ -1,22 +1,42 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useHistory } from 'react-router-dom'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import FormContainer from '../components/FormContainer'
+import { register } from '../actions/userActions'
 
 
 const SignupScreen = () => {
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
+    const [message, setMessage] = useState('')
+
+    const userRegister = useSelector(state => state.userRegister)
+    const { loading, error, userInfo } = userRegister
 
     const submitHandler = (e) => {
         e.preventDefault()
-        dispatch()
+        if (password !== confirmPassword) {
+            setMessage('Password do not Match')
+        } else {
+            dispatch(register(
+                name,
+                email,
+                password
+            ))
+        }
     }
+
+    useEffect(() => {
+        if (userInfo) {
+            history.push('/')
+        }
+    }, [history, userInfo])
 
     return (
         <>
@@ -53,7 +73,9 @@ const SignupScreen = () => {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         ></Form.Control>
+                        <p2 style={{ color: 'red' }}>{message}</p2>
                     </Form.Group>
+
 
                     <Form.Group controlId='confirmPassword'>
                         <Form.Label>Password</Form.Label>

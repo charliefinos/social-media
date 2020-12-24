@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom'
 
 
 const HomeScreen = () => {
+    const dispatch = useDispatch()
     const history = useHistory()
 
     const userLogin = useSelector(state => state.userLogin)

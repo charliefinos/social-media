@@ -12,10 +12,6 @@ const Header = () => {
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
 
-    useEffect(() => {
-
-    }, [history, userInfo])
-
     const logoutHandler = () => {
         dispatch(logout())
         history.push('/login')
