@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
-
+import Post from '../components/Post'
 
 const HomeScreen = () => {
     const dispatch = useDispatch()
@@ -19,6 +19,7 @@ const HomeScreen = () => {
     return (
         <>
             <h1>Home Page</h1>
+            <Post />
         </>
     )
 }
