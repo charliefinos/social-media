@@ -20,6 +20,8 @@ const HomeScreen = () => {
         <>
             <h1>Home Page</h1>
             <Post />
+            <Post />
+            <Post />
         </>
     )
 }
