@@ -4,6 +4,24 @@ import { useHistory } from 'react-router-dom'
 import Post from '../components/Post'
 
 const HomeScreen = () => {
+    const [posts, setPosts] = useState([
+        {
+            username: "charliefinos",
+            caption: "sunny day",
+            imageUrl: "https://upload.wikimedia.org/wikipedia/commons/b/b7/ETHEREUM-YOUTUBE-PROFILE-PIC.png"
+        },
+        {
+            username: "marcoantonio",
+            caption: "que onda lorooo",
+            imageUrl: "https://upload.wikimedia.org/wikipedia/commons/b/b7/ETHEREUM-YOUTUBE-PROFILE-PIC.png"
+        },
+        {
+            username: "kurtcobain",
+            caption: "wsuuup dude",
+            imageUrl: "https://upload.wikimedia.org/wikipedia/commons/b/b7/ETHEREUM-YOUTUBE-PROFILE-PIC.png"
+        }
+    ])
+
     const dispatch = useDispatch()
     const history = useHistory()
 
@@ -18,10 +36,12 @@ const HomeScreen = () => {
 
     return (
         <>
-            <h1>Home Page</h1>
-            <Post />
-            <Post />
-            <Post />
+            {posts.map(post => (
+                <Post
+                    username={post.username}
+                    caption={post.caption}
+                    imageUrl={post.imageUrl} />
+            ))}
         </>
     )
 }
