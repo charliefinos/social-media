@@ -8,20 +8,21 @@ import SignupScreen from './screens/SignupScreen';
 import ProfileScreen from './screens/ProfileScreen';
 
 
-
 function App() {
   return (
-    <Router>
-      <Header />
-      <main className='py-3'>
-        <Container>
-          <Route path='/login' component={LoginScreen} />
-          <Route path='/' component={HomeScreen} exact />
-          <Route path='/signup' component={SignupScreen} />
-          <Route path='/profile' component={ProfileScreen} />
-        </Container>
-      </main>
-    </Router>
+    <div className="app">
+      <Router>
+        <Header />
+        <main className='py-3'>
+          <Container>
+            <Route path='/login' component={LoginScreen} />
+            <Route path='/' component={HomeScreen} exact />
+            <Route path='/signup' component={SignupScreen} />
+            <Route path='/profile' component={ProfileScreen} />
+          </Container>
+        </main>
+      </Router>
+    </div>
   );
 }
 
