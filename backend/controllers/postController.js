@@ -1,13 +1,14 @@
 import asyncHandler from 'express-async-handler'
 import Post from '../models/postModel.js'
-import User from '../models/userModel.js'
+
 
 const createPost = asyncHandler(async (req, res) => {
-    const { title, content } = req.body
+    const { username, caption, imageUrl } = req.body
 
     const post = new Post({
-        title,
-        content,
+        username,
+        caption,
+        imageUrl,
         user: req.user._id
     })
 

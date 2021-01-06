@@ -7,9 +7,3 @@
     height: 100vh;
 }
 
-.app__header {
-    background-color: white;
-    padding: 15px 20px 10px 20px;
-    object-fit: contain;
-    border-bottom: lightgray 1px solid;
-}

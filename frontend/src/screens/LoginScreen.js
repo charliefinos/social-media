@@ -31,7 +31,7 @@ const LoginScreen = ({ location, history }) => {
 
         <FormContainer>
             <h1>Log In</h1>
-            {error && <h2>{error}</h2>}
+            {error && <p style={{ color: 'red' }}>{error}</p>}
             <Form onSubmit={submitHandler}>
                 <Form.Group controlId='email'>
                     <Form.Label>Email</Form.Label>
@@ -62,7 +62,7 @@ const LoginScreen = ({ location, history }) => {
                     Are you new here?{' '}<Link to='/signup'>Signup</Link>
                 </Col>
             </Row>
-        </FormContainer>
+        </FormContainer >
 
     )
 }
