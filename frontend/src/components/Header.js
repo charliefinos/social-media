@@ -46,8 +46,10 @@ const Header = () => {
                 </div>
             ) : (
                     <div className="header__right">
-                        <LinkContainer to='/signup'><Button variant="primary"  >Signup</Button></LinkContainer>
+                        <a type="button" to='/signup'> Signup</a>
+                        <LinkContainer to='/login'><Button variant="primary"  >Login</Button></LinkContainer>
                     </div>
+
                 )
             }
         </div>

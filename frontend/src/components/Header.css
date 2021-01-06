@@ -1,7 +1,5 @@
 .header {
     background-color: white;
-    
-    
     border-bottom: lightgray 1px solid;
     justify-content: space-between;
     display: flex;
@@ -12,14 +10,23 @@
 }
 
 .header__right {
-    padding: 10px 20px;
+    padding: 15px 20px 10px 20px;
     margin: 10px 0;
 }
 
 .header__right Button {
-    margin: 8px 10px 
+    margin: 10px 0 
 }
 
 .header__right ul {
     text-decoration: none;
+}
+
+.header__right a {
+    margin-right: 10px;
+}
+
+.header__right a:hover {
+    border-bottom: 2px solid blue;
+    padding-bottom: 5px;
 }
