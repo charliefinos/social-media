@@ -12,6 +12,7 @@ const authUser = asyncHandler(async (req, res) => {
         res.json({
             _id: user._id,
             name: user.name,
+            username: user.username,
             email: user.email,
             token: generateToken(user._id)
         })
@@ -24,7 +25,7 @@ const authUser = asyncHandler(async (req, res) => {
 //Create a new user
 const registerUser = asyncHandler(async (req, res) => {
 
-    const { name, email, password } = req.body
+    const { username, name, email, password } = req.body
     const userExists = await User.findOne({ email })
 
     if (userExists) {
@@ -33,6 +34,7 @@ const registerUser = asyncHandler(async (req, res) => {
     }
     const user = await User.create({
         name,
+        username,
         email,
         password
     })
@@ -41,6 +43,7 @@ const registerUser = asyncHandler(async (req, res) => {
         res.status(201).json({
             _id: user._id,
             name: user.name,
+            username: user.username,
             email: user.email,
             token: generateToken()
         })
@@ -59,6 +62,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
         res.json({
             _id: user._id,
             name: user.name,
+            username: user.username,
             email: user.email,
             city: user.city,
             address: user.address
