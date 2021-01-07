@@ -37,10 +37,13 @@ const HomeScreen = () => {
     return (
         <>
             {posts.map(post => (
+                <>
+                <h1>Posteo</h1>
                 <Post
                     username={post.username}
                     caption={post.caption}
                     imageUrl={post.imageUrl} />
+                    </>
             ))}
         </>
     )
