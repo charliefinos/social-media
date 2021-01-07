@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useHistory } from 'react-router-dom'
-import { Form, Button, Row, Col } from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
+import { Form, Button, Col } from 'react-bootstrap'
 import FormContainer from '../components/FormContainer'
 import { getUserDetails, updateUserProfile } from '../actions/userActions'
 

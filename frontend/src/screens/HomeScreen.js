@@ -22,7 +22,7 @@ const HomeScreen = () => {
         }
     ])
 
-    const dispatch = useDispatch()
+    
     const history = useHistory()
 
     const userLogin = useSelector(state => state.userLogin)

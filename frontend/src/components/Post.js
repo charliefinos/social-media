@@ -17,7 +17,8 @@ const Post = ({ username, caption, imageUrl }) => {
             {/*Image*/}
             <img
                 className="post__image"
-                src={imageUrl}></img>
+                src={imageUrl}
+                alt={username}></img>
 
             {/*Username + Caption*/}
             {caption &&
