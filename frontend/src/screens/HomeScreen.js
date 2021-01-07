@@ -38,7 +38,7 @@ const HomeScreen = () => {
         <>
             {posts.map(post => (
                 <>
-                <h1>Posteo</h1>
+                <h1>Poste</h1>
                 <Post
                     username={post.username}
                     caption={post.caption}
