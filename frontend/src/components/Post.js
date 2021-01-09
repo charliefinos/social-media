@@ -27,8 +27,7 @@ const Post = ({ username, caption, imageUrl }) => {
             {caption &&
                 <h4 className="post__text"><strong>{username}</strong>{' '}{caption}</h4>}
 
-            <input type="text" placeholder="Commnent" onChange={(e)=> setComment(e.target.value)}></input>
-            <p>{comment}</p>
+            <input type="text" placeholder="Comment" onChange={(e)=> setComment(e.target.value)}></input>
         </div>
     )
 }

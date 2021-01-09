@@ -3,7 +3,10 @@ import Post from '../models/postModel.js'
 
 
 const createPost = asyncHandler(async (req, res) => {
-    const { username, caption, imageUrl } = req.body
+    const { username, caption } = req.body
+
+    // Temporary Post image
+    const imageUrl = "https://upload.wikimedia.org/wikipedia/commons/b/b7/ETHEREUM-YOUTUBE-PROFILE-PIC.png"
 
     const post = new Post({
         username,
