@@ -7,6 +7,6 @@ import {
 import { protect } from '../middleware/authMiddleware.js'
 
 router.route('/').post(protect, createPost)
-router.route('/:id').get(getUserPosts)
+router.route('/profile').get(protect, getUserPosts)
 
 export default router

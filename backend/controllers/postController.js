@@ -19,7 +19,8 @@ const createPost = asyncHandler(async (req, res) => {
 })
 
 const getUserPosts = asyncHandler(async (req, res) => {
-    const userPosts = await Post.find({ user: req.params.id })
+
+    const userPosts = await Post.find({ user: req.user._id })
     res.json(userPosts)
 })
 

@@ -7,7 +7,7 @@ import { Button, NavDropdown } from 'react-bootstrap'
 
 import './Header.css'
 
-const Header = () => {
+const Header = ({ match }) => {
     const dispatch = useDispatch()
     const history = useHistory()
 
@@ -16,9 +16,6 @@ const Header = () => {
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
 
-    const loginHandler = () => {
-        history.push('/login')
-    }
     const logoutHandler = () => {
         dispatch(logout())
         history.push('/login')
@@ -40,7 +37,7 @@ const Header = () => {
             {userInfo ? (
                 <div className="header__right">
                     <NavDropdown title={userInfo.name}>
-                        <NavDropdown.Item>Profile</NavDropdown.Item>
+                        <NavDropdown.Item >Profile</NavDropdown.Item>
                         <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
                     </NavDropdown>
                 </div>
