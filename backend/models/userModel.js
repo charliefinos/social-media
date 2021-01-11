@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 import bcrypt from 'bcryptjs'
 
+
 const userSchema = mongoose.Schema({
     name: {
         type: String,
@@ -28,7 +29,6 @@ const userSchema = mongoose.Schema({
     address: {
         type: String
     }
-
 }, {
     timestamps: true
 })

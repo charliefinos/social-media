@@ -1,4 +1,5 @@
 import asyncHandler from 'express-async-handler'
+import mongoose from 'mongoose'
 import User from '../models/userModel.js'
 import generateToken from '../utils/generateToken.js'
 
@@ -33,6 +34,7 @@ const registerUser = asyncHandler(async (req, res) => {
         throw new Error('User already exists')
     }
     const user = await User.create({
+        _id: new mongoose.Types.ObjectId(),
         name,
         username,
         email,
