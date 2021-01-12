@@ -5,19 +5,23 @@ import { getUserPosts } from '../actions/PostActions'
 const ProfileScreen = () => {
     const dispatch = useDispatch()
 
+    const userPosts = useSelector(state => state.userPosts)
+    const { posts } = userPosts
+    console.log(posts)
+
     useEffect(() => {
         dispatch(getUserPosts())
     }, [dispatch])
 
     return (
-        <div className="profile">
-            <h1>Profile</h1>
-            <div className="profile__photo">
-                <img></img>
-            </div>
-            <div className="profile__info">
-            </div>
-        </div>
+        <div>
+            {posts.map(post =>
+                <div>
+                    <h1> {post.user.name}</h1>
+                    <p>{post.caption}</p>
+                </div>
+            )}
+        </div >
     )
 }
 

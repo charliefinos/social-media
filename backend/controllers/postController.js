@@ -20,7 +20,7 @@ const createPost = asyncHandler(async (req, res) => {
 
 const getUserPosts = asyncHandler(async (req, res) => {
 
-    const userPosts = await Post.find({ user: req.user._id })
+    const userPosts = await Post.find({ user: req.user._id }).populate('user')
     res.json(userPosts)
 })
 
