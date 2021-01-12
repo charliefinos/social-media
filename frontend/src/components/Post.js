@@ -1,9 +1,14 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import './Post.css'
 import Avatar from '@material-ui/core/Avatar'
 
-const Post = ({ username, caption, imageUrl }) => {
-    const [comment, setComment] = useState()
+const Post = ({ postId, username, caption, imageUrl }) => {
+    const [comment, setComment] = useState('')
+
+    const commentHandler = (e) => {
+        e.preventDefault()
+        // Dispatch Send Comment
+    }
 
 
     return (
@@ -27,7 +32,9 @@ const Post = ({ username, caption, imageUrl }) => {
             {caption &&
                 <h4 className="post__text"><strong>{username}</strong>{' '}{caption}</h4>}
 
-            <input type="text" placeholder="Comment" onChange={(e)=> setComment(e.target.value)}></input>
+
+            <input type="text" placeholder="Comment" onChange={(e) => setComment(e.target.value)}></input>
+            <button type="submit" onSubmit={commentHandler}>submit</button>
         </div>
     )
 }

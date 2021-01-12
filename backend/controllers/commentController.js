@@ -7,6 +7,5 @@ const createComment = asyncHandler(async (req, res) => {
     const comment = new Comment({
         comment,
         username: req.user.username,
-        // post: post id params
     })
 })

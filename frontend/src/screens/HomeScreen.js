@@ -22,7 +22,7 @@ const HomeScreen = () => {
         }
     ])
 
-    
+
     const history = useHistory()
 
     const userLogin = useSelector(state => state.userLogin)
@@ -36,14 +36,14 @@ const HomeScreen = () => {
 
     return (
         <>
-            {posts.map(post => (
+            {posts.map((post) => (
                 <>
-                <h1>Poste</h1>
-                <Post
-                    username={post.username}
-                    caption={post.caption}
-                    imageUrl={post.imageUrl} />
-                    </>
+                    <h1>Poste</h1>
+                    <Post
+                        username={post.username}
+                        caption={post.caption}
+                        imageUrl={post.imageUrl} />
+                </>
             ))}
         </>
     )
