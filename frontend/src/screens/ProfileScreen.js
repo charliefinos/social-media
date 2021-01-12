@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserPosts } from '../actions/PostActions'
+import Post from '../components/Post'
 
 const ProfileScreen = () => {
     const dispatch = useDispatch()
@@ -17,8 +18,11 @@ const ProfileScreen = () => {
         <div>
             {posts.map(post =>
                 <div>
-                    <h1> {post.user.name}</h1>
-                    <p>{post.caption}</p>
+                    <Post
+                        username={post.user.username}
+                        caption={post.caption}
+                        imageUrl={post.imageUrl}
+                    />
                 </div>
             )}
         </div >
