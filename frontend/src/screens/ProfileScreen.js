@@ -8,6 +8,7 @@ const ProfileScreen = () => {
 
     const userPosts = useSelector(state => state.userPosts)
     const { posts } = userPosts
+
     console.log(posts)
 
     useEffect(() => {
@@ -19,8 +20,6 @@ const ProfileScreen = () => {
             {posts.map(post =>
                 <div>
                     <Post
-                        key={post._id}
-                        postId={post._id}
                         username={post.user.username}
                         caption={post.caption}
                         imageUrl={post.imageUrl}

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './Post.css'
 import Avatar from '@material-ui/core/Avatar'
 
-const Post = ({ postId, username, caption, imageUrl }) => {
+const Post = ({ username, caption, imageUrl }) => {
     const [comment, setComment] = useState('')
 
     const commentHandler = (e) => {
