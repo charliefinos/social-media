@@ -18,13 +18,12 @@ const ProfileScreen = () => {
     return (
         <div>
             {posts.map(post =>
-                <div>
-                    <Post
-                        username={post.user.username}
-                        caption={post.caption}
-                        imageUrl={post.imageUrl}
-                    />
-                </div>
+                <Post
+                    key={post._id}
+                    username={post.user.username}
+                    caption={post.caption}
+                    imageUrl={post.imageUrl}
+                />
             )}
         </div >
     )

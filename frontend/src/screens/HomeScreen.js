@@ -10,7 +10,7 @@ const HomeScreen = () => {
     const history = useHistory()
 
     const userPosts = useSelector(state => state.userPosts)
-    const {posts} = userPosts
+    const { posts } = userPosts
 
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
@@ -18,20 +18,17 @@ const HomeScreen = () => {
     useEffect(() => {
         if (userInfo === null) {
             history.push('/login')
-        } 
+        }
         dispatch(getUserPosts())
     }, [history, userInfo])
 
     return (
         <>
             {posts.map((post) => (
-                <>
-                    <h1>Poste</h1>
+                <div key={post._id}>
                     <Post
-                        username={post.user.username}
-                        caption={post.caption}
-                        imageUrl={post.imageUrl} />
-                </>
+                        post={post} />
+                </div>
             ))}
         </>
     )
