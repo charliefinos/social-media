@@ -9,3 +9,7 @@ const createComment = asyncHandler(async (req, res) => {
         username: req.user.username,
     })
 })
+
+const getPostComments = asyncHandler(async (req, res) => {
+    
+})
