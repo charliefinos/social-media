@@ -16,10 +16,10 @@ const Post = ({ post }) => {
             <div className="post__header">
                 <Avatar
                     className="post__avatar"
-                    alt={post.username}
+                    alt={post.user.username}
                     src="">
                 </Avatar>
-                <h3>{post.username}</h3>
+                <h3>{post.user.username}</h3>
             </div>
 
             {/*Image*/}
