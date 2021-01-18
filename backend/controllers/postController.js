@@ -24,4 +24,27 @@ const getUserPosts = asyncHandler(async (req, res) => {
     res.json(userPosts)
 })
 
+const createPostComment = asyncHandler(async (req, res) => {
+    const { comment } = req.body
+
+    const post = await Post.findById(req.params.id)
+
+    if (post) {
+        const postComment = {
+            username: req.user.username,
+            comment,
+            user: req.user._id
+        }
+
+        post.comments.push(postComment)
+
+        await post.save()
+        res.status(201).json({ message: 'Comment Added' })
+
+    } else {
+        res.status(404)
+        throw new Error('Post not found')
+    }
+})
+
 export { createPost, getUserPosts }
