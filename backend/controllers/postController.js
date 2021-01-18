@@ -47,4 +47,4 @@ const createPostComment = asyncHandler(async (req, res) => {
     }
 })
 
-export { createPost, getUserPosts }
+export { createPost, getUserPosts, createPostComment }
