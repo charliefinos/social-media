@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useHistory, Link } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { logout } from '../actions/userActions'
+import { logout } from '../actions/UserActions'
 import { Button, NavDropdown } from 'react-bootstrap'
 
 import './Header.css'

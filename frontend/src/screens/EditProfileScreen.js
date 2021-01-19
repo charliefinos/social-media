@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { Form, Button, Col } from 'react-bootstrap'
 import FormContainer from '../components/FormContainer'
-import { getUserDetails, updateUserProfile } from '../actions/userActions'
+import { getUserDetails, updateUserProfile } from '../actions/UserActions'
 
 
 

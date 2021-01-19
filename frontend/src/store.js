@@ -6,15 +6,16 @@ import {
     userDetailsReducer,
     userUpdateProfileReducer,
     userRegisterReducer
-} from './reducers/userReducers'
-import { userPostsReducer } from './reducers/postReducers'
+} from './reducers/UserReducers'
+import { userPostCommentReducer, userPostsReducer } from './reducers/PostReducers'
 
 const reducer = combineReducers({
     userLogin: userLoginReducer,
     userDetails: userDetailsReducer,
     userRegister: userRegisterReducer,
     userUpdateProfile: userUpdateProfileReducer,
-    userPosts: userPostsReducer
+    userPosts: userPostsReducer,
+    userPostComment: userPostCommentReducer,
 })
 
 // Getting data from localStorage for initialState

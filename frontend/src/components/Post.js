@@ -1,13 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { postPostComment } from '../actions/PostActions'
 import './Post.css'
 import Avatar from '@material-ui/core/Avatar'
 
 const Post = ({ post }) => {
+    const dispatch = useDispatch()
     const [comment, setComment] = useState('')
 
     const commentHandler = (e) => {
         e.preventDefault()
-        console.log(comment, post._id)
+        dispatch(postPostComment(post._id, { comment }))
+        setComment('')
     }
 
 
@@ -33,7 +37,7 @@ const Post = ({ post }) => {
                 <h4 className="post__text"><strong>{post.user.username}</strong>{' '}{post.caption}</h4>}
 
 
-            <input type="text" placeholder="Comment" onChange={(e) => setComment(e.target.value)}></input>
+            <input type="text" placeholder="Comment" value={comment} onChange={(e) => setComment(e.target.value)}></input>
             <h1>{post.comment}</h1>
             <button onClick={commentHandler}>submit</button>
         </div>

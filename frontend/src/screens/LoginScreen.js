@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import FormContainer from '../components/FormContainer'
-import { login } from '../actions/userActions'
+import { login } from '../actions/UserActions'
 
 const LoginScreen = ({ location, history }) => {
 
@@ -13,7 +13,7 @@ const LoginScreen = ({ location, history }) => {
     const dispatch = useDispatch()
 
     const userLogin = useSelector(state => state.userLogin)
-    const {  error, userInfo } = userLogin
+    const { error, userInfo } = userLogin
 
 
     useEffect(() => {

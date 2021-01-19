@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import FormContainer from '../components/FormContainer'
-import { register } from '../actions/userActions'
+import { register } from '../actions/UserActions'
 
 
 const SignupScreen = () => {
