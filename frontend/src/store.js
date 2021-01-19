@@ -6,8 +6,8 @@ import {
     userDetailsReducer,
     userUpdateProfileReducer,
     userRegisterReducer
-} from './reducers/UserReducers'
-import { userPostsReducer } from './reducers/PostReducers'
+} from './reducers/userReducers'
+import { userPostsReducer } from './reducers/postReducers'
 
 const reducer = combineReducers({
     userLogin: userLoginReducer,

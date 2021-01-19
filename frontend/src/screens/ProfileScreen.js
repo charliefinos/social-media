@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUserPosts } from '../actions/PostActions'
+import { getUserPosts } from '../actions/postActions'
 import Post from '../components/Post'
 
 const ProfileScreen = () => {
