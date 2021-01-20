@@ -35,10 +35,14 @@ const Post = ({ post }) => {
             {/*Username + Caption*/}
             {post.caption &&
                 <h4 className="post__text"><strong>{post.user.username}</strong>{' '}{post.caption}</h4>}
-
+            {post.comments.map(comment => (
+                <h4 key={comment._id}>
+                    <strong>{comment.username}</strong>{' '}{comment.comment}
+                </h4>
+            ))}
 
             <input type="text" placeholder="Comment" value={comment} onChange={(e) => setComment(e.target.value)}></input>
-            <h1>{post.comment}</h1>
+
             <button onClick={commentHandler}>submit</button>
         </div>
     )
