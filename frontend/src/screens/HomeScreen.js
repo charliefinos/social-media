@@ -15,12 +15,19 @@ const HomeScreen = () => {
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
 
+    const userPostComment = useSelector(state => state.userPostComment)
+    const { loading, success, error } = userPostComment
+
     useEffect(() => {
         if (userInfo === null) {
             history.push('/login')
         }
-        dispatch(getUserPosts())
-    }, [history, userInfo])
+        if (success) {
+            console.log('comment sent')
+            dispatch(getUserPosts())
+        }
+
+    }, [history, userInfo, success])
 
     return (
         <>
