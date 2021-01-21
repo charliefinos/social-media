@@ -10,6 +10,6 @@ import { protect } from '../middleware/authMiddleware.js'
 
 router.route('/').post(protect, createPost)
 router.route('/profile').get(protect, getUserPosts)
-router.route('/:id').post(protect, createPostComment)
+router.route('/:id/comments').post(protect, createPostComment)
 
 export default router
