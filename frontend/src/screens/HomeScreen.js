@@ -22,19 +22,19 @@ const HomeScreen = () => {
         if (userInfo === null) {
             history.push('/login')
         }
-        if (success) {
-            console.log('comment sent')
-            dispatch(getUserPosts())
-        }
-
-    }, [history, userInfo, success])
+        dispatch(getUserPosts())
+    }, [history, userInfo, dispatch])
 
     return (
         <>
             {posts.map((post) => (
                 <div key={post._id}>
                     <Post
-                        post={post} />
+                        post={post}
+                        username={post.user.username}
+                        imageUrl={post.imageUrl}
+                        caption={post.caption}
+                        id={post._id} />
                 </div>
             ))}
         </>
