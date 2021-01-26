@@ -23,7 +23,7 @@ const HomeScreen = () => {
             history.push('/login')
         }
         dispatch(getUserPosts())
-    }, [history, userInfo, dispatch, success])
+    }, [history, userInfo, dispatch])
 
     return (
         <>

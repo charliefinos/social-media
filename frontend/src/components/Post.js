@@ -26,7 +26,7 @@ const Post = ({ post }) => {
         if (success) {
             setComment('')
         }
-    }, [success])
+    }, [success, post.comment])
 
     return (
         <div className="post" >

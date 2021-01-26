@@ -44,7 +44,7 @@ export const postPostComment = (id, comment) => async (dispatch, getState) => {
                 Authorization: `Bearer ${userInfo.token}`
             }
         }
-        await axios.post(`/api/posts/${id}`, comment, config)
+        await axios.post(`/api/posts/${id}/comments`, comment, config)
 
         dispatch({
             type: USER_POST_COMMENT_SUCCESS,
