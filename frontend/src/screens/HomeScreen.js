@@ -23,7 +23,7 @@ const HomeScreen = () => {
             history.push('/login')
         }
         dispatch(getUserPosts())
-    }, [history, userInfo, dispatch])
+    }, [history, userInfo, dispatch, success])
 
     return (
         <>
@@ -31,10 +31,7 @@ const HomeScreen = () => {
                 <div key={post._id}>
                     <Post
                         post={post}
-                        username={post.user.username}
-                        imageUrl={post.imageUrl}
-                        caption={post.caption}
-                        id={post._id} />
+                    />
                 </div>
             ))}
         </>

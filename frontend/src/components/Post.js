@@ -5,7 +5,7 @@ import './Post.css'
 
 import Avatar from '@material-ui/core/Avatar'
 
-const Post = ({ id, caption, username, imageUrl, post }) => {
+const Post = ({ post }) => {
 
     const dispatch = useDispatch()
 
@@ -19,35 +19,35 @@ const Post = ({ id, caption, username, imageUrl, post }) => {
 
     const commentHandler = (e) => {
         e.preventDefault()
-        dispatch(postPostComment(id, { comment }))
-        console.log(id)
-        setComment('')
+        dispatch(postPostComment(post._id, { comment }))
     }
 
     useEffect(() => {
-
-    }, [post])
+        if (success) {
+            setComment('')
+        }
+    }, [success])
 
     return (
         <div className="post" >
             <div className="post__header">
                 <Avatar
                     className="post__avatar"
-                    alt={username}
+                    alt={post.user.username}
                     src="">
                 </Avatar>
-                <h3>{username}</h3>
+                <h3>{post.user.username}</h3>
             </div>
 
             {/*Image*/}
             <img
                 className="post__image"
-                src={imageUrl}
-                alt={username}></img>
+                src={post.imageUrl}
+                alt={post.user.username}></img>
 
             {/*Username + Caption*/}
-            {caption &&
-                <h4 className="post__text"><strong>{username}</strong>{' '}{caption}</h4>}
+            {post.caption &&
+                <h4 className="post__text"><strong>{post.user.username}</strong>{' '}{post.caption}</h4>}
             <div className="post__text">
                 {post.comments.map(comment => (
                     <h4 key={comment._id}>
