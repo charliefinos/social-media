@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { getUserPosts } from '../actions/PostActions'
 import Post from '../components/Post'
+import FileUploader from '../components/FileUploader'
 
 const HomeScreen = () => {
 
@@ -27,6 +28,7 @@ const HomeScreen = () => {
 
     return (
         <>
+            <FileUploader />
             {posts.map((post) => (
                 <div key={post._id}>
                     <Post

@@ -1,0 +1,28 @@
+.file-uploader {
+    object-fit: contain;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 24px;
+}
+
+.file-uploader > button {
+    
+    border: 1px solid black;
+    border-radius: 4px;
+    width: 150px;
+    color: aqua;
+    background-color: black ;
+    font-size: 40px;
+    font-size: medium;
+    padding: 6px;
+    text-decoration: black;
+}
+
+.file-uploader > button:hover {
+    background-color: aqua;
+    color: black;
+    font-size: medium;
+    border: 1px solid aqua;
+}
