@@ -53,3 +53,25 @@
     background-color: aqua;
     border: 1px solid black;
 }
+
+.file-uploader__form > form {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+.file-uploader__form > form > button, input {
+    margin-bottom: 10px;
+    padding: 5px;
+    border: none;
+    color: aqua;
+}
+
+.file-uploader__form > form > button:hover, input:hover {
+    border: 1.5px solid gray;
+    border-radius: 2px;
+}
+
+.file-uploader__form > form > input {
+    margin-bottom: 10px;
+}
