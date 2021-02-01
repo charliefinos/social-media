@@ -1,4 +1,8 @@
 import {
+    USER_CREATE_POST_FAIL,
+    USER_CREATE_POST_REQUEST,
+    USER_CREATE_POST_SUCCESS,
+    USER_CREATE_POST_RESET,
     USER_POSTS_FAIL,
     USER_POSTS_REQUEST,
     USER_POSTS_SUCCESS,
@@ -32,5 +36,20 @@ export const userPostCommentReducer = (state = {}, action) => {
         default:
             return state
 
+    }
+}
+
+export const userCreatePostReducer = (state = {}, action) => {
+    switch (action.type) {
+        case USER_CREATE_POST_REQUEST:
+            return { loading: true }
+        case USER_CREATE_POST_SUCCESS:
+            return { loading: false, success: true, post: action.payload }
+        case USER_CREATE_POST_FAIL:
+            return { loading: false, error: action.payload }
+        case USER_CREATE_POST_RESET:
+            return {}
+        default:
+            return state
     }
 }

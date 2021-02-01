@@ -1,11 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import './FileUploader.css'
 import Modal from 'react-modal'
-import { black } from 'colors'
+import { createPost, getUserPosts } from '../actions/PostActions'
+import { USER_CREATE_POST_RESET } from '../constants/PostConstants'
 
 const FileUploader = () => {
     const [modal, setModal] = useState(false)
     const [caption, setCaption] = useState('')
+
+    const dispatch = useDispatch()
+
+    const userCreatePost = useSelector(state => state.userCreatePost)
+    const { success } = userCreatePost
+
+    useEffect(() => {
+        if (success) {
+            modalHandler()
+            dispatch(getUserPosts())
+            dispatch({
+                type: USER_CREATE_POST_RESET
+            })
+        }
+    }, [dispatch, success])
 
     const customStyles = {
         content: {
@@ -24,13 +41,9 @@ const FileUploader = () => {
         setModal(!modal)
     }
 
-    const closeModal = () => {
-        setModal(false)
-    }
-
     const uploadFileHandler = (e) => {
         e.preventDefault()
-        console.log(caption)
+        dispatch(createPost({ caption }))
     }
 
     return (
@@ -46,7 +59,6 @@ const FileUploader = () => {
                     <form onSubmit={uploadFileHandler}>
                         <label name='text'>Caption</label>
                         <input type='text' placeholder='Put a caption here...' value={caption} onChange={e => setCaption(e.target.value)}></input>
-
                         <button type='submit'>Submit</button>
                     </form>
                 </div>
