@@ -31,29 +31,6 @@
     border: 1px solid aqua;
 }
 
-.file-uploader__close__button {
-    display: flex;
-    flex-direction: row;
-    justify-content: right;
-}
-
-.file-uploader__close__button > button {
-    width: 30px;
-    height: 30px;
-    color: aqua;
-    background-color: black;
-    border-radius: 50px;
-    border: 1px solid black;
-}
-
-.file-uploader__close__button > button:hover {
-    width: 32px;
-    height: 32px;
-    color: black;
-    background-color: aqua;
-    border: 1px solid black;
-}
-
 .file-uploader__form > form {
     display: flex;
     flex-direction: column;
@@ -65,13 +42,19 @@
     padding: 5px;
     border: none;
     color: aqua;
+    background-color: black;
 }
 
 .file-uploader__form > form > button:hover, input:hover {
     border: 1.5px solid gray;
     border-radius: 2px;
+    color: black;
+    background-color: aqua;
+    font-size: 15px;
 }
 
 .file-uploader__form > form > input {
     margin-bottom: 10px;
 }
+
+

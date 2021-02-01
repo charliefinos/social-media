@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './FileUploader.css'
 import Modal from 'react-modal'
+import { black } from 'colors'
 
 const FileUploader = () => {
     const [modal, setModal] = useState(false)
@@ -13,7 +14,9 @@ const FileUploader = () => {
             right: 'auto',
             bottom: 'auto',
             marginRight: '-50%',
-            transform: 'translate(-50%, -50%)'
+            transform: 'translate(-50%, -50%)',
+            width: '300px',
+            color: 'black',
         }
     }
 
@@ -36,10 +39,9 @@ const FileUploader = () => {
             <Modal
                 ariaHideApp={false}
                 style={customStyles}
-                isOpen={modal}>
-                <div className='file-uploader__close__button'>
-                    <button onClick={closeModal}>x</button>
-                </div>
+                isOpen={modal}
+                onRequestClose={modalHandler}
+            >
                 <div className='file-uploader__form'>
                     <form onSubmit={uploadFileHandler}>
                         <label name='text'>Caption</label>
