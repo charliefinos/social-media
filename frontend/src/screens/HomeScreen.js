@@ -29,13 +29,15 @@ const HomeScreen = () => {
     return (
         <>
             <FileUploader />
-            {posts.map((post) => (
-                <div key={post._id}>
-                    <Post
-                        post={post}
-                    />
-                </div>
-            ))}
+            <div className='app__posts'>
+                {posts.map((post) => (
+                    <div key={post._id}>
+                        <Post
+                            post={post}
+                        />
+                    </div>
+                ))}
+            </div>
         </>
     )
 }

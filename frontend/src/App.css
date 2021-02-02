@@ -7,3 +7,8 @@
     height: 100vh;
 }
 
+.app__posts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
