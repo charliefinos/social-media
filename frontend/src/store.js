@@ -7,7 +7,7 @@ import {
     userUpdateProfileReducer,
     userRegisterReducer
 } from './reducers/UserReducers'
-import { userCreatePostReducer, userPostCommentReducer, userPostsReducer } from './reducers/PostReducers'
+import { userCommentedPostReducer, userCreatePostReducer, userPostCommentReducer, userPostsReducer } from './reducers/PostReducers'
 
 const reducer = combineReducers({
     userLogin: userLoginReducer,
@@ -16,6 +16,7 @@ const reducer = combineReducers({
     userUpdateProfile: userUpdateProfileReducer,
     userPosts: userPostsReducer,
     userPostComment: userPostCommentReducer,
+    userCommentedPost: userCommentedPostReducer,
     userCreatePost: userCreatePostReducer
 })
 
