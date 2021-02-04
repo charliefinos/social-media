@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { postPostComment, getUserPosts } from '../actions/PostActions'
+import { BiCommentDetail } from 'react-icons/bi'
 import './Post.css'
+
 
 import Avatar from '@material-ui/core/Avatar'
 
@@ -55,12 +57,13 @@ const Post = ({ post }) => {
                     </h4>
                 ))}
             </div>
+            <a href={`/${post._id}`}><BiCommentDetail size="50px" color="black" /></a>
             <form onSubmit={commentHandler}>
                 <input type="text" placeholder="Comment" value={comment} onChange={(e) => setComment(e.target.value)}></input>
 
                 <button type="submit">submit</button>
             </form>
-        </div>
+        </div >
     )
 }
 
