@@ -7,7 +7,6 @@
 
 .post > a, a:hover {
     text-decoration: none;
-    padding: 10px;
 }
 
 .post__image {
@@ -41,7 +40,6 @@
 
 .post__header__right > a, a:hover {
     text-decoration: none;
-    padding: 5px;
 }
 
 .post__avatar {
