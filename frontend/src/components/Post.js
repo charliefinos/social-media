@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { postPostComment, getUserPosts } from '../actions/PostActions'
 import { BiCommentDetail } from 'react-icons/bi'
+import { BsThreeDotsVertical } from 'react-icons/bs'
 import './Post.css'
 
 
@@ -24,6 +25,10 @@ const Post = ({ post }) => {
         dispatch(postPostComment(post._id, { comment }))
     }
 
+    const clickHandler = () => {
+        console.log('carlos')
+    }
+
     useEffect(() => {
         if (success) {
             setComment('')
@@ -33,14 +38,18 @@ const Post = ({ post }) => {
     return (
         <div className="post" >
             <div className="post__header">
-                <Avatar
-                    className="post__avatar"
-                    alt={post.user.username}
-                    src="">
-                </Avatar>
-                <h3>{post.user.username}</h3>
+                <div className="post__header__left">
+                    <Avatar
+                        className="post__avatar"
+                        alt={post.user.username}
+                        src="">
+                    </Avatar>
+                    <h3>{post.user.username}</h3>
+                </div>
+                <div className="post__header__right">
+                    <a><BsThreeDotsVertical size="20px" /></a>
+                </div>
             </div>
-
             {/*Image*/}
             <img
                 className="post__image"

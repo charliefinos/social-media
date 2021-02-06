@@ -27,13 +27,15 @@ const Header = ({ match }) => {
 
     return (
         <div className="header">
-            <Link to='/'>
-                <img
-                    className="app__headerImage"
-                    src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
-                    alt=""
-                />
-            </Link >
+            <div className="header__left">
+                <a href="/">
+                    <img
+                        className="header__img"
+                        src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
+                        alt=""
+                    />
+                </a>
+            </div>
             {userInfo ? (
                 <div className="header__right">
                     <NavDropdown title={userInfo.name}>
