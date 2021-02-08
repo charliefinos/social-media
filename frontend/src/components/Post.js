@@ -14,6 +14,9 @@ const Post = ({ post }) => {
 
     const [comment, setComment] = useState('')
 
+    const userPost = useSelector(state => state.userPost)
+    const { loading: loadingPost } = userPost
+
     const userPosts = useSelector(state => state.userPosts)
     const { posts } = userPosts
 
@@ -62,12 +65,15 @@ const Post = ({ post }) => {
                     </h4>
                 ))}
             </div>
-            <a href={`/post/${post._id}`}><BiCommentDetail size="50px" color="black" /></a>
-            <form onSubmit={commentHandler}>
-                <input type="text" placeholder="Comment" value={comment} onChange={(e) => setComment(e.target.value)}></input>
 
-                <button type="submit">submit</button>
-            </form>
+            {loadingPost === false ? (
+                <form onSubmit={commentHandler}>
+                    <input type="text" placeholder="Comment" value={comment} onChange={(e) => setComment(e.target.value)}></input>
+
+                    <button type="submit">submit</button>
+                </form>
+            ) : (<a href={`/post/${post._id}`}><BiCommentDetail size="50px" color="black" /></a>)}
+
         </div >
     )
 }

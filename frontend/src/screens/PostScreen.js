@@ -7,20 +7,22 @@ const PostScreen = ({ match }) => {
     const dispatch = useDispatch()
 
     const userPost = useSelector(state => state.userPost)
-    const { post, loading } = userPost
+    const { post, loading: loadingPosts } = userPost
+
+    const userPostComment = useSelector(state => state.userPostComment)
+    const { loading, success, error } = userPostComment
 
     useEffect(() => {
+        if (success) {
+            dispatch(getPost(match.params.id))
+        }
         dispatch(getPost(match.params.id))
-        console.log(post)
-    }, [match])
+    }, [match, success])
 
     return (
         <>
             <div>
-                <h1>{post.caption}</h1>
-                <h1>{post._id}</h1>
-                <h1>{post.user.username}</h1>
-
+                <Post post={post} />
             </div>
         </>
     )
