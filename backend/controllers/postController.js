@@ -47,4 +47,9 @@ const createPostComment = asyncHandler(async (req, res) => {
     }
 })
 
-export { createPost, getUserPosts, createPostComment }
+const getPost = asyncHandler(async (req, res) => {
+    const post = await Post.findById(req.params.id)
+    res.json(post)
+})
+
+export { createPost, getUserPosts, createPostComment, getPost }
