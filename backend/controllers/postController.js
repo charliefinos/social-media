@@ -48,7 +48,7 @@ const createPostComment = asyncHandler(async (req, res) => {
 })
 
 const getPost = asyncHandler(async (req, res) => {
-    const post = await Post.findById(req.params.id)
+    const post = await Post.findById(req.params.id).populate('user')
     res.json(post)
 })
 

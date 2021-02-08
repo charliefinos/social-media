@@ -25,15 +25,11 @@ const Post = ({ post }) => {
         dispatch(postPostComment(post._id, { comment }))
     }
 
-    const clickHandler = () => {
-        console.log('carlos')
-    }
-
     useEffect(() => {
         if (success) {
             setComment('')
         }
-    }, [success, post.comment])
+    }, [success])
 
     return (
         <div className="post" >
