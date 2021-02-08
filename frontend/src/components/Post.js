@@ -66,7 +66,7 @@ const Post = ({ post }) => {
                     </h4>
                 ))}
             </div>
-            <a href={`/${post._id}`}><BiCommentDetail size="50px" color="black" /></a>
+            <a href={`/post/${post._id}`}><BiCommentDetail size="50px" color="black" /></a>
             <form onSubmit={commentHandler}>
                 <input type="text" placeholder="Comment" value={comment} onChange={(e) => setComment(e.target.value)}></input>
 

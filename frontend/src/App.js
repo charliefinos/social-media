@@ -7,6 +7,7 @@ import LoginScreen from './screens/LoginScreen';
 import SignupScreen from './screens/SignupScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import EditProfileScreen from './screens/EditProfileScreen'
+import PostScreen from './screens/PostScreen'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path='/signup' component={SignupScreen} />
             <Route path='/profile' component={ProfileScreen} />
             <Route path='/profile/edit' component={EditProfileScreen} />
+            <Route path='/post/:id' component={PostScreen} />
           </Container>
         </main>
       </Router>
