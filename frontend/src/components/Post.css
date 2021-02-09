@@ -1,12 +1,8 @@
 .post {
     background-color: white;
-    max-width: 500px;
+    max-width: 600px;
     border: 1px solid lightgray;
     margin-bottom: 45px;
-}
-
-.post > a, a:hover {
-    text-decoration: none;
 }
 
 .post__image {
@@ -59,3 +55,13 @@
 }
 
 
+.post__text__comment {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.test {
+    display: flex;
+    flex-direction: column;
+}

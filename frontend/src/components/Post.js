@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { postPostComment, getUserPosts } from '../actions/PostActions'
 import { BiCommentDetail } from 'react-icons/bi'
 import { BsThreeDotsVertical } from 'react-icons/bs'
+import { TiDeleteOutline, TiDelete } from 'react-icons/ti'
 import './Post.css'
 
 
@@ -53,17 +54,30 @@ const Post = ({ post }) => {
             <img
                 className="post__image"
                 src={post.imageUrl}
-                alt={post.user.username}></img>
+                alt={post.user.username}>
+            </img>
 
             {/*Username + Caption*/}
             {post.caption &&
                 <h4 className="post__text"><strong>{post.user.username}</strong>{' '}{post.caption}</h4>}
-            <div className="post__text">
-                {post.comments.map(comment => (
-                    <h4 key={comment._id}>
+
+            {post.comments.map(comment => (
+                <div className="post__text__comment" key={comment._id}>
+                    <div className="post__text__comment__left">
                         <strong>{comment.username}</strong>{' '}{comment.comment}
-                    </h4>
-                ))}
+                    </div>
+                    <div className="post__text__comment__right">
+                        <a><TiDeleteOutline color="light-gray" /></a>
+                    </div>
+                </div>
+            ))}
+            <div className="post__text__comment">
+                <div className="post__text__comment__left">
+                    <strong>charlyfinos</strong>{' '} queondaa
+                </div>
+                <div className="post__text__comment__right">
+                    <a><TiDeleteOutline color="light-gray" /></a>
+                </div>
             </div>
 
             {loadingPost === false ? (
