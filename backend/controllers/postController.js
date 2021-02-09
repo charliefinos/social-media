@@ -52,4 +52,16 @@ const getPost = asyncHandler(async (req, res) => {
     res.json(post)
 })
 
-export { createPost, getUserPosts, createPostComment, getPost }
+const deletePostComment = asyncHandler(async (req, res) => {
+    const comment = await Post.findOneAndUpdate(
+        {
+            _id: req.params.id
+        }, {
+        $pull: {
+            comments: { _id: req.params.comment_id }
+        }
+    })
+    res.json({ message: 'Comment Deleted', comment })
+})
+
+export { createPost, getUserPosts, createPostComment, getPost, deletePostComment }
