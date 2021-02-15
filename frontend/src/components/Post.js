@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { postPostComment, getUserPosts } from '../actions/PostActions'
+import { deletePostComment, postPostComment, getPost } from '../actions/PostActions'
 import { BiCommentDetail } from 'react-icons/bi'
 import { BsThreeDotsVertical } from 'react-icons/bs'
-import { TiDeleteOutline, TiDelete } from 'react-icons/ti'
+import { TiDeleteOutline } from 'react-icons/ti'
 import './Post.css'
 
 
 import Avatar from '@material-ui/core/Avatar'
 
-const Post = ({ post }) => {
+const Post = ({ post, match }) => {
 
     const dispatch = useDispatch()
 
     const [comment, setComment] = useState('')
+
+    const [postId, setPostId] = useState('')
+    const [commentId, setCommentId] = useState('')
 
     const userPost = useSelector(state => state.userPost)
     const { loading: loadingPost } = userPost
@@ -27,6 +30,12 @@ const Post = ({ post }) => {
     const commentHandler = (e) => {
         e.preventDefault()
         dispatch(postPostComment(post._id, { comment }))
+    }
+
+    const deleteComment = (a, b) => {
+        if (window.confirm('Do you want to delete this comment?')) {
+            dispatch(deletePostComment(a, b))
+        }
     }
 
     useEffect(() => {
@@ -61,24 +70,18 @@ const Post = ({ post }) => {
             {post.caption &&
                 <h4 className="post__text"><strong>{post.user.username}</strong>{' '}{post.caption}</h4>}
 
-            {post.comments.map(comment => (
-                <div className="post__text__comment" key={comment._id}>
+            {post.comments.map(x => (
+                <div className="post__text__comment" key={x._id}>
                     <div className="post__text__comment__left">
-                        <strong>{comment.username}</strong>{' '}{comment.comment}
+                        <strong>{x.username}</strong>{' '}{x.comment}
                     </div>
                     <div className="post__text__comment__right">
-                        <a><TiDeleteOutline color="light-gray" /></a>
+                        <a onClick={(() => {
+                            deleteComment(post._id, x._id)
+                        })}><TiDeleteOutline color="light-gray" /></a>
                     </div>
                 </div>
             ))}
-            <div className="post__text__comment">
-                <div className="post__text__comment__left">
-                    <strong>charlyfinos</strong>{' '} queondaa
-                </div>
-                <div className="post__text__comment__right">
-                    <a><TiDeleteOutline color="light-gray" /></a>
-                </div>
-            </div>
 
             {loadingPost === false ? (
                 <form onSubmit={commentHandler}>

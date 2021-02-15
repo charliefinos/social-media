@@ -12,8 +12,12 @@ const PostScreen = ({ match }) => {
     const userPostComment = useSelector(state => state.userPostComment)
     const { loading, success, error } = userPostComment
 
+    const userDeletePostComment = useSelector(state => state.userDeletePostComment)
+    const { success: deleteSuccess } = userDeletePostComment
+
+
     useEffect(() => {
-        if (success) {
+        if (success || deleteSuccess) {
             dispatch(getPost(match.params.id))
         }
         dispatch(getPost(match.params.id))
