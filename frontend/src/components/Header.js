@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { useHistory, Link } from 'react-router-dom'
+import React from 'react'
+import { useHistory } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../actions/UserActions'
@@ -11,8 +11,6 @@ const Header = ({ match }) => {
     const dispatch = useDispatch()
     const history = useHistory()
 
-    const [toggle, setToggle] = useState(false)
-
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
 
@@ -20,10 +18,6 @@ const Header = ({ match }) => {
         dispatch(logout())
         history.push('/login')
     }
-    const toggleHandler = () => {
-        setToggle(!toggle)
-    }
-
 
     return (
         <div className="header">
@@ -45,7 +39,7 @@ const Header = ({ match }) => {
                 </div>
             ) : (
                     <div className="header__right">
-                        <a type="button" to='/signup'> Signup</a>
+                        <a href='#' type="button" to='/signup'> Signup</a>
                         <LinkContainer to='/login'><Button variant="primary"  >Login</Button></LinkContainer>
                     </div>
 

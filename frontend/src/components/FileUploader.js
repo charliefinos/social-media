@@ -16,7 +16,6 @@ const FileUploader = () => {
 
     useEffect(() => {
         if (success) {
-            modalHandler()
             dispatch(getUserPosts())
             dispatch({
                 type: USER_CREATE_POST_RESET

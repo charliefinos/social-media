@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { getUserPosts } from '../actions/PostActions'
@@ -16,8 +16,6 @@ const HomeScreen = () => {
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
 
-    const userPostComment = useSelector(state => state.userPostComment)
-    const { loading, success, error } = userPostComment
 
     useEffect(() => {
         if (userInfo === null) {

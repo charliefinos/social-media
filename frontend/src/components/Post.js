@@ -1,31 +1,26 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { deletePostComment, postPostComment, getPost } from '../actions/PostActions'
+import { deletePostComment, postPostComment } from '../actions/PostActions'
 import { BiCommentDetail } from 'react-icons/bi'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import { TiDeleteOutline } from 'react-icons/ti'
 import './Post.css'
-
+import 'fontsource-roboto'
 
 import Avatar from '@material-ui/core/Avatar'
 
-const Post = ({ post, match }) => {
+const Post = ({ post }) => {
 
     const dispatch = useDispatch()
 
     const [comment, setComment] = useState('')
 
-    const [postId, setPostId] = useState('')
-    const [commentId, setCommentId] = useState('')
-
     const userPost = useSelector(state => state.userPost)
     const { loading: loadingPost } = userPost
 
-    const userPosts = useSelector(state => state.userPosts)
-    const { posts } = userPosts
 
     const userPostComment = useSelector(state => state.userPostComment)
-    const { loading, success, error } = userPostComment
+    const { success } = userPostComment
 
     const commentHandler = (e) => {
         e.preventDefault()
@@ -56,7 +51,7 @@ const Post = ({ post, match }) => {
                     <h3>{post.user.username}</h3>
                 </div>
                 <div className="post__header__right">
-                    <a><BsThreeDotsVertical size="20px" /></a>
+                    <a href='#'><BsThreeDotsVertical size="20px" /></a>
                 </div>
             </div>
             {/*Image*/}
@@ -76,7 +71,7 @@ const Post = ({ post, match }) => {
                         <strong>{x.username}</strong>{' '}{x.comment}
                     </div>
                     <div className="post__text__comment__right">
-                        <a onClick={(() => {
+                        <a href='#' onClick={(() => {
                             deleteComment(post._id, x._id)
                         })}><TiDeleteOutline color="light-gray" /></a>
                     </div>
