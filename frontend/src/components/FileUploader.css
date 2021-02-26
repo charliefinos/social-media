@@ -46,10 +46,9 @@
 }
 
 .file-uploader__form > form > button:hover, input:hover {
-    border: 1.5px solid gray;
+    border: 1px solid black;
     border-radius: 2px;
     color: black;
-    background-color: aqua;
     font-size: 15px;
 }
 
