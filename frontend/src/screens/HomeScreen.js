@@ -16,7 +16,6 @@ const HomeScreen = () => {
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
 
-
     useEffect(() => {
         if (userInfo === null) {
             history.push('/login')
@@ -25,9 +24,11 @@ const HomeScreen = () => {
     }, [history, userInfo, dispatch])
 
     return (
-        <>
+        <div>
             <FileUploader />
-            <div className='app__posts'>
+            {posts.length === 0 ? (
+                <h2>No post Founded!</h2>
+            ) : (<div className='app__posts'>
                 {posts.map((post) => (
                     <div key={post._id}>
                         <Post
@@ -35,8 +36,9 @@ const HomeScreen = () => {
                         />
                     </div>
                 ))}
-            </div>
-        </>
+            </div>)}
+
+        </div>
     )
 }
 

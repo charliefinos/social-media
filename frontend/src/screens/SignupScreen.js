@@ -6,10 +6,9 @@ import FormContainer from '../components/FormContainer'
 import { register } from '../actions/UserActions'
 
 
-const SignupScreen = () => {
+const SignupScreen = ({ location }) => {
     const dispatch = useDispatch()
     const history = useHistory()
-
     const [name, setName] = useState('')
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
@@ -19,6 +18,14 @@ const SignupScreen = () => {
 
     const userRegister = useSelector(state => state.userRegister)
     const { userInfo } = userRegister
+
+    const redirect = location.search ? location.search.split('=')[1] : '/login'
+
+    useEffect(() => {
+        if (userInfo) {
+            history.push(redirect)
+        }
+    }, [userInfo, history, redirect])
 
     const submitHandler = (e) => {
         e.preventDefault()
@@ -33,13 +40,6 @@ const SignupScreen = () => {
             ))
         }
     }
-
-    useEffect(() => {
-        if (userInfo) {
-            history.push('/')
-        }
-    }, [history, userInfo])
-
     return (
         <>
             <FormContainer>
