@@ -39,7 +39,7 @@ const Header = ({ match }) => {
                 </div>
             ) : (
                     <div className="header__right">
-                        <a href='#' type="button" to='/signup'> Signup</a>
+                        <LinkContainer to='/signup'><Button variant="primary"  >Signup</Button></LinkContainer>
                         <LinkContainer to='/login'><Button variant="primary"  >Login</Button></LinkContainer>
                     </div>
 

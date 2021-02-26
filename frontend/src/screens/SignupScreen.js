@@ -11,6 +11,7 @@ const SignupScreen = () => {
     const history = useHistory()
 
     const [name, setName] = useState('')
+    const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
@@ -26,6 +27,7 @@ const SignupScreen = () => {
         } else {
             dispatch(register(
                 name,
+                username,
                 email,
                 password
             ))
@@ -55,6 +57,16 @@ const SignupScreen = () => {
                         ></Form.Control>
                     </Form.Group>
 
+                    <Form.Group controlId='username'>
+                        <Form.Label>Username</Form.Label>
+                        <Form.Control
+                            type='username'
+                            placeholder='Enter Username'
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                        ></Form.Control>
+                    </Form.Group>
+
                     <Form.Group controlId='email'>
                         <Form.Label>Email</Form.Label>
                         <Form.Control
@@ -78,7 +90,7 @@ const SignupScreen = () => {
 
 
                     <Form.Group controlId='confirmPassword'>
-                        <Form.Label>Password</Form.Label>
+                        <Form.Label>Confirm Password</Form.Label>
                         <Form.Control
                             type='password'
                             placeholder='Confirm Password'
