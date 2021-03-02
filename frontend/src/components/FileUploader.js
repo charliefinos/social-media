@@ -8,6 +8,7 @@ import Modal from 'react-modal'
 const FileUploader = () => {
     const [modal, setModal] = useState(false)
     const [caption, setCaption] = useState('')
+    const [picture, setPicture] = useState('')
 
     const dispatch = useDispatch()
 
@@ -70,9 +71,25 @@ const FileUploader = () => {
                             onChange={(e) => setCaption(e.target.value)} />
                     </Form.Group>
 
+                    <Form.Group controlId='picture'>
+                        <Form.Label>Picture </Form.Label>
+                        <Form.Control
+                            type='text'
+                            placeholder='Enter picture url'
+                            value={picture}
+                            onChange={(e) => setPicture(e.target.value)}>
+                        </Form.Control>
+                        <Form.File
+                            id='Picture-file'
+                            label='choose-file'
+                            custom
+                            onChange={(e) => setPicture(e.target.value)}></Form.File>
+                    </Form.Group>
+
                     <Button variant="primary" type="submit">
                         Submit
                     </Button>
+
                 </Form>
             </Modal>
         </Container>
