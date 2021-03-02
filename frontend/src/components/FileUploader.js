@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { createPost, getUserPosts } from '../actions/PostActions'
 import { USER_CREATE_POST_RESET } from '../constants/PostConstants'
-import { Button, Row, Col, Container } from 'react-bootstrap'
+import { Button, Row, Form, Container } from 'react-bootstrap'
 import Modal from 'react-modal'
 
 const FileUploader = () => {
@@ -16,11 +16,13 @@ const FileUploader = () => {
 
     useEffect(() => {
         if (success) {
+            setModal(!modal)
             dispatch(getUserPosts())
             dispatch({
                 type: USER_CREATE_POST_RESET
             })
         }
+
     }, [dispatch, success])
 
     const customStyles = {
@@ -43,6 +45,8 @@ const FileUploader = () => {
     const uploadFileHandler = (e) => {
         e.preventDefault()
         dispatch(createPost({ caption }))
+        setCaption('')
+
     }
 
     return (
@@ -56,13 +60,20 @@ const FileUploader = () => {
                 isOpen={modal}
                 onRequestClose={modalHandler}
             >
-                <div className='file-uploader__form'>
-                    <form onSubmit={uploadFileHandler}>
-                        <label name='text'>Caption</label>
-                        <input type='text' placeholder='Put a caption here...' value={caption} onChange={e => setCaption(e.target.value)}></input>
-                        <button type='submit'>Submit</button>
-                    </form>
-                </div>
+                <Form onSubmit={uploadFileHandler}>
+                    <Form.Group controlId="formPictureUpload">
+                        <Form.Label>Picture Caption</Form.Label>
+                        <Form.Control
+                            type="caption"
+                            placeholder="Enter a Caption"
+                            value={caption}
+                            onChange={(e) => setCaption(e.target.value)} />
+                    </Form.Group>
+
+                    <Button variant="primary" type="submit">
+                        Submit
+                    </Button>
+                </Form>
             </Modal>
         </Container>
     )
