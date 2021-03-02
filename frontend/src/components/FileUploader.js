@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import './FileUploader.css'
-import Modal from 'react-modal'
 import { createPost, getUserPosts } from '../actions/PostActions'
 import { USER_CREATE_POST_RESET } from '../constants/PostConstants'
+import { Button, Row, Col, Container } from 'react-bootstrap'
+import Modal from 'react-modal'
 
 const FileUploader = () => {
     const [modal, setModal] = useState(false)
@@ -46,8 +46,10 @@ const FileUploader = () => {
     }
 
     return (
-        <div className='file-uploader'>
-            <button onClick={modalHandler}>New Post</button>
+        <Container fluid>
+            <Row className="justify-content-center my-3">
+                <Button className="text-center" variant="primary" onClick={modalHandler}>New Post</Button>
+            </Row>
             <Modal
                 ariaHideApp={false}
                 style={customStyles}
@@ -62,7 +64,7 @@ const FileUploader = () => {
                     </form>
                 </div>
             </Modal>
-        </div>
+        </Container>
     )
 }
 
