@@ -1,4 +1,5 @@
 import express from 'express'
+import path from 'path'
 import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 import connectDB from './config/db.js'
@@ -22,6 +23,9 @@ app.get('/', (req, res) => {
 
 app.use('/api/users', userRoutes)
 app.use('/api/posts', postRoutes)
+
+const __dirname = path.resolve()
+app.use('/posts', express.static(path.join(__dirname)))
 
 app.use(notFound)
 app.use(errorHandler)
