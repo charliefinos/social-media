@@ -9,7 +9,7 @@ const FileUploader = () => {
     const [modal, setModal] = useState(false)
     const [caption, setCaption] = useState('')
     const [picture, setPicture] = useState('')
-
+    const [uploading, setUploading] = useState(false)
     const dispatch = useDispatch()
 
     const userCreatePost = useSelector(state => state.userCreatePost)
@@ -47,7 +47,6 @@ const FileUploader = () => {
         e.preventDefault()
         dispatch(createPost({ caption }))
         setCaption('')
-
     }
 
     return (

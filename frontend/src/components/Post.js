@@ -57,7 +57,7 @@ const Post = ({ post }) => {
             {/*Image*/}
             <img
                 className="post__image"
-                src={post.imageUrl}
+                src={'/uploads/image-1614821234509.jpg'}
                 alt={post.user.username}>
             </img>
 

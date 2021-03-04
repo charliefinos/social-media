@@ -11,7 +11,7 @@ const HomeScreen = () => {
     const history = useHistory()
 
     const userPosts = useSelector(state => state.userPosts)
-    const { posts } = userPosts
+    const { posts, loading } = userPosts
 
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
@@ -19,13 +19,17 @@ const HomeScreen = () => {
     useEffect(() => {
         if (userInfo === null) {
             history.push('/login')
+        } else {
+            dispatch(getUserPosts())
         }
-        dispatch(getUserPosts())
+
     }, [history, userInfo, dispatch])
 
     return (
         <div>
             <FileUploader />
+            {loading && <h1>Loading</h1>}
+
             {posts.length === 0 ? (
                 <h2>No post Founded!</h2>
             ) : (<div className='app__posts'>
