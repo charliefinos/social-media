@@ -48,7 +48,7 @@ const upload = multer({
 router.post('/', protect, upload.single('image'), asyncHandler(async (req, res, next) => {
     const post = new Post({
         user: req.user._id,
-        image: req.file.path,
+        image: req.file.path.replace(/\\/g, "/"),
         caption: req.body.caption,
 
     })
