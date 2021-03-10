@@ -74,7 +74,7 @@ export const postPostComment = (id, comment) => async (dispatch, getState) => {
     }
 }
 
-export const createPost = (caption) => async (dispatch, getState) => {
+export const createPost = (caption, image) => async (dispatch, getState) => {
     try {
         dispatch({
             type: USER_CREATE_POST_REQUEST
@@ -88,7 +88,7 @@ export const createPost = (caption) => async (dispatch, getState) => {
                 Authorization: `Bearer ${userInfo.token}`
             }
         }
-        const { data } = await axios.post('/api/posts/', caption, config)
+        const { data } = await axios.post('/api/posts/', {caption, image}, config)
 
         dispatch({
             type: USER_CREATE_POST_SUCCESS,

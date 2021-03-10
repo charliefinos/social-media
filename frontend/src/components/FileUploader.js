@@ -7,11 +7,13 @@ import Modal from 'react-modal'
 import axios from 'axios'
 
 const FileUploader = () => {
+    const dispatch = useDispatch()
+
     const [modal, setModal] = useState(false)
     const [caption, setCaption] = useState('')
-    const [picture, setPicture] = useState('')
+    const [image, setImage] = useState('')
     const [uploading, setUploading] = useState(false)
-    const dispatch = useDispatch()
+    
 
     const userCreatePost = useSelector(state => state.userCreatePost)
     const { success } = userCreatePost
@@ -44,12 +46,15 @@ const FileUploader = () => {
         setModal(!modal)
     }
 
-    const uploadFileHandler = async (e) => {
+    const submitHandler=(e)=> {
         e.preventDefault()
+        dispatch(createPost(caption, image))
+    }
 
-        const file = e.target.file
+    const uploadFileHandler = async (e) => {
+        const file = e.target.files[0]
         const formData = new FormData()
-        formData.append('image', picture)
+        formData.append('image', file)
         
         try {
             const config = { 
@@ -58,15 +63,13 @@ const FileUploader = () => {
                 }
             }
 
-            const { data } = await axios.post('/api/posts', formData, config)
-            setPicture(data)
+            const { data } = await axios.post('/api/upload', formData, config)
+            setImage(data)
             setUploading(true)
         } catch(error) {
             console.error(error)
             setUploading(false)
         }
-        
-        setCaption('')
     }
 
     return (
@@ -80,7 +83,7 @@ const FileUploader = () => {
                 isOpen={modal}
                 onRequestClose={modalHandler}
             >
-                <Form onSubmit={uploadFileHandler}>
+                <Form onSubmit={submitHandler}>
                     <Form.Group controlId="formPictureUpload">
                         <Form.Label>Picture Caption</Form.Label>
                         <Form.Control
@@ -94,15 +97,15 @@ const FileUploader = () => {
                         <Form.Label>Picture </Form.Label>
                         <Form.Control
                             type='text'
-                            placeholder='Enter picture url'
-                            value={picture}
-                            onChange={(e) => setPicture(e.target.value)}>
+                            placeholder='Enter Image url'
+                            value={image}
+                            onChange={(e) => setImage(e.target.value)}>
                         </Form.Control>
                         <Form.File
-                            id='picture-file'
-                            label='choose-file'
+                            id='image-file'
+                            label='Choose file'
                             custom
-                            onChange={(e) => setPicture(e.target.value)}></Form.File>
+                            onChange={uploadFileHandler}></Form.File>
                     </Form.Group>
 
                     <Button variant="primary" type="submit">
