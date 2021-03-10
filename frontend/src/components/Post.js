@@ -55,11 +55,13 @@ const Post = ({ post }) => {
                 </div>
             </div>
             {/*Image*/}
+            <div>
             <img
                 className="post__image"
-                src={'/uploads/image-1614821234509.jpg'}
-                alt={post.user.username}>
+                src={post.image}
+                >
             </img>
+            </div>
 
             {/*Username + Caption*/}
             {post.caption &&

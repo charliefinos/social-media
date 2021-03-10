@@ -4,6 +4,7 @@ import { createPost, getUserPosts } from '../actions/PostActions'
 import { USER_CREATE_POST_RESET } from '../constants/PostConstants'
 import { Button, Row, Form, Container } from 'react-bootstrap'
 import Modal from 'react-modal'
+import axios from 'axios'
 
 const FileUploader = () => {
     const [modal, setModal] = useState(false)
@@ -43,9 +44,28 @@ const FileUploader = () => {
         setModal(!modal)
     }
 
-    const uploadFileHandler = (e) => {
+    const uploadFileHandler = async (e) => {
         e.preventDefault()
-        dispatch(createPost({ caption }))
+
+        const file = e.target.file
+        const formData = new FormData()
+        formData.append('image', picture)
+        
+        try {
+            const config = { 
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }
+
+            const { data } = await axios.post('/api/posts', formData, config)
+            setPicture(data)
+            setUploading(true)
+        } catch(error) {
+            console.error(error)
+            setUploading(false)
+        }
+        
         setCaption('')
     }
 
@@ -79,7 +99,7 @@ const FileUploader = () => {
                             onChange={(e) => setPicture(e.target.value)}>
                         </Form.Control>
                         <Form.File
-                            id='Picture-file'
+                            id='picture-file'
                             label='choose-file'
                             custom
                             onChange={(e) => setPicture(e.target.value)}></Form.File>

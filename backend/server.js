@@ -5,6 +5,7 @@ import bodyParser from 'body-parser'
 import connectDB from './config/db.js'
 import userRoutes from './routes/userRoutes.js'
 import postRoutes from './routes/postRoutes.js'
+import uploadRoutes from './routes/uploadRoutes.js'
 import { errorHandler, notFound } from './middleware/errorMiddleware.js'
 
 dotenv.config()
@@ -23,9 +24,11 @@ app.get('/', (req, res) => {
 
 app.use('/api/users', userRoutes)
 app.use('/api/posts', postRoutes)
+app.use('/api/upload', uploadRoutes)
 
+// Make the upload folder static
 const __dirname = path.resolve()
-app.use('/posts', express.static(path.join(__dirname)))
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
 app.use(notFound)
 app.use(errorHandler)
