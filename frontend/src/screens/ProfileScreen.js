@@ -17,14 +17,21 @@ const ProfileScreen = () => {
 
     return (
         <div>
-            {posts.map(post =>
-                <Post
-                    key={post._id}
-                    username={post.user.username}
-                    caption={post.caption}
-                    imageUrl={post.imageUrl}
-                />
-            )}
+            {posts.length === 0 ? (
+                <h1>No post Founded!</h1>
+            )
+                :
+                (<div className='app__posts'>
+                    {posts.map((post) =>
+                        <div key={post._id}>
+                            <Post
+                                post={post}
+                            />
+                        </div>
+                    )}
+                </div>
+                )
+            }
         </div >
     )
 }
