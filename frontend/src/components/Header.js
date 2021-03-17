@@ -1,9 +1,9 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../actions/UserActions'
-import { Button, NavDropdown } from 'react-bootstrap'
+import { Button, NavDropdown, Navbar, Form, FormControl, DropdownButton, Dropdown } from 'react-bootstrap'
 
 import './Header.css'
 
@@ -20,32 +20,26 @@ const Header = ({ match }) => {
     }
 
     return (
-        <div className="header">
-            <div className="header__left">
-                <a href="/">
-                    <img
-                        className="header__img"
-                        src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
-                        alt=""
-                    />
-                </a>
-            </div>
+        <Navbar className="d-flex justify-content-between py-3" bg="primary" variant="dark">
+            <Navbar.Brand href="#home">Social-Network</Navbar.Brand>
+            <Form inline>
+                <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                <Button variant="outline-light">Search</Button>
+            </Form>
             {userInfo ? (
-                <div className="header__right">
-                    <NavDropdown title={userInfo.name}>
-                        <NavDropdown.Item >Profile</NavDropdown.Item>
-                        <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
-                    </NavDropdown>
-                </div>
+                <DropdownButton id="dropdown-basic-button" title={userInfo.name}>
+                    <Dropdown.Item href="/profile">Profile</Dropdown.Item>
+                    <Dropdown.Item onClick={logoutHandler}>Logout</Dropdown.Item>
+                </DropdownButton>
             ) : (
-                    <div className="header__right">
-                        <LinkContainer to='/signup'><Button variant="primary"  >Signup</Button></LinkContainer>
-                        <LinkContainer to='/login'><Button variant="primary"  >Login</Button></LinkContainer>
-                    </div>
-
-                )
+                <div>
+                    <LinkContainer to='/signup'><Button variant="primary"  >Signup</Button></LinkContainer>
+                    <LinkContainer to='/login'><Button variant="primary"  >Login</Button></LinkContainer>
+                </div>
+            )
             }
-        </div>
+        </Navbar>
+
     )
 }
 
