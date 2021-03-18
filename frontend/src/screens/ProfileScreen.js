@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserPosts } from '../actions/PostActions'
 import Post from '../components/Post'
+import Profile from '../components/Profile'
 
 const ProfileScreen = () => {
     const dispatch = useDispatch()
@@ -22,6 +23,7 @@ const ProfileScreen = () => {
             )
                 :
                 (<div className='app__posts'>
+                    <Profile />
                     {posts.map((post) =>
                         <div key={post._id}>
                             <Post
