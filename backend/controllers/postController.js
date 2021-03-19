@@ -49,6 +49,18 @@ const getPost = asyncHandler(async (req, res) => {
     res.json(post)
 })
 
+const deletePost = asyncHandler(async (req, res) => {
+    const post = await Post.findById(req.params.id)
+
+    if (post) {
+        await post.remove()
+        res.json({ message: 'Post Removed' })
+    } else {
+        res.status(404)
+        throw new Error('Product not found')
+    }
+})
+
 const deletePostComment = asyncHandler(async (req, res) => {
     const comment = await Post.findOneAndUpdate(
         {
@@ -61,4 +73,11 @@ const deletePostComment = asyncHandler(async (req, res) => {
     res.json({ message: 'Comment Deleted', comment })
 })
 
-export { createPost, getUserPosts, createPostComment, getPost, deletePostComment }
+export {
+    createPost,
+    getUserPosts,
+    createPostComment,
+    getPost,
+    deletePost,
+    deletePostComment,
+}
