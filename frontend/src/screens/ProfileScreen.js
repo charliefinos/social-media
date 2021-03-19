@@ -4,11 +4,15 @@ import { getUserPosts } from '../actions/PostActions'
 import Post from '../components/Post'
 import Profile from '../components/Profile'
 
+
 const ProfileScreen = () => {
     const dispatch = useDispatch()
 
     const userPosts = useSelector(state => state.userPosts)
     const { posts } = userPosts
+
+    const userLogin = useSelector(state => state.userLogin)
+    const { userInfo } = userLogin
 
     console.log(posts)
 
@@ -23,7 +27,7 @@ const ProfileScreen = () => {
             )
                 :
                 (<div className='app__posts'>
-                    <Profile />
+                    <Profile userInfo={userInfo} />
                     {posts.map((post) =>
                         <div key={post._id}>
                             <Post
