@@ -55,13 +55,12 @@ const Post = ({ post }) => {
                 </div>
             </div>
             {/*Image*/}
-            <div>
             <img
                 className="post__image"
                 src={post.image}
-                >
+            >
             </img>
-            </div>
+
 
             {/*Username + Caption*/}
             {post.caption &&

@@ -20,10 +20,15 @@
   padding: 14px 0 14px 45px;
   flex-direction: column;
   flex-wrap: wrap;
-  white-space: nowrap;
-  overflow: hidden;
 }
 
 .profile__data > h2 {
   padding-bottom: 10px;
+}
+
+@media (max-width: 767px) {
+  .profile {
+    max-width: 400px;
+    min-width: 400px;
+  }
 }
