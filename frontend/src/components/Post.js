@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Dropdown } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { deletePostComment, postPostComment } from '../actions/PostActions'
 import { BiCommentDetail } from 'react-icons/bi'
@@ -33,6 +34,24 @@ const Post = ({ post }) => {
         }
     }
 
+    const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
+        <a
+            href=""
+            ref={ref}
+            onClick={e => {
+                e.preventDefault();
+                onClick(e);
+            }}
+        >
+            {<BsThreeDotsVertical size="20px" />}
+            {children}
+        </a>
+    ));
+
+    const deleteHandler = () => {
+        console.log('funciona')
+    }
+
     useEffect(() => {
         if (success) {
             setComment('')
@@ -50,9 +69,17 @@ const Post = ({ post }) => {
                     </Avatar>
                     <h3>{post.user.username}</h3>
                 </div>
-                <div className="post__header__right">
-                    <a href='#'><BsThreeDotsVertical size="20px" /></a>
-                </div>
+
+                <Dropdown className='post__header__right' >
+                    <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
+
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                        <Dropdown.Item onClick={deleteHandler} eventKey="1">Delete Post</Dropdown.Item>
+                        <Dropdown.Item eventKey="2">Report</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
             </div>
             {/*Image*/}
             <img
