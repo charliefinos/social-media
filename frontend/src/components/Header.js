@@ -24,12 +24,15 @@ const Header = ({ match }) => {
     return (
         <Navbar className="d-flex justify-content-between py-3" bg="primary" variant="dark">
             <Navbar.Brand href="/">Social-Network</Navbar.Brand>
-            <Route render={({ history }) => <SearchBox history={history} />} />
+
             {userInfo ? (
-                <DropdownButton variant="dark" id="dropdown-basic-button" title={userInfo.name}>
-                    <Dropdown.Item href="/profile">Profile</Dropdown.Item>
-                    <Dropdown.Item onClick={logoutHandler}>Logout</Dropdown.Item>
-                </DropdownButton>
+                <>
+                    <Route render={({ history }) => <SearchBox history={history} />} />
+                    <DropdownButton variant="dark" id="dropdown-basic-button" title={userInfo.name}>
+                        <Dropdown.Item href="/profile">Profile</Dropdown.Item>
+                        <Dropdown.Item onClick={logoutHandler}>Logout</Dropdown.Item>
+                    </DropdownButton>
+                </>
             ) : (
                 <div>
                     <LinkContainer to='/signup'><Button variant="primary"  >Signup</Button></LinkContainer>
