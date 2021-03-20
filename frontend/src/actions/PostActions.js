@@ -3,6 +3,9 @@ import {
     USER_CREATE_POST_FAIL,
     USER_CREATE_POST_REQUEST,
     USER_CREATE_POST_SUCCESS,
+    USER_DELETE_POST_FAIL,
+    USER_DELETE_POST_REQUEST,
+    USER_DELETE_POST_SUCCESS,
     USER_DELETE_COMMENT_FAIL,
     USER_DELETE_COMMENT_REQUEST,
     USER_DELETE_COMMENT_SUCCESS,
@@ -88,7 +91,7 @@ export const createPost = (caption, image) => async (dispatch, getState) => {
                 Authorization: `Bearer ${userInfo.token}`
             }
         }
-        const { data } = await axios.post('/api/posts/', {caption, image}, config)
+        const { data } = await axios.post('/api/posts/', { caption, image }, config)
 
         dispatch({
             type: USER_CREATE_POST_SUCCESS,
@@ -128,6 +131,33 @@ export const getPost = (id) => async (dispatch, getState) => {
     } catch (error) {
         dispatch({
             type: USER_POST_FAIL,
+            payload: error.response && error.response.data.message ? error.response.data.message : error.message
+        })
+    }
+}
+
+export const deletePost = (id) => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: USER_DELETE_POST_REQUEST
+        })
+
+        const { userLogin: { userInfo } } = getState()
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+        await axios.delete(`/api/posts/${id}`, config)
+
+        dispatch({
+            type: USER_DELETE_POST_SUCCESS,
+        })
+
+    } catch (error) {
+        dispatch({
+            type: USER_DELETE_POST_FAIL,
             payload: error.response && error.response.data.message ? error.response.data.message : error.message
         })
     }

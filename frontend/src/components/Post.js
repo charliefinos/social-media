@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Dropdown } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { deletePostComment, postPostComment } from '../actions/PostActions'
+import { deletePost, deletePostComment, postPostComment } from '../actions/PostActions'
 import { BiCommentDetail } from 'react-icons/bi'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import { TiDeleteOutline } from 'react-icons/ti'
@@ -48,9 +48,14 @@ const Post = ({ post }) => {
         </a>
     ));
 
-    const deleteHandler = () => {
-        console.log('funciona')
+    const deletePostHandler = (a) => {
+        if (window.confirm('Do you want to delete this comment?')) {
+            dispatch(deletePost(a))
+        }
+
     }
+
+
 
     useEffect(() => {
         if (success) {
@@ -76,7 +81,7 @@ const Post = ({ post }) => {
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
-                        <Dropdown.Item onClick={deleteHandler} eventKey="1">Delete Post</Dropdown.Item>
+                        <Dropdown.Item onClick={() => deletePostHandler(post._id)} eventKey="1">Delete Post</Dropdown.Item>
                         <Dropdown.Item eventKey="2">Report</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
