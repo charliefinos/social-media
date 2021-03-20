@@ -13,7 +13,7 @@ const FileUploader = () => {
     const [caption, setCaption] = useState('')
     const [image, setImage] = useState('')
     const [uploading, setUploading] = useState(false)
-    
+
 
     const userCreatePost = useSelector(state => state.userCreatePost)
     const { success } = userCreatePost
@@ -46,7 +46,7 @@ const FileUploader = () => {
         setModal(!modal)
     }
 
-    const submitHandler=(e)=> {
+    const submitHandler = (e) => {
         e.preventDefault()
         dispatch(createPost(caption, image))
     }
@@ -55,9 +55,9 @@ const FileUploader = () => {
         const file = e.target.files[0]
         const formData = new FormData()
         formData.append('image', file)
-        
+
         try {
-            const config = { 
+            const config = {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -66,7 +66,7 @@ const FileUploader = () => {
             const { data } = await axios.post('/api/upload', formData, config)
             setImage(data)
             setUploading(true)
-        } catch(error) {
+        } catch (error) {
             console.error(error)
             setUploading(false)
         }

@@ -16,14 +16,21 @@ const HomeScreen = () => {
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
 
+    const userDeletePost = useSelector(state => state.userDeletePost)
+    const { success } = userDeletePost
+
+
     useEffect(() => {
+        if (success) {
+            dispatch(getUserPosts())
+        }
         if (userInfo === null) {
             history.push('/login')
         } else {
             dispatch(getUserPosts())
         }
 
-    }, [history, userInfo, dispatch])
+    }, [history, userInfo, dispatch, success])
 
     return (
         <div>
