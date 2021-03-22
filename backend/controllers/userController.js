@@ -15,6 +15,7 @@ const authUser = asyncHandler(async (req, res) => {
             name: user.name,
             username: user.username,
             email: user.email,
+            profileImg: user.profileImg,
             token: generateToken(user._id)
         })
     } else {
@@ -27,6 +28,7 @@ const authUser = asyncHandler(async (req, res) => {
 const registerUser = asyncHandler(async (req, res) => {
 
     const { username, name, email, password } = req.body
+    const profileImg = "https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"
     const userExists = await User.findOne({ email })
 
     if (userExists) {
@@ -38,7 +40,8 @@ const registerUser = asyncHandler(async (req, res) => {
         name,
         username,
         email,
-        password
+        password,
+        profileImg
     })
 
     if (user) {
@@ -47,6 +50,7 @@ const registerUser = asyncHandler(async (req, res) => {
             name: user.name,
             username: user.username,
             email: user.email,
+            profileImg: user.profileImg,
             token: generateToken()
         })
     } else {
@@ -65,6 +69,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
             _id: user._id,
             name: user.name,
             username: user.username,
+            profileImg: user.profileImg,
             email: user.email,
             city: user.city,
             address: user.address
@@ -87,8 +92,13 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     const user = await User.findById(req.user._id)
 
     if (user) {
+
         user.name = req.body.name || user.name
         user.email = req.body.email || user.email
+        user.profileImg = req.body.profileImg || user.profileImg
+        user.city = req.body.city || user.city
+        user.address = req.body.address || user.address
+
         if (req.body.password) {
             user.password = req.body.password
         }
@@ -98,6 +108,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
             _id: updatedUser._id,
             name: updatedUser.name,
             email: updatedUser.email,
+            profileImg: updatedUser.profileImg,
             city: updatedUser.city,
             address: updatedUser.address
         })

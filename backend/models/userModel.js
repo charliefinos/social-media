@@ -23,6 +23,7 @@ const userSchema = mongoose.Schema({
     },
     profileImg: {
         type: String,
+        required: true
     },
     city: {
         type: String
