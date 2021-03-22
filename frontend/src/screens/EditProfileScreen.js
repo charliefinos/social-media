@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { Form, Button, Col } from 'react-bootstrap'
+import { Form, Button, Col, Row, Container, Image } from 'react-bootstrap'
 import FormContainer from '../components/FormContainer'
 import { getUserDetails, updateUserProfile } from '../actions/UserActions'
 
@@ -16,6 +16,7 @@ const EditProfileScreen = () => {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [message, setMessage] = useState('')
+    const [profileImg, setProfileImg] = useState('')
 
     const userDetails = useSelector(state => state.userDetails)
     const { user } = userDetails
@@ -48,64 +49,82 @@ const EditProfileScreen = () => {
                 id: user._id,
                 name,
                 email,
-                password
+                password,
+                profileImg
             }))
         }
     }
 
     return (
-        <Col>
-            <FormContainer>
-                <h1>Profile</h1>
-                {success && <h1>{success}</h1>}
-                <Form onSubmit={submitHandler}>
-                    <Form.Group controlId='name'>
-                        <Form.Label>Name</Form.Label>
-                        <Form.Control
-                            type='name'
-                            placeholder='Enter name'
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                        ></Form.Control>
-                    </Form.Group>
+        <Container>
+            <Row className="d-flex justify-content-between">
+                <Col md={4} sm={4} xs={6}>
+                    <Image className='py-4' src={"https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"} roundedCircle fluid />
+                </Col>
+                <Col md={8} sm={8}>
+                    <FormContainer>
+                        <h1>Profile</h1>
+                        {success && <h1>{success}</h1>}
+                        <Form onSubmit={submitHandler}>
+                            <Form.Group controlId='name'>
+                                <Form.Label>Name</Form.Label>
+                                <Form.Control
+                                    type='name'
+                                    placeholder='Enter name'
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                ></Form.Control>
+                            </Form.Group>
 
-                    <Form.Group controlId='email'>
-                        <Form.Label>Email</Form.Label>
-                        <Form.Control
-                            type='email'
-                            placeholder='Enter Email'
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        ></Form.Control>
-                    </Form.Group>
+                            <Form.Group controlId='email'>
+                                <Form.Label>Email</Form.Label>
+                                <Form.Control
+                                    type='email'
+                                    placeholder='Enter Email'
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                ></Form.Control>
+                            </Form.Group>
 
-                    <Form.Group controlId='password'>
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control
-                            type='password'
-                            placeholder='Enter New Password'
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        ></Form.Control>
-                    </Form.Group>
+                            <Form.Group controlId='password'>
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control
+                                    type='password'
+                                    placeholder='Enter New Password'
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                ></Form.Control>
+                            </Form.Group>
 
-                    <Form.Group controlId='confirmpassword'>
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control
-                            type='password'
-                            placeholder='Confirm Password'
-                            value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                        ></Form.Control>
-                    </Form.Group>
+                            <Form.Group controlId='confirmpassword'>
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control
+                                    type='password'
+                                    placeholder='Confirm Password'
+                                    value={confirmPassword}
+                                    onChange={(e) => setConfirmPassword(e.target.value)}
+                                ></Form.Control>
+                            </Form.Group>
 
-                    <Button type='submit' variant='primary'>
-                        Update
-                    </Button>
-                </Form>
+                            <Form.Group controlId='profilephoto'>
+                                <Form.Label>Profile Photo Url</Form.Label>
+                                <Form.Control
+                                    type='text'
+                                    placeholder='Profile Picture Url'
+                                    value={profileImg}
+                                    onChange={(e) => setProfileImg(e.target.value)}
+                                ></Form.Control>
+                            </Form.Group>
 
-            </FormContainer>
-        </Col>
+                            <Button type='submit' variant='primary'>
+                                Update
+                            </Button>
+                        </Form>
+
+                    </FormContainer>
+                </Col>
+            </Row>
+        </Container>
     )
 }
 

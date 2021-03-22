@@ -55,8 +55,6 @@ const Post = ({ post }) => {
 
     }
 
-
-
     useEffect(() => {
         if (success) {
             setComment('')

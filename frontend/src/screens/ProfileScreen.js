@@ -14,28 +14,27 @@ const ProfileScreen = () => {
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
 
-    console.log(posts)
-
     useEffect(() => {
         dispatch(getUserPosts())
     }, [dispatch])
 
     return (
-        <div>
+        <div className='app__posts'>
+            <Profile userInfo={userInfo} />
             {posts.length === 0 ? (
                 <h1>No post Founded!</h1>
             )
                 :
-                (<div className='app__posts'>
-                    <Profile userInfo={userInfo} />
-                    {posts.map((post) =>
-                        <div key={post._id}>
-                            <Post
-                                post={post}
-                            />
-                        </div>
-                    )}
-                </div>
+                (
+                    <>
+                        {posts.map((post) =>
+                            <div key={post._id}>
+                                <Post
+                                    post={post}
+                                />
+                            </div>
+                        )}
+                    </>
                 )
             }
         </div >
