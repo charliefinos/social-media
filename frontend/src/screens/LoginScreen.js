@@ -28,6 +28,10 @@ const LoginScreen = ({ location, history }) => {
         dispatch(login(email, password))
     }
 
+    const demoLogin = () => {
+        dispatch(login('charly@charly.com', '123123'))
+    }
+
     return (
 
         <FormContainer>
@@ -56,7 +60,11 @@ const LoginScreen = ({ location, history }) => {
 
                 <Button type='submit' variant='primary'>
                     Login
-                    </Button>
+                </Button>
+
+                <Button onClick={demoLogin} className="m-2" variant='secondary'>
+                    Demo
+                </Button>
             </Form>
             <Row>
                 <Col>
