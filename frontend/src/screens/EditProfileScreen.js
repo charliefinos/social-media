@@ -12,11 +12,13 @@ const EditProfileScreen = () => {
     const dispatch = useDispatch()
 
     const [name, setName] = useState('')
+    const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [message, setMessage] = useState('')
     const [profileImg, setProfileImg] = useState('')
+    const [bio, setBio] = useState('')
 
     const userDetails = useSelector(state => state.userDetails)
     const { user } = userDetails
@@ -35,7 +37,9 @@ const EditProfileScreen = () => {
                 dispatch(getUserDetails('profile'))
             } else {
                 setName(user.name)
+                setUsername(user.username)
                 setEmail(user.email)
+                setBio(user.bio)
             }
 
         }
@@ -48,9 +52,11 @@ const EditProfileScreen = () => {
             dispatch(updateUserProfile({
                 id: user._id,
                 name,
+                username,
                 email,
                 password,
-                profileImg
+                profileImg,
+                bio
             }))
         }
     }
@@ -59,7 +65,8 @@ const EditProfileScreen = () => {
         <Container>
             <Row className="d-flex justify-content-between">
                 <Col md={4} sm={4} xs={6}>
-                    <Image className='py-4' src={"https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"} roundedCircle fluid />
+                    <h3 className="mt-2">Profile Image</h3>
+                    <Image className='py-1' src={user.profileImg} thumbnail fluid />
                 </Col>
                 <Col md={8} sm={8}>
                     <FormContainer>
@@ -73,6 +80,16 @@ const EditProfileScreen = () => {
                                     placeholder='Enter name'
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
+                                ></Form.Control>
+                            </Form.Group>
+
+                            <Form.Group controlId='username'>
+                                <Form.Label>Username</Form.Label>
+                                <Form.Control
+                                    type='text'
+                                    placeholder='Profile Picture Url'
+                                    value={username}
+                                    onChange={(e) => setUsername(e.target.value)}
                                 ></Form.Control>
                             </Form.Group>
 
@@ -113,6 +130,16 @@ const EditProfileScreen = () => {
                                     placeholder='Profile Picture Url'
                                     value={profileImg}
                                     onChange={(e) => setProfileImg(e.target.value)}
+                                ></Form.Control>
+                            </Form.Group>
+
+                            <Form.Group controlId='bio'>
+                                <Form.Label>Bio</Form.Label>
+                                <Form.Control
+                                    type='text'
+                                    placeholder='Something about you'
+                                    value={bio}
+                                    onChange={(e) => setBio(e.target.value)}
                                 ></Form.Control>
                             </Form.Group>
 
