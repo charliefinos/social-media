@@ -70,6 +70,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
             name: user.name,
             username: user.username,
             profileImg: user.profileImg,
+            bio: user.bio,
             email: user.email,
             city: user.city,
             address: user.address
@@ -94,10 +95,13 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     if (user) {
 
         user.name = req.body.name || user.name
+        user.username = req.body.username || user.username
         user.email = req.body.email || user.email
         user.profileImg = req.body.profileImg || user.profileImg
+        user.bio = req.body.bio || user.bio
         user.city = req.body.city || user.city
         user.address = req.body.address || user.address
+
 
         if (req.body.password) {
             user.password = req.body.password
@@ -107,8 +111,10 @@ const updateUserProfile = asyncHandler(async (req, res) => {
         res.json({
             _id: updatedUser._id,
             name: updatedUser.name,
+            username: updatedUser.username,
             email: updatedUser.email,
             profileImg: updatedUser.profileImg,
+            bio: updatedUser.bio,
             city: updatedUser.city,
             address: updatedUser.address
         })

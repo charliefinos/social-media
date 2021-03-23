@@ -25,6 +25,9 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    bio: {
+        type: String
+    },
     city: {
         type: String
     },
