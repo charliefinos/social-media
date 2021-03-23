@@ -1,23 +1,24 @@
 import React from 'react'
 import './Profile.css'
 import { LinkContainer } from 'react-router-bootstrap'
-import { Button } from 'react-bootstrap'
-const Profile = ({ userInfo }) => {
+import { Button, Image } from 'react-bootstrap'
+const Profile = ({ user }) => {
 
     return (
-        <div className="profile">
+        <div className="profile" fluid>
             <div className="profile__photo">
-                <img
-                    src={userInfo.profileImg}
-                ></img>
+                <Image
+                    fluid
+                    src={user.profileImg}
+                ></Image>
 
             </div>
             <div className="profile__data">
-                <h2>{userInfo.name}</h2>
+                <h3>{user.name}</h3>
                 <br />
-                <p>@{userInfo.username}</p>
-                <p><strong>Contact:</strong> {userInfo.email}</p>
-                <p><strong>Bio:</strong> React Developer</p>
+                <p>@{user.username}</p>
+                <p><strong>Contact:</strong> {user.email}</p>
+                {user.bio && <p><strong>Bio:</strong> {user.bio}</p>}
                 <br />
                 <LinkContainer
                     to="/profile/edit"
