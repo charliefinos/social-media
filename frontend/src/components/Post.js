@@ -49,7 +49,7 @@ const Post = ({ post }) => {
     ));
 
     const deletePostHandler = (a) => {
-        if (window.confirm('Do you want to delete this comment?')) {
+        if (window.confirm('Do you want to delete this post?')) {
             dispatch(deletePost(a))
         }
 
