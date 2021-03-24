@@ -1,19 +1,19 @@
 import React from 'react'
 import './Profile.css'
 import { LinkContainer } from 'react-router-bootstrap'
-import { Button, Image } from 'react-bootstrap'
+import { Button, Image, Row, Col } from 'react-bootstrap'
 const Profile = ({ user }) => {
 
     return (
-        <div className="profile" fluid>
-            <div className="profile__photo">
+        <Row className="d-flex"  >
+            <Col xs={5} >
                 <Image
                     fluid
                     src={user.profileImg}
                 ></Image>
 
-            </div>
-            <div className="profile__data">
+            </Col>
+            <Col xs={7} >
                 <h3>{user.name}</h3>
                 <br />
                 <p>@{user.username}</p>
@@ -22,9 +22,9 @@ const Profile = ({ user }) => {
                 <br />
                 <LinkContainer
                     to="/profile/edit"
-                ><Button variant="dark">Edit</Button></LinkContainer>
-            </div>
-        </div>
+                ><Button className="mx-2" variant="dark">Edit</Button></LinkContainer>
+            </Col>
+        </Row>
     )
 }
 

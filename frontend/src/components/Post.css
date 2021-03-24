@@ -5,6 +5,7 @@
   height: 100%;
   border: 1px solid lightgray;
   margin-bottom: 45px;
+  justify-content: center;
 }
 
 .post__image {
@@ -70,7 +71,7 @@ a:hover {
 
 @media (max-width: 767px) {
   .post {
-    max-width: 400px;
-    min-width: 400px;
+    max-width: 450px;
+    min-width: 450px;
   }
 }

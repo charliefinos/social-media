@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Dropdown } from 'react-bootstrap'
+import { Dropdown, Form, Button, Container, Col, Row } from 'react-bootstrap'
+import FormContainer from '../components/FormContainer'
 import { useDispatch, useSelector } from 'react-redux'
 import { deletePost, deletePostComment, postPostComment } from '../actions/PostActions'
 import { BiCommentDetail } from 'react-icons/bi'
@@ -9,6 +10,7 @@ import './Post.css'
 import 'fontsource-roboto'
 
 import Avatar from '@material-ui/core/Avatar'
+import { FormGroup } from '@material-ui/core'
 
 const Post = ({ post }) => {
 
@@ -97,11 +99,11 @@ const Post = ({ post }) => {
                 <h4 className="post__text"><strong>{post.user.username}</strong>{' '}{post.caption}</h4>}
 
             {post.comments.map(x => (
-                <div className="post__text__comment" key={x._id}>
-                    <div className="post__text__comment__left">
+                <div className="post__text__comment mb-2" key={x._id}>
+                    <div className="ml-2">
                         <strong>{x.username}</strong>{' '}{x.comment}
                     </div>
-                    <div className="post__text__comment__right">
+                    <div className="mr-2">
                         <a href='#' onClick={(() => {
                             deleteComment(post._id, x._id)
                         })}><TiDeleteOutline color="light-gray" /></a>
@@ -110,12 +112,30 @@ const Post = ({ post }) => {
             ))}
 
             {loadingPost === false ? (
-                <form onSubmit={commentHandler}>
-                    <input type="text" placeholder="Comment" value={comment} onChange={(e) => setComment(e.target.value)}></input>
-
-                    <button type="submit">submit</button>
-                </form>
-            ) : (<a href={`/post/${post._id}`}><BiCommentDetail size="50px" color="black" /></a>)}
+                <Container>
+                    <Form onSubmit={commentHandler}>
+                        <Row>
+                            <Col>
+                                <Form.Group controlId="" >
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Comment"
+                                        value={comment} onChange={(e) => setComment(e.target.value)}>
+                                    </Form.Control>
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Button
+                                    className="m-3"
+                                    type='submit'
+                                    variant='primary'>
+                                    Submit
+                        </Button>
+                            </Col>
+                        </Row>
+                    </Form>
+                </Container>
+            ) : (<a className="m-2" href={`/post/${post._id}`}><BiCommentDetail size="50px" color="black" /></a>)}
 
         </div >
     )
