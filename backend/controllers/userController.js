@@ -87,6 +87,18 @@ const getUsers = asyncHandler(async (req, res) => {
     res.json(users)
 })
 
+const getUserByNameKeyword = asyncHandler(async (req, res) => {
+    const keyword = req.query.keyword ? {
+        name: {
+            $regex: req.query.keyword,
+            $options: 'i'
+        },
+    } : {}
+
+    const users = await User.find({ ...keyword })
+    res.json({ users })
+})
+
 // Update the profile
 const updateUserProfile = asyncHandler(async (req, res) => {
 
@@ -131,5 +143,6 @@ export {
     authUser,
     registerUser,
     getUserProfile,
+    getUserByNameKeyword,
     updateUserProfile
 }
