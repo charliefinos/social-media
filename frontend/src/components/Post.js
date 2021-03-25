@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { Dropdown, Form, Button, Container, Col, Row } from 'react-bootstrap'
-import FormContainer from '../components/FormContainer'
 import { useDispatch, useSelector } from 'react-redux'
 import { deletePost, deletePostComment, postPostComment } from '../actions/PostActions'
 import { BiCommentDetail } from 'react-icons/bi'
@@ -10,7 +9,7 @@ import './Post.css'
 import 'fontsource-roboto'
 
 import Avatar from '@material-ui/core/Avatar'
-import { FormGroup } from '@material-ui/core'
+
 
 const Post = ({ post }) => {
 

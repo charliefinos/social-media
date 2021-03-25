@@ -9,6 +9,9 @@ import {
     USER_REGISTER_FAIL,
     USER_REGISTER_REQUEST,
     USER_REGISTER_SUCCESS,
+    USER_SEARCH_PROFILE_FAIL,
+    USER_SEARCH_PROFILE_REQUEST,
+    USER_SEARCH_PROFILE_SUCCESS,
     USER_UPDATE_PROFILE_FAIL,
     USER_UPDATE_PROFILE_REQUEST,
     USER_UPDATE_PROFILE_SUCCESS
@@ -69,5 +72,18 @@ export const userUpdateProfileReducer = (state = {}, action) => {
         default:
             return state
 
+    }
+}
+
+export const userSearchProfileReducer = (state = { userList: {} }, action) => {
+    switch (action.type) {
+        case USER_SEARCH_PROFILE_REQUEST:
+            return { ...state, loading: true }
+        case USER_SEARCH_PROFILE_SUCCESS:
+            return { loading: false, users: action.payload }
+        case USER_SEARCH_PROFILE_FAIL:
+            return { loading: false, error: action.payload }
+        default:
+            return state
     }
 }
