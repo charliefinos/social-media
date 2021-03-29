@@ -75,12 +75,12 @@ export const userUpdateProfileReducer = (state = {}, action) => {
     }
 }
 
-export const userSearchProfileReducer = (state = {}, action) => {
+export const userSearchProfileReducer = (state = { userSearch: [] }, action) => {
     switch (action.type) {
         case USER_SEARCH_PROFILE_REQUEST:
-            return { ...state, loading: true }
+            return { loading: true, userSearch: [] }
         case USER_SEARCH_PROFILE_SUCCESS:
-            return { loading: false, users: action.payload }
+            return { loading: false, success: true, userSearch: action.payload.users }
         case USER_SEARCH_PROFILE_FAIL:
             return { loading: false, error: action.payload }
         default:
