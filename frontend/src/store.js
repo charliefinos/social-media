@@ -27,7 +27,7 @@ const reducer = combineReducers({
     userPostComment: userPostCommentReducer,
     userDeletePost: userDeletePostReducer,
     userDeletePostComment: userDeletePostCommentReducer,
-    userCreatePost: userCreatePostReducer.toString,
+    userCreatePost: userCreatePostReducer,
     userSearchProfile: userSearchProfileReducer,
 })
 
