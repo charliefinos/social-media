@@ -5,9 +5,17 @@ import {
     userLoginReducer,
     userDetailsReducer,
     userUpdateProfileReducer,
-    userRegisterReducer
+    userRegisterReducer,
+    userSearchProfileReducer
 } from './reducers/UserReducers'
-import { userCreatePostReducer, userDeletePostCommentReducer, userDeletePostReducer, userPostCommentReducer, userPostReducer, userPostsReducer } from './reducers/PostReducers'
+import {
+    userCreatePostReducer,
+    userDeletePostCommentReducer,
+    userDeletePostReducer,
+    userPostCommentReducer,
+    userPostReducer,
+    userPostsReducer
+} from './reducers/PostReducers'
 
 const reducer = combineReducers({
     userLogin: userLoginReducer,
@@ -19,7 +27,8 @@ const reducer = combineReducers({
     userPostComment: userPostCommentReducer,
     userDeletePost: userDeletePostReducer,
     userDeletePostComment: userDeletePostCommentReducer,
-    userCreatePost: userCreatePostReducer
+    userCreatePost: userCreatePostReducer.toString,
+    userSearchProfile: userSearchProfileReducer,
 })
 
 // Getting data from localStorage for initialState
