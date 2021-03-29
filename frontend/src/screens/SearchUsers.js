@@ -1,8 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Container, Col, Row, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { searchUsers } from '../actions/UserActions'
+const SearchUsers = ({ match }) => {
+    const dispatch = useDispatch()
+    const keyword = match.params.keyword
 
-const SearchUsers = () => {
+    useEffect(() => {
+        dispatch(searchUsers(keyword))
+    }, [dispatch])
+
+
     return (
         <Container>
             <Row>
