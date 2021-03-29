@@ -75,7 +75,7 @@ export const userUpdateProfileReducer = (state = {}, action) => {
     }
 }
 
-export const userSearchProfileReducer = (state = { userList: {} }, action) => {
+export const userSearchProfileReducer = (state = {}, action) => {
     switch (action.type) {
         case USER_SEARCH_PROFILE_REQUEST:
             return { ...state, loading: true }
