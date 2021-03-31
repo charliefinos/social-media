@@ -5,7 +5,7 @@ import { Button, Image, Row, Col } from 'react-bootstrap'
 const Profile = ({ user }) => {
 
     return (
-        <Row className="d-flex"  >
+        <Row className="d-flex" data-test="d-flex" >
             <Col xs={5} >
                 <Image
                     fluid
