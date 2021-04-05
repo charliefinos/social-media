@@ -14,7 +14,10 @@ import {
     USER_SEARCH_PROFILE_SUCCESS,
     USER_UPDATE_PROFILE_FAIL,
     USER_UPDATE_PROFILE_REQUEST,
-    USER_UPDATE_PROFILE_SUCCESS
+    USER_UPDATE_PROFILE_SUCCESS,
+    USERNAME_PROFILE_REQUEST,
+    USERNAME_PROFILE_SUCCESS,
+    USERNAME_PROFILE_FAIL
 } from "../constants/UserConstants";
 
 export const userLoginReducer = (state = {}, action) => {
@@ -87,3 +90,17 @@ export const userSearchProfileReducer = (state = { userSearch: [] }, action) => 
             return state
     }
 }
+
+export const usernameProfileReducer = (state = { user: {} }, action) => {
+    switch (action.type) {
+        case USERNAME_PROFILE_REQUEST:
+            return { loading: true, user: {} }
+        case USERNAME_PROFILE_SUCCESS:
+            return { loading: false, success: true, user: action.payload }
+        case USERNAME_PROFILE_FAIL:
+            return { loading: false, error: action.payload }
+        default:
+            return state
+    }
+}
+
