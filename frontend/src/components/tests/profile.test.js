@@ -1,21 +1,15 @@
 import React from 'react'
-import { shallow } from 'enzyme'
-import Profile from './../Profile'
+import ReactDOM from 'react-dom'
+import Basic from '../Basic'
 
-const setUp = (props = {}) => {
-    const component = shallow(<Profile {...props} />);
-    return component;
-}
+import Enzyme, { shallow, render, mount } from 'enzyme';
+import toJson from 'enzyme-to-json';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17'
 
-describe('Profile Component', () => {
+Enzyme.configure({ adapter: new Adapter() })
 
-    let component;
-    beforeEach(() => {
-        component = setUp();
-    })
+it('reders correctly enzyme', () => {
+    const wrapper = shallow(<Basic />)
 
-    it('It should render', () => {
-        const wrapper = component.find(`[data-test='d-flex']`);
-        expect(wrapper.length).toBe(1)
-    })
+    expect(toJson(wrapper)).toMatchSnapshot();
 })
