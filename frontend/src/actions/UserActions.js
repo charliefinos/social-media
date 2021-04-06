@@ -180,7 +180,7 @@ export const getProfileDetailsByUsername = (username) => async (dispatch, getSta
                 Authorization: `Bearer ${userInfo.token}`
             }
         }
-        const { data } = await axios.get(`/api/users/${username}`, config)
+        const { data } = await axios.get(`/api/users/username/${username}`, config)
 
         dispatch({
             type: USERNAME_PROFILE_SUCCESS,
