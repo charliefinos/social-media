@@ -7,6 +7,9 @@ import userRoutes from './routes/userRoutes.js'
 import postRoutes from './routes/postRoutes.js'
 import uploadRoutes from './routes/uploadRoutes.js'
 import { errorHandler, notFound } from './middleware/errorMiddleware.js'
+import pkg from 'cloudinary'
+
+const cloudinary = pkg
 
 dotenv.config()
 
@@ -21,6 +24,14 @@ app.use(bodyParser.json())
 app.get('/', (req, res) => {
     res.send('API is running..')
 })
+
+// Cloudinary configs
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.CLOUD_API_KEY,
+    api_secret: process.env.CLOUD_API_SECRET
+})
+
 
 app.use('/api/users', userRoutes)
 app.use('/api/posts', postRoutes)

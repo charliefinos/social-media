@@ -1,6 +1,10 @@
 import path from 'path'
 import express from 'express'
 import multer from 'multer'
+import pkg from 'cloudinary'
+import asyncHandler from 'express-async-handler'
+
+const cloudinary = pkg
 
 const router = express.Router()
 
@@ -18,22 +22,47 @@ function checkFileType(file, cb) {
     const extname = filetypes.test(path.extname(file.originalname).toLowerCase())
     const mimetype = filetypes.test(file.mimetype)
 
-    if(extname && mimetype) {
+    if (extname && mimetype) {
         return cb(null, true)
     } else {
         cb('Images only')
     }
 }
 
-const upload = multer ({
+const upload = multer({
     storage,
-    fileFilter: function(req, file, cb) {
-        checkFileType(file, cb) 
+    fileFilter: function (req, file, cb) {
+        checkFileType(file, cb)
     }
 })
 
-router.post('/', upload.single('image'), (req, res) => {
-    res.send(`/${req.file.path.replace(/\\/g, "/")}`)
-})
+function uploadToCloudinary(image) {
+    return new Promise((resolve, reject) => {
+        cloudinary.v2.uploader.upload(image, (err, url) => {
+            if (err) return reject(err);
+            return resolve(url);
+        })
+    });
+}
+
+// router.post('/', upload.single('image'), (req, res) => {
+//     res.send(`/${req.file.path.replace(/\\/g, "/")}`)
+// })
+
+router.post('/', upload.single('image'), asyncHandler(async (req, res) => {
+    console.log(req.file.path)
+    const uploadPhoto = await cloudinary.v2.uploader.upload(`${req.file.path.replace(/\\/g, "/")}`)
+    console.log(uploadPhoto) // This will give you all the information back from the uploaded photo result
+    console.log(uploadPhoto.url)  // This is what we want to send back now in the  res.send
+
+    if (uploadPhoto) {
+        res.json({
+            imageUrl: uploadPhoto.url
+        })
+    } else {
+        res.status(500)
+    }
+
+}))
 
 export default router
