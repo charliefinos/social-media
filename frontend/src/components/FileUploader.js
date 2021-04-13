@@ -55,6 +55,7 @@ const FileUploader = () => {
         const file = e.target.files[0]
         const formData = new FormData()
         formData.append('image', file)
+        setUploading(true)
 
         try {
             const config = {
@@ -64,8 +65,9 @@ const FileUploader = () => {
             }
 
             const { data } = await axios.post('/api/upload', formData, config)
-            setImage(data)
-            setUploading(true)
+            setImage(data.imageUrl)
+
+            setUploading(false)
         } catch (error) {
             console.error(error)
             setUploading(false)
@@ -106,6 +108,7 @@ const FileUploader = () => {
                             label='Choose file'
                             custom
                             onChange={uploadFileHandler}></Form.File>
+                        {uploading && <p>uploading...</p>}
                     </Form.Group>
 
                     <Button variant="primary" type="submit">
