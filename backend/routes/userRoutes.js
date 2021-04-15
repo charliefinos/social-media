@@ -13,13 +13,14 @@ import {
 import { protect } from '../middleware/authMiddleware.js'
 
 router.get('/', getUserByNameKeyword)
-router.post('/follow/:id', protect, followUser)
 router.get('/username/:username', protect, getUserByUsername)
 router.post('/login', authUser)
 router.route('/profile')
     .get(protect, getUserProfile)
     .put(protect, updateUserProfile)
 router.route('/signup').get(getUsers).post(registerUser)
+router.route('/follow/:id')
+    .get(protect, followUser)
 
 
 export default router
