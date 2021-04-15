@@ -3,18 +3,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Container, Col, Row, Image, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { followUserById } from '../actions/UserActions'
+import { useHistory } from 'react-router-dom'
 
 const ProfileOnSearch = ({ user }) => {
 
     const dispatch = useDispatch()
+    const history = useHistory()
 
-    const followUser = useSelector(state => state.followUser)
-    const { loading, success } = followUser
-
-    const followHandler = (id) => {
-        dispatch(followUserById(id))
+    const goToProfile = () => {
+        history.push(`/${user.username}`)
     }
-
     return (
         <Row className='my-2 py-1 border-bottom' key={user._id}>
             <Col className='mr-3' xs={4} md={3} lg={3}>
@@ -28,12 +26,11 @@ const ProfileOnSearch = ({ user }) => {
             </Col>
 
             <Col className='mt-4' xs={3} md={3} lg={3}>
-                <Button onClick={() => followHandler(user._id)} variant='primary'>Follow</Button>
+                <Button onClick={goToProfile} variant='primary'>Follow</Button>
             </Col>
 
             <br />
         </Row>
-
     )
 }
 
