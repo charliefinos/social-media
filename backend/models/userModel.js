@@ -1,6 +1,19 @@
 import mongoose from 'mongoose'
 import bcrypt from 'bcryptjs'
 
+const followersSchema = mongoose.Schema({
+    username: {
+        type: String,
+        required: true
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User'
+    }
+}, {
+    timestamps: true
+})
 
 const userSchema = mongoose.Schema({
     name: {
@@ -25,6 +38,7 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    followers: [followersSchema],
     bio: {
         type: String
     },
@@ -40,6 +54,8 @@ const userSchema = mongoose.Schema({
 }, {
     timestamps: true
 })
+
+
 
 userSchema.methods.matchPassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password)

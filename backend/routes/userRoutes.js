@@ -8,10 +8,12 @@ import {
     updateUserProfile,
     getUserByNameKeyword,
     getUserByUsername,
+    followUser,
 } from '../controllers/userController.js'
 import { protect } from '../middleware/authMiddleware.js'
 
 router.get('/', getUserByNameKeyword)
+router.post('/follow/:id', protect, followUser)
 router.get('/username/:username', protect, getUserByUsername)
 router.post('/login', authUser)
 router.route('/profile')

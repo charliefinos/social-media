@@ -152,6 +152,26 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     }
 })
 
+const followUser = asyncHandler(async (req, res) => {
+
+    const user = await User.findById(req.params.id)
+
+    if (user) {
+        const follow = {
+            username: req.user.username,
+            user: req.user._id
+        }
+
+        user.followers.push(follow)
+
+        await user.save()
+        res.status(201).json(user)
+
+    } else {
+        res.status(404)
+        throw new Error('User not found')
+    }
+})
 
 
 export {
@@ -161,5 +181,6 @@ export {
     getUserProfile,
     getUserByNameKeyword,
     getUserByUsername,
-    updateUserProfile
+    updateUserProfile,
+    followUser
 }
