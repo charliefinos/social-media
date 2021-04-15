@@ -17,7 +17,10 @@ import {
     USER_UPDATE_PROFILE_SUCCESS,
     USERNAME_PROFILE_REQUEST,
     USERNAME_PROFILE_SUCCESS,
-    USERNAME_PROFILE_FAIL
+    USERNAME_PROFILE_FAIL,
+    USER_FOLLOW_REQUEST,
+    USER_FOLLOW_SUCCESS,
+    USER_FOLLOW_FAIL
 } from "../constants/UserConstants";
 
 export const userLoginReducer = (state = {}, action) => {
@@ -50,7 +53,7 @@ export const userRegisterReducer = (state = {}, action) => {
     }
 }
 
-export const userDetailsReducer = (state = { user: {} }, action) => {
+export const userDetailsReducer = (state = {}, action) => {
     switch (action.type) {
         case USER_DETAILS_REQUEST:
             return { ...state, loading: true }
@@ -98,6 +101,19 @@ export const usernameProfileReducer = (state = { user: {} }, action) => {
         case USERNAME_PROFILE_SUCCESS:
             return { loading: false, success: true, user: action.payload }
         case USERNAME_PROFILE_FAIL:
+            return { loading: false, error: action.payload }
+        default:
+            return state
+    }
+}
+
+export const followUserReducer = (state = {}, action) => {
+    switch (action.type) {
+        case USER_FOLLOW_REQUEST:
+            return { loading: true }
+        case USER_FOLLOW_SUCCESS:
+            return { loading: false, success: true }
+        case USER_FOLLOW_FAIL:
             return { loading: false, error: action.payload }
         default:
             return state
