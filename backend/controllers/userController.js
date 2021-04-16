@@ -73,7 +73,8 @@ const getUserProfile = asyncHandler(async (req, res) => {
             bio: user.bio,
             email: user.email,
             city: user.city,
-            address: user.address
+            address: user.address,
+            followers: user.followers
         })
     } else {
         res.status(404)
