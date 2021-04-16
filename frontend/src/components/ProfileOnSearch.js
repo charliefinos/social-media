@@ -26,7 +26,7 @@ const ProfileOnSearch = ({ user }) => {
             </Col>
 
             <Col className='mt-4' xs={3} md={3} lg={3}>
-                <Button onClick={goToProfile} variant='primary'>Follow</Button>
+                <Button onClick={goToProfile} variant='primary'>Go To Profile</Button>
             </Col>
 
             <br />
