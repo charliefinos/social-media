@@ -18,7 +18,7 @@ const Header = ({ match }) => {
 
     const logoutHandler = () => {
         dispatch(logout())
-        history.push('/login')
+        history.push('/account/login')
     }
 
     return (
@@ -29,14 +29,14 @@ const Header = ({ match }) => {
                 <>
                     <Route render={({ history }) => <SearchBox history={history} />} />
                     <DropdownButton variant="dark" id="dropdown-basic-button" title={userInfo.name}>
-                        <Dropdown.Item href="/profile">Profile</Dropdown.Item>
+                        <Dropdown.Item href={`/${userInfo.username}`}>Profile</Dropdown.Item>
                         <Dropdown.Item onClick={logoutHandler}>Logout</Dropdown.Item>
                     </DropdownButton>
                 </>
             ) : (
                 <div>
-                    <LinkContainer to='/signup'><Button variant="primary"  >Signup</Button></LinkContainer>
-                    <LinkContainer to='/login'><Button variant="primary"  >Login</Button></LinkContainer>
+                    <LinkContainer to='/account/signup'><Button variant="primary"  >Signup</Button></LinkContainer>
+                    <LinkContainer to='/account/login'><Button variant="primary"  >Login</Button></LinkContainer>
                 </div>
             )
             }

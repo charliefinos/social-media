@@ -25,7 +25,7 @@ const HomeScreen = () => {
             dispatch(getUserPosts())
         }
         if (userInfo === null) {
-            history.push('/login')
+            history.push('/account/login')
         } else {
             dispatch(getUserPosts())
         }

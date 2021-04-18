@@ -18,14 +18,13 @@ function App() {
         <Header />
         <main className='py-3'>
           <Container>
-            <Route path='/login' component={LoginScreen} />
-            <Route path='/signup' component={SignupScreen} />
-            <Route path='/profile' component={ProfileScreen} exact />
-            <Route path='/profile/edit' component={EditProfileScreen} />
+            <Route path='/account/login' component={LoginScreen} exact />
+            <Route path='/account/signup' component={SignupScreen} exact />
             <Route path='/post/:id' component={PostScreen} />
             <Route path='/search/:keyword' component={SearchUsers} />
             <Route path='/' component={HomeScreen} exact />
             <Route path='/:username' component={UserProfileScreen} exact />
+            <Route path='/account/edit' component={EditProfileScreen} />
           </Container>
         </main>
       </Router>

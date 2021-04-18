@@ -21,7 +21,7 @@ const EditProfileScreen = () => {
     const [bio, setBio] = useState('')
 
     const userDetails = useSelector(state => state.userDetails)
-    const { user, loading } = userDetails
+    const { user, loading, success: successDetails } = userDetails
 
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
@@ -31,7 +31,7 @@ const EditProfileScreen = () => {
 
     useEffect(() => {
         if (!userInfo) {
-            history.push('/login')
+            history.push('/account/login')
         } else {
             if (!user.name) {
                 dispatch(getUserDetails('profile'))
@@ -40,9 +40,10 @@ const EditProfileScreen = () => {
                 setUsername(user.username)
                 setEmail(user.email)
                 setBio(user.bio)
+                setProfileImg(user.profileImg)
             }
-
         }
+
     }, [dispatch, history, userInfo, user])
 
     const submitHandler = () => {
@@ -62,100 +63,92 @@ const EditProfileScreen = () => {
     }
 
     return (
-        <Container>
+        <Row className="d-flex justify-content-between">
+            <Col md={4} sm={4} xs={6}>
+                <h3 className="mt-2">Profile Image</h3>
+                <Image className='py-1' src={user.profileImg} thumbnail fluid />
+            </Col>
+            <Col md={8} sm={8}>
+                <h2>Profile</h2>
+                {success && <h1>{success}</h1>}
+                <Form onSubmit={submitHandler}>
+                    <Form.Group controlId='name'>
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control
+                            type='name'
+                            placeholder='Enter name'
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                        ></Form.Control>
+                    </Form.Group>
 
-            {success &&
-                <Row className="d-flex justify-content-between">
-                    <Col md={4} sm={4} xs={6}>
-                        <h3 className="mt-2">Profile Image</h3>
-                        <Image className='py-1' src={user.profileImg} thumbnail fluid />
-                    </Col>
-                    <Col md={8} sm={8}>
-                        <FormContainer>
-                            <h1>Profile</h1>
-                            {success && <h1>{success}</h1>}
-                            <Form onSubmit={submitHandler}>
-                                <Form.Group controlId='name'>
-                                    <Form.Label>Name</Form.Label>
-                                    <Form.Control
-                                        type='name'
-                                        placeholder='Enter name'
-                                        value={name}
-                                        onChange={(e) => setName(e.target.value)}
-                                    ></Form.Control>
-                                </Form.Group>
+                    <Form.Group controlId='username'>
+                        <Form.Label>Username</Form.Label>
+                        <Form.Control
+                            type='text'
+                            placeholder='Profile Picture Url'
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                        ></Form.Control>
+                    </Form.Group>
 
-                                <Form.Group controlId='username'>
-                                    <Form.Label>Username</Form.Label>
-                                    <Form.Control
-                                        type='text'
-                                        placeholder='Profile Picture Url'
-                                        value={username}
-                                        onChange={(e) => setUsername(e.target.value)}
-                                    ></Form.Control>
-                                </Form.Group>
+                    <Form.Group controlId='email'>
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control
+                            type='email'
+                            placeholder='Enter Email'
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        ></Form.Control>
+                    </Form.Group>
 
-                                <Form.Group controlId='email'>
-                                    <Form.Label>Email</Form.Label>
-                                    <Form.Control
-                                        type='email'
-                                        placeholder='Enter Email'
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                    ></Form.Control>
-                                </Form.Group>
+                    <Form.Group controlId='password'>
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control
+                            type='password'
+                            placeholder='Enter New Password'
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        ></Form.Control>
+                    </Form.Group>
 
-                                <Form.Group controlId='password'>
-                                    <Form.Label>Password</Form.Label>
-                                    <Form.Control
-                                        type='password'
-                                        placeholder='Enter New Password'
-                                        value={password}
-                                        onChange={(e) => setPassword(e.target.value)}
-                                    ></Form.Control>
-                                </Form.Group>
+                    <Form.Group controlId='confirmpassword'>
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control
+                            type='password'
+                            placeholder='Confirm Password'
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                        ></Form.Control>
+                    </Form.Group>
 
-                                <Form.Group controlId='confirmpassword'>
-                                    <Form.Label>Password</Form.Label>
-                                    <Form.Control
-                                        type='password'
-                                        placeholder='Confirm Password'
-                                        value={confirmPassword}
-                                        onChange={(e) => setConfirmPassword(e.target.value)}
-                                    ></Form.Control>
-                                </Form.Group>
+                    <Form.Group controlId='profilephoto'>
+                        <Form.Label>Profile Photo Url</Form.Label>
+                        <Form.Control
+                            type='text'
+                            placeholder='Profile Picture Url'
+                            value={profileImg}
+                            onChange={(e) => setProfileImg(e.target.value)}
+                        ></Form.Control>
+                    </Form.Group>
 
-                                <Form.Group controlId='profilephoto'>
-                                    <Form.Label>Profile Photo Url</Form.Label>
-                                    <Form.Control
-                                        type='text'
-                                        placeholder='Profile Picture Url'
-                                        value={profileImg}
-                                        onChange={(e) => setProfileImg(e.target.value)}
-                                    ></Form.Control>
-                                </Form.Group>
+                    <Form.Group controlId='bio'>
+                        <Form.Label>Bio</Form.Label>
+                        <Form.Control
+                            type='text'
+                            placeholder='Something about you'
+                            value={bio}
+                            onChange={(e) => setBio(e.target.value)}
+                        ></Form.Control>
+                    </Form.Group>
 
-                                <Form.Group controlId='bio'>
-                                    <Form.Label>Bio</Form.Label>
-                                    <Form.Control
-                                        type='text'
-                                        placeholder='Something about you'
-                                        value={bio}
-                                        onChange={(e) => setBio(e.target.value)}
-                                    ></Form.Control>
-                                </Form.Group>
-
-                                <Button type='submit' variant='primary'>
-                                    Update
+                    <Button type='submit' variant='primary'>
+                        Update
                         </Button>
-                            </Form>
+                </Form>
+            </Col>
+        </Row>
 
-                        </FormContainer>
-                    </Col>
-                </Row>
-            }
-
-        </Container>
     )
 }
 
