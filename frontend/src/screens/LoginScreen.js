@@ -29,7 +29,7 @@ const LoginScreen = ({ location, history }) => {
     }
 
     const demoLogin = () => {
-        dispatch(login('charly@charly.com', '123123'))
+        dispatch(login('lucas@lucas.com', '123123'))
     }
 
     return (

@@ -6,14 +6,44 @@ import { Button, Image, Row, Col } from 'react-bootstrap'
 import { followUserById } from '../actions/UserActions'
 
 
-const Profile = ({ user, userInfo }) => {
+const Profile = ({ user, loading, success, userInfo }) => {
 
     const dispatch = useDispatch()
+
+    const [myProfile, setMyProfile] = useState(false)
+    const [following, setFollowing] = useState(false)
 
     const followHandler = () => {
         dispatch(followUserById(user._id))
     }
 
+    const unfollowHandler = () => {
+        console.log('asd')
+    }
+
+    useEffect(() => {
+        if (userInfo._id === user._id) {
+            setMyProfile(true)
+            console.log(myProfile)
+        } else {
+            setMyProfile(false)
+            console.log(myProfile)
+        }
+
+        const exist = user.followers.find((x) => {
+            if (x.user === userInfo._id) {
+                return true
+            }
+        }
+        )
+
+        if (exist) {
+            setFollowing(true)
+        } else {
+            setFollowing(false)
+        }
+
+    })
 
     return (
         <Row className="mb-3  w-75 d-inline-flex border" >
@@ -35,11 +65,23 @@ const Profile = ({ user, userInfo }) => {
 
             </Col>
             <Col className="w-25" md={3} xs={3}>
+                {myProfile ? (
+                    <LinkContainer
+                        className="mt-5"
+                        to="/profile/edit"
+                    ><Button variant="danger">Edit</Button></LinkContainer>
+                ) : (
+                    following ? (
+                        <Button>Unfollow</Button>
+                    ) : (
+                        <Button>Follow</Button>
+                    )
+                )}
 
-                <LinkContainer
-                    className="mt-5"
-                    to="/profile/edit"
-                ><Button variant="danger">Edit</Button></LinkContainer>
+
+
+
+
             </Col>
         </Row>
     )

@@ -10,6 +10,9 @@ const UserProfileScreen = ({ match }) => {
     const usernameProfile = useSelector(state => state.usernameProfile)
     const { success, loading, user } = usernameProfile
 
+    const userLogin = useSelector(state => state.userLogin)
+    const { userInfo } = userLogin
+
     useEffect(() => {
         dispatch(getProfileDetailsByUsername(username))
     }, [dispatch])
@@ -17,7 +20,7 @@ const UserProfileScreen = ({ match }) => {
     return (
         <div>
             {loading && <h1>Loading</h1>}
-            {success && (user === "" ? <h1>The user does not exists!</h1> : <Profile user={user} />)}
+            {success && (user === "" ? <h1>The user does not exists!</h1> : <Profile user={user} loading={loading} success={success} userInfo={userInfo} />)}
 
         </div>
     )
