@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { Form, Button, Col, Row, Container, Image } from 'react-bootstrap'
-import FormContainer from '../components/FormContainer'
+import { Form, Button, Col, Row, Image } from 'react-bootstrap'
 import { getUserDetails, updateUserProfile } from '../actions/UserActions'
 
 
@@ -120,6 +119,7 @@ const EditProfileScreen = () => {
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
                         ></Form.Control>
+                        <p>{message}</p>
                     </Form.Group>
 
                     <Form.Group controlId='profilephoto'>

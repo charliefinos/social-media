@@ -2,8 +2,10 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPost } from '../actions/PostActions'
 import Post from '../components/Post'
+import '../components/Post.scss'
 
 const PostScreen = ({ match }) => {
+
     const dispatch = useDispatch()
 
     const userPost = useSelector(state => state.userPost)
@@ -17,18 +19,15 @@ const PostScreen = ({ match }) => {
 
 
     useEffect(() => {
-        if (success || deleteSuccess) {
-            dispatch(getPost(match.params.id))
-        }
         dispatch(getPost(match.params.id))
     }, [match, success, deleteSuccess, dispatch])
 
     return (
-        <>
-            <div>
-                <Post post={post} />
-            </div>
-        </>
+
+        <div className="comment__post">
+            <Post post={post} match={match} />
+        </div>
+
     )
 }
 

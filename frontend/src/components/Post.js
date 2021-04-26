@@ -1,25 +1,29 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { Dropdown, Form, Button, Container, Col, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { deletePost, deletePostComment, postPostComment } from '../actions/PostActions'
 import { BiCommentDetail } from 'react-icons/bi'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import { TiDeleteOutline } from 'react-icons/ti'
-import './Post.css'
+import './Post.scss'
 import 'fontsource-roboto'
 
 import Avatar from '@material-ui/core/Avatar'
 
 
-const Post = ({ post }) => {
 
+const Post = ({ post, match }) => {
+
+    const url = match.url
+
+    const [delPost, setDelPost] = useState(false)
     const dispatch = useDispatch()
 
     const [comment, setComment] = useState('')
 
     const userPost = useSelector(state => state.userPost)
     const { loading: loadingPost } = userPost
-
 
     const userPostComment = useSelector(state => state.userPostComment)
     const { success } = userPostComment
@@ -60,6 +64,10 @@ const Post = ({ post }) => {
         if (success) {
             setComment('')
         }
+        if (url === '/') {
+            setDelPost(true)
+        }
+
     }, [success])
 
     return (
@@ -71,7 +79,7 @@ const Post = ({ post }) => {
                         alt={post.user.username}
                         src="">
                     </Avatar>
-                    <h3>{post.user.username}</h3>
+                    <Link className="link" to={`/${post.user.username}`}><h3>{post.user.username}</h3></Link>
                 </div>
 
                 <Dropdown className='post__header__right' >
@@ -95,45 +103,41 @@ const Post = ({ post }) => {
 
             {/*Username + Caption*/}
             {post.caption &&
-                <h4 className="post__text"><strong>{post.user.username}</strong>{' '}{post.caption}</h4>}
+                <h5 className="post__text"><Link
+                    to={`/${post.user.username}`} className="link"><strong>{post.user.username}</strong></Link>{' '}{post.caption}</h5>}
 
+            {/*Comments*/}
             {post.comments.map(x => (
-                <div className="post__text__comment mb-2" key={x._id}>
-                    <div className="ml-2">
-                        <strong>{x.username}</strong>{' '}{x.comment}
+                <div className="post__text__comment" key={x._id}>
+                    <div className="post__comment">
+                        <Link className="link" to={`/${x.username}`}><strong>{x.username}</strong></Link>{' '}{x.comment}
                     </div>
                     <div className="mr-2">
-                        <a href='#' onClick={(() => {
+                        {!delPost && <Link onClick={(() => {
                             deleteComment(post._id, x._id)
-                        })}><TiDeleteOutline color="light-gray" /></a>
+                        })}><TiDeleteOutline color="light-gray" /></Link>}
                     </div>
                 </div>
             ))}
 
             {loadingPost === false ? (
-                <Container>
-                    <Form onSubmit={commentHandler}>
-                        <Row>
-                            <Col>
-                                <Form.Group controlId="" >
-                                    <Form.Control
-                                        type="text"
-                                        placeholder="Comment"
-                                        value={comment} onChange={(e) => setComment(e.target.value)}>
-                                    </Form.Control>
-                                </Form.Group>
-                            </Col>
-                            <Col>
-                                <Button
-                                    className="m-3"
-                                    type='submit'
-                                    variant='primary'>
-                                    Submit
-                        </Button>
-                            </Col>
-                        </Row>
-                    </Form>
-                </Container>
+                <div className="form">
+                    <form onSubmit={commentHandler} >
+                        <div className="form__input">
+                            <input
+                                type="text"
+                                placeholder="Comment"
+                                value={comment} onChange={(e) => setComment(e.target.value)} />
+                        </div>
+                        <div className="form__button">
+                            <button
+                                type='submit'
+                                variant='primary'>
+                                Submit
+                        </button>
+                        </div>
+                    </form>
+                </div>
             ) : (<a className="m-2" href={`/post/${post._id}`}><BiCommentDetail size="50px" color="black" /></a>)}
 
         </div >
@@ -141,3 +145,4 @@ const Post = ({ post }) => {
 }
 
 export default Post
+

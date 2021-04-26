@@ -1,0 +1,118 @@
+.post {
+  background-color: white;
+  width: 60vw;
+  max-width: 550px;
+  height: 100%;
+  border: 1px solid lightgray;
+  margin-bottom: 45px;
+  justify-content: center;
+
+  .post__image {
+    width: 100%;
+    object-fit: contain;
+    border-bottom: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+  }
+
+  .post__text {
+    font-weight: normal;
+    padding-left: 1.2rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .post__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .post__header__left {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      padding: 14px;
+
+      .post__avatar {
+        margin-right: 10px;
+      }
+    }
+
+    .post__header__right {
+      margin: 21px 14px 14px 14px;
+      a {
+        text-decoration: none;
+        &:hover {
+          text-decoration: inherit;
+        }
+      }
+    }
+
+    .post__header__right {
+      a a:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.post input {
+  border: 1px solid lightgray;
+  width: 400px;
+  height: 30px;
+  margin: 12px;
+  padding: 10px 5px;
+}
+
+.post input:hover {
+  border: 1px solid gray;
+}
+
+.post__text__comment {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 0.2rem;
+  .post__comment {
+    margin-left: 1.2rem;
+  }
+}
+
+.test {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 767px) {
+  .post {
+    max-width: 450px;
+    min-width: 450px;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .form__input {
+    text-align: center;
+    input {
+      border: 1px solid gray;
+      width: 80%;
+      padding: 0.4rem;
+      text-align: center;
+      margin: 0.5rem;
+      border-radius: 10px;
+    }
+  }
+  .form__button {
+    text-align: center;
+    button {
+      width: 60%;
+      border: 1px solid gray;
+      padding: 0.4rem;
+      margin: 0.5rem;
+      border-radius: 10px;
+    }
+  }
+}

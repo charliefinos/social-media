@@ -5,7 +5,6 @@ import Header from './components/Header'
 import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
 import SignupScreen from './screens/SignupScreen';
-import ProfileScreen from './screens/ProfileScreen';
 import EditProfileScreen from './screens/EditProfileScreen'
 import PostScreen from './screens/PostScreen'
 import SearchUsers from './screens/SearchUsers';

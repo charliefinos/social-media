@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Container, Col, Row, Image, Button } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 import { searchUsers } from '../actions/UserActions'
 import ProfileOnSearch from '../components/ProfileOnSearch'
 

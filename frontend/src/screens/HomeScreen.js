@@ -5,7 +5,7 @@ import { getUserPosts } from '../actions/PostActions'
 import Post from '../components/Post'
 import FileUploader from '../components/FileUploader'
 
-const HomeScreen = () => {
+const HomeScreen = ({ match }) => {
 
     const dispatch = useDispatch()
     const history = useHistory()
@@ -30,6 +30,8 @@ const HomeScreen = () => {
             dispatch(getUserPosts())
         }
 
+        dispatch(getUserPosts())
+
     }, [history, userInfo, dispatch, success])
 
     return (
@@ -44,6 +46,7 @@ const HomeScreen = () => {
                     <div key={post._id}>
                         <Post
                             post={post}
+                            match={match}
                         />
                     </div>
                 ))}
