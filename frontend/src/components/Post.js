@@ -74,11 +74,13 @@ const Post = ({ post, match }) => {
         <div className="post" >
             <div className="post__header">
                 <div className="post__header__left">
-                    <Avatar
-                        className="post__avatar"
-                        alt={post.user.username}
-                        src="">
-                    </Avatar>
+                    <Link className="link" to={`/${post.user.username}`}>
+                        <Avatar
+                            className="post__avatar"
+                            alt={post.user.username}
+                            src={post.user.profileImg}>
+                        </Avatar>
+                    </Link>
                     <Link className="link" to={`/${post.user.username}`}><h3>{post.user.username}</h3></Link>
                 </div>
 
@@ -138,7 +140,10 @@ const Post = ({ post, match }) => {
                         </div>
                     </form>
                 </div>
-            ) : (<a className="m-2" href={`/post/${post._id}`}><BiCommentDetail size="50px" color="black" /></a>)}
+            ) : (
+                <div className="icon"><Link className="link" href={`/post/${post._id}`}><BiCommentDetail size="30px" /> Add a comment</Link>
+                </div>
+            )}
 
         </div >
     )

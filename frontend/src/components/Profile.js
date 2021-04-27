@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import './Profile.scss'
 import { LinkContainer } from 'react-router-bootstrap'
-import { Button, Image, Row, Col } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import { followUserById } from '../actions/UserActions'
 
 
@@ -47,13 +47,13 @@ const Profile = ({ user, loading, success, userInfo }) => {
 
     return (
         <div className="profile" >
-            <div className="profile__photo" md={4} xs={4} >
+            <div className="profile__photo" >
                 <img
                     src={user.profileImg}
                 ></img>
 
             </div>
-            <div className="profile__info" md={5} xs={5} >
+            <div className="profile__info" >
                 <h3 className="">{user.name}</h3>
                 <LinkContainer to={`/${user.username}`}><a className="username">@{user.username}</a></LinkContainer>
 
@@ -62,11 +62,11 @@ const Profile = ({ user, loading, success, userInfo }) => {
                 {user.bio && <p><strong>Bio:</strong> {user.bio}</p>}
 
             </div>
-            <div className="profile__button" md={3} xs={3}>
+            <div className="profile__button">
                 {myProfile ? (
                     <LinkContainer
                         className="button"
-                        to="/profile/edit"
+                        to="/account/edit"
                     ><Button variant="danger">Edit</Button></LinkContainer>
                 ) : (
                     following ? (
