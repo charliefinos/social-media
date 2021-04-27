@@ -5,7 +5,8 @@ import { USER_CREATE_POST_RESET } from '../constants/PostConstants'
 import { Button, Row, Form, Container } from 'react-bootstrap'
 import Modal from 'react-modal'
 import axios from 'axios'
-
+import '../components/FileUploader.scss'
+import { BiDirections } from 'react-icons/bi'
 const FileUploader = () => {
     const dispatch = useDispatch()
 
@@ -37,8 +38,10 @@ const FileUploader = () => {
             bottom: 'auto',
             marginRight: '-50%',
             transform: 'translate(-50%, -50%)',
-            width: '300px',
+            width: '60%',
+            height: '40%',
             color: 'black',
+            display: 'flex',
         }
     }
 
@@ -75,49 +78,50 @@ const FileUploader = () => {
     }
 
     return (
-        <Container fluid>
-            <Row className="justify-content-center my-3">
-                <Button className="text-center" variant="primary" onClick={modalHandler}>New Post</Button>
-            </Row>
+        <div className="file__uploader">
+            <div className="file__uploader__button">
+                <button variant="primary" onClick={modalHandler}>New Post</button>
+            </div>
             <Modal
                 ariaHideApp={false}
                 style={customStyles}
                 isOpen={modal}
                 onRequestClose={modalHandler}
             >
-                <Form onSubmit={submitHandler}>
-                    <Form.Group controlId="formPictureUpload">
-                        <Form.Label>Picture Caption</Form.Label>
-                        <Form.Control
+                <form className="form" onSubmit={submitHandler} >
+                    <div className="form__file">
+                        <label>Picture Caption</label>
+                        <input
                             type="caption"
                             placeholder="Enter a Caption"
                             value={caption}
                             onChange={(e) => setCaption(e.target.value)} />
-                    </Form.Group>
 
-                    <Form.Group controlId='picture'>
-                        <Form.Label>Picture </Form.Label>
-                        <Form.Control
+                        <label>Picture </label>
+                        <input
                             type='text'
                             placeholder='Enter Image url'
                             value={image}
-                            onChange={(e) => setImage(e.target.value)}>
-                        </Form.Control>
-                        <Form.File
-                            id='image-file'
-                            label='Choose file'
-                            custom
-                            onChange={uploadFileHandler}></Form.File>
+                            onChange={(e) => setImage(e.target.value)} />
+                        <label className="input__file__label">
+                            Upload Image
+                            <input
+                                type="file"
+                                id='image-file'
+                                label='Choose file'
+                                custom
+                                onChange={uploadFileHandler} />
+                        </label>
                         {uploading && <p>uploading...</p>}
-                    </Form.Group>
-
-                    <Button variant="primary" type="submit">
-                        Submit
-                    </Button>
-
-                </Form>
+                        <div className="submit__file">
+                            <button type="submit">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </Modal>
-        </Container>
+        </div >
     )
 }
 
