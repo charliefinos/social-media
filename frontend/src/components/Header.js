@@ -1,13 +1,11 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import { useHistory, Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../actions/UserActions'
-import { Button, Navbar, Form, FormControl, DropdownButton, Dropdown } from 'react-bootstrap'
+import { Button, Navbar, DropdownButton, Dropdown } from 'react-bootstrap'
 import SearchBox from './SearchBox'
-
-import './Header.css'
 
 const Header = ({ match }) => {
     const dispatch = useDispatch()
