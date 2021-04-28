@@ -141,7 +141,7 @@ const Post = ({ post, match }) => {
                     </form>
                 </div>
             ) : (
-                <div className="icon"><Link className="link" href={`/post/${post._id}`}><BiCommentDetail size="30px" /> Add a comment</Link>
+                <div className="icon"><a className="link" href={`/post/${post._id}`}><BiCommentDetail size="30px" /> Add a comment</a>
                 </div>
             )}
 

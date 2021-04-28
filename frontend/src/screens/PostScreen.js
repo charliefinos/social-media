@@ -24,7 +24,7 @@ const PostScreen = ({ match }) => {
 
     return (
 
-        <div className="comment__post">
+        <div className="app__posts">
             <Post post={post} match={match} />
         </div>
 
