@@ -21,6 +21,14 @@ const getUserPosts = asyncHandler(async (req, res) => {
     res.json(userPosts)
 })
 
+const getUserPostsById = asyncHandler(async (req, res) => {
+
+    const userPosts = await Post.find({ user: req.params.id })
+
+    res.json(userPosts)
+
+})
+
 const createPostComment = asyncHandler(async (req, res) => {
     const { comment } = req.body
 
@@ -80,4 +88,5 @@ export {
     getPost,
     deletePost,
     deletePostComment,
+    getUserPostsById
 }
