@@ -8,7 +8,8 @@ const createPost = asyncHandler(async (req, res) => {
     const post = new Post({
         caption,
         image,
-        user: req.user._id
+        user: req.user._id,
+        username: req.user.username
     })
 
     const createdPost = await post.save()
@@ -21,9 +22,9 @@ const getUserPosts = asyncHandler(async (req, res) => {
     res.json(userPosts)
 })
 
-const getUserPostsById = asyncHandler(async (req, res) => {
+const getUserPostsByUsername = asyncHandler(async (req, res) => {
 
-    const userPosts = await Post.find({ user: req.params.id })
+    const userPosts = await Post.find({ username: req.params.username })
 
     res.json(userPosts)
 
@@ -88,5 +89,5 @@ export {
     getPost,
     deletePost,
     deletePostComment,
-    getUserPostsById
+    getUserPostsByUsername,
 }

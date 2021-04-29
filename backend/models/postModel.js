@@ -23,6 +23,10 @@ const postSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
+    username: {
+        type: String,
+        required: true,
+    },
     caption: {
         type: String,
         required: true,
