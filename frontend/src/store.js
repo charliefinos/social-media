@@ -16,7 +16,8 @@ import {
     userDeletePostReducer,
     userPostCommentReducer,
     userPostReducer,
-    userPostsReducer
+    userPostsReducer,
+    userProfilePostsReducer
 } from './reducers/PostReducers'
 
 const reducer = combineReducers({
@@ -26,6 +27,7 @@ const reducer = combineReducers({
     userUpdateProfile: userUpdateProfileReducer,
     userPost: userPostReducer,
     userPosts: userPostsReducer,
+    userProfilePosts: userProfilePostsReducer,
     userPostComment: userPostCommentReducer,
     userDeletePost: userDeletePostReducer,
     userDeletePostComment: userDeletePostCommentReducer,

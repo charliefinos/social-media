@@ -17,7 +17,10 @@ import {
     USER_POST_COMMENT_SUCCESS,
     USER_POST_FAIL,
     USER_POST_REQUEST,
-    USER_POST_SUCCESS
+    USER_POST_SUCCESS,
+    USER_PROFILE_POSTS_REQUEST,
+    USER_PROFILE_POSTS_SUCCESS,
+    USER_PROFILE_POSTS_FAIL
 } from '../constants/PostConstants'
 
 export const getUserPosts = () => async (dispatch, getState) => {
@@ -44,6 +47,35 @@ export const getUserPosts = () => async (dispatch, getState) => {
     } catch (error) {
         dispatch({
             type: USER_POSTS_FAIL,
+            payload: error.response && error.response.data.message ? error.response.data.message : error.message
+        })
+    }
+}
+
+export const getUserProfilePostsByUsername = (username) => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: USER_PROFILE_POSTS_REQUEST
+        })
+
+        const { userLogin: { userInfo } } = getState()
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+        const { data } = await axios.get(`/api/posts/user/${username}`, config)
+
+        dispatch({
+            type: USER_PROFILE_POSTS_SUCCESS,
+            payload: data
+        })
+
+    } catch (error) {
+        dispatch({
+            type: USER_PROFILE_POSTS_FAIL,
             payload: error.response && error.response.data.message ? error.response.data.message : error.message
         })
     }

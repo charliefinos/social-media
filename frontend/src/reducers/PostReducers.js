@@ -15,6 +15,9 @@ import {
     USER_DELETE_POST_REQUEST,
     USER_DELETE_POST_SUCCESS,
     USER_DELETE_POST_FAIL,
+    USER_PROFILE_POSTS_REQUEST,
+    USER_PROFILE_POSTS_SUCCESS,
+    USER_PROFILE_POSTS_FAIL,
 
 } from '../constants/PostConstants'
 
@@ -25,6 +28,20 @@ export const userPostsReducer = (state = { posts: [] }, action) => {
         case USER_POSTS_SUCCESS:
             return { loading: false, posts: action.payload }
         case USER_POSTS_FAIL:
+            return { loading: false, error: action.payload }
+        default:
+            return state
+
+    }
+}
+
+export const userProfilePostsReducer = (state = { posts: [] }, action) => {
+    switch (action.type) {
+        case USER_PROFILE_POSTS_REQUEST:
+            return { loading: true, posts: [] }
+        case USER_PROFILE_POSTS_SUCCESS:
+            return { loading: false, success: true, posts: action.payload }
+        case USER_PROFILE_POSTS_FAIL:
             return { loading: false, error: action.payload }
         default:
             return state
