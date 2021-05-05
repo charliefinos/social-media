@@ -3,23 +3,14 @@ import { useDispatch } from 'react-redux'
 import './Profile.scss'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Button } from 'react-bootstrap'
-import { followUserById } from '../actions/UserActions'
 
 
-const Profile = ({ user, loading, success, userInfo }) => {
+const Profile = ({ user, loading, success, userInfo, followHandler, unfollowHandler }) => {
 
     const dispatch = useDispatch()
 
     const [myProfile, setMyProfile] = useState(false)
     const [following, setFollowing] = useState(false)
-
-    const followHandler = () => {
-        dispatch(followUserById(user._id))
-    }
-
-    const unfollowHandler = () => {
-        console.log('asd')
-    }
 
     useEffect(() => {
         if (userInfo._id === user._id) {

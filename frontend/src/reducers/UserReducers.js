@@ -20,7 +20,10 @@ import {
     USERNAME_PROFILE_FAIL,
     USER_FOLLOW_REQUEST,
     USER_FOLLOW_SUCCESS,
-    USER_FOLLOW_FAIL
+    USER_FOLLOW_FAIL,
+    USER_UNFOLLOW_REQUEST,
+    USER_UNFOLLOW_SUCCESS,
+    USER_UNFOLLOW_FAIL
 } from "../constants/UserConstants";
 
 export const userLoginReducer = (state = {}, action) => {
@@ -119,5 +122,19 @@ export const followUserReducer = (state = {}, action) => {
             return state
     }
 }
+
+export const unfollowUserReducer = (state = {}, action) => {
+    switch (action.type) {
+        case USER_UNFOLLOW_REQUEST:
+            return { loading: true }
+        case USER_UNFOLLOW_SUCCESS:
+            return { loading: false, success: true }
+        case USER_UNFOLLOW_FAIL:
+            return { loading: false, error: action.payload }
+        default:
+            return state
+    }
+}
+
 
 

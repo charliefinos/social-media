@@ -19,6 +19,9 @@ import {
     USER_SEARCH_PROFILE_FAIL,
     USER_SEARCH_PROFILE_REQUEST,
     USER_SEARCH_PROFILE_SUCCESS,
+    USER_UNFOLLOW_FAIL,
+    USER_UNFOLLOW_REQUEST,
+    USER_UNFOLLOW_SUCCESS,
     USER_UPDATE_PROFILE_FAIL,
     USER_UPDATE_PROFILE_REQUEST,
     USER_UPDATE_PROFILE_SUCCESS,
@@ -221,6 +224,34 @@ export const followUserById = (id) => async (dispatch, getState) => {
     } catch (error) {
         dispatch({
             type: USER_FOLLOW_FAIL,
+            payload: error.response && error.response.data.message ? error.response.data.message : error.message
+        })
+    }
+}
+
+export const unfollowUserById = (id) => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: USER_UNFOLLOW_REQUEST
+        })
+
+        const { userLogin: { userInfo } } = getState()
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+        await axios.get(`/api/users/unfollow/${id}`, config)
+
+        dispatch({
+            type: USER_UNFOLLOW_SUCCESS,
+        })
+
+    } catch (error) {
+        dispatch({
+            type: USER_UNFOLLOW_FAIL,
             payload: error.response && error.response.data.message ? error.response.data.message : error.message
         })
     }
