@@ -174,6 +174,23 @@ const followUser = asyncHandler(async (req, res) => {
     }
 })
 
+const unfollowUser = asyncHandler(async (req, res) => {
+
+    const user = await User.findById(req.params.id)
+
+    const index = user.followers.findIndex(x => x.username === req.user.username)
+
+    if (user) {
+        user.followers.splice(index, 1)
+
+        await user.save()
+        res.status(201).json(user)
+
+    } else {
+        res.status(404)
+        throw new Error('User not found')
+    }
+})
 
 export {
     getUsers,
@@ -183,5 +200,6 @@ export {
     getUserByNameKeyword,
     getUserByUsername,
     updateUserProfile,
-    followUser
+    followUser,
+    unfollowUser
 }
