@@ -155,18 +155,25 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 
 const followUser = asyncHandler(async (req, res) => {
 
-    const user = await User.findById(req.params.id)
+    const userLogged = await User.findById(req.user._id)
+    const userToFollow = await User.findById(req.params.id)
 
-    if (user) {
-        const follow = {
+    if (userToFollow && userLogged) {
+        const follower = {
             username: req.user.username,
             user: req.user._id
         }
 
-        user.followers.push(follow)
+        const following = {
+            username: userToFollow.username,
+            user: userToFollow._id
+        }
 
-        await user.save()
-        res.status(201).json(user)
+        userToFollow.followers.push(follower)
+        userLogged.following.push(following)
+
+        await userToFollow.save() && userLogged.save()
+        res.status(201).json(userToFollow)
 
     } else {
         res.status(404)
