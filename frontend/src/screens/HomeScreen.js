@@ -30,7 +30,6 @@ const HomeScreen = ({ match }) => {
             dispatch(getUserPosts())
         }
 
-        dispatch(getUserPosts())
 
     }, [history, userInfo, dispatch, success])
 
