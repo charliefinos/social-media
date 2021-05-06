@@ -15,6 +15,20 @@ const followersSchema = mongoose.Schema({
     timestamps: true
 })
 
+const followingSchema = mongoose.Schema({
+    username: {
+        type: String,
+        required: true
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User'
+    }
+}, {
+    timestamps: true
+})
+
 const userSchema = mongoose.Schema({
     name: {
         type: String,
@@ -39,6 +53,7 @@ const userSchema = mongoose.Schema({
         required: true
     },
     followers: [followersSchema],
+    following: [followingSchema],
     bio: {
         type: String
     },
