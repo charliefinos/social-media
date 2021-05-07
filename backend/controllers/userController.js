@@ -183,14 +183,19 @@ const followUser = asyncHandler(async (req, res) => {
 
 const unfollowUser = asyncHandler(async (req, res) => {
 
-    const user = await User.findById(req.params.id)
+    const userToUnfollow = await User.findById(req.params.id)
+    const userLogged = await User.findById(req.user._id)
 
-    const index = user.followers.findIndex(x => x.username === req.user.username)
+    const followersIndex = userToUnfollow.followers.findIndex(x => x._id === req.user._id)
+    const followingIndex = userLogged.following.findIndex(x => x._id === userToUnfollow._id)
 
-    if (user) {
-        user.followers.splice(index, 1)
 
-        await user.save()
+    if (userToUnfollow && userLogged) {
+        userToUnfollow.followers.splice(followersIndex, 1)
+        userLogged.following.splice(followingIndex, 1)
+
+        await userToUnfollow.save() && userLogged.save()
+
         res.status(201).json(user)
 
     } else {
