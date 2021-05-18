@@ -24,9 +24,9 @@ const getUserPosts = asyncHandler(async (req, res) => {
 
 const getUserPostsByUsername = asyncHandler(async (req, res) => {
 
-    const userPosts = await Post.find({ username: req.params.username }).populate('user')
+    const userPost = await Post.find({ username: req.params.username }).populate('user')
 
-    res.json(userPosts)
+    res.json(userPost)
 
 })
 
