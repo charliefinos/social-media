@@ -17,7 +17,7 @@ const UserProfileScreen = ({ match }) => {
     const { userInfo } = userLogin
 
     const userProfilePosts = useSelector(state => state.userProfilePosts)
-    const { posts, loading: loadingPosts, success: successPosts } = userProfilePosts
+    const { posts, success: successPosts } = userProfilePosts
 
     const followUser = useSelector(state => state.followUser)
     const { success: followSuccess } = followUser
@@ -42,6 +42,7 @@ const UserProfileScreen = ({ match }) => {
         <div className="app__posts">
             {loading && <Loader />}
             {success && (user === "" ? <h1>The user does not exists!</h1> : <Profile
+                className="profile"
                 user={user}
                 loading={loading}
                 success={success}
