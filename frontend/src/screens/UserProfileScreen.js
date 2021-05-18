@@ -4,6 +4,7 @@ import { getUserProfilePostsByUsername } from '../actions/PostActions'
 import { getProfileDetailsByUsername, followUserById, unfollowUserById } from '../actions/UserActions'
 import Profile from '../components/Profile'
 import Post from '../components/Post'
+import Loader from '../components/Loader'
 
 const UserProfileScreen = ({ match }) => {
     const dispatch = useDispatch()
@@ -39,7 +40,7 @@ const UserProfileScreen = ({ match }) => {
 
     return (
         <div className="app__posts">
-            {loading && <h1>Loading</h1>}
+            {loading && <Loader />}
             {success && (user === "" ? <h1>The user does not exists!</h1> : <Profile
                 user={user}
                 loading={loading}

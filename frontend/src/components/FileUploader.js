@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { createPost, getUserPosts } from '../actions/PostActions'
 import { USER_CREATE_POST_RESET } from '../constants/PostConstants'
-import { Button, Row, Form, Container } from 'react-bootstrap'
 import Modal from 'react-modal'
 import axios from 'axios'
 import '../components/FileUploader.scss'
-import { BiDirections } from 'react-icons/bi'
+import Loader from '../components/Loader'
+
 const FileUploader = () => {
     const dispatch = useDispatch()
 
@@ -112,7 +112,7 @@ const FileUploader = () => {
                                 custom
                                 onChange={uploadFileHandler} />
                         </label>
-                        {uploading && <p>uploading...</p>}
+                        {uploading && <Loader />}
                         <div className="submit__file">
                             <button type="submit">
                                 Submit

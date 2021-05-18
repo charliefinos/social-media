@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Container } from 'react-bootstrap'
 import { searchUsers } from '../actions/UserActions'
 import ProfileOnSearch from '../components/ProfileOnSearch'
-
+import Loader from '../components/Loader'
 const SearchUsers = ({ match }) => {
     const dispatch = useDispatch()
 
@@ -19,8 +19,8 @@ const SearchUsers = ({ match }) => {
 
 
     return (
-        <Container>
-            {loading && <h1>Loading</h1>}
+        <div className="app__posts">
+            {loading && <Loader />}
             {success && (userSearch.length === 0 ? (
                 <h1>No users found!</h1>
             ) :
@@ -30,7 +30,7 @@ const SearchUsers = ({ match }) => {
                     </div>
                 ))))}
 
-        </Container >
+        </div >
     )
 }
 
