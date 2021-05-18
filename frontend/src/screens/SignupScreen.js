@@ -19,7 +19,7 @@ const SignupScreen = ({ location }) => {
     const userRegister = useSelector(state => state.userRegister)
     const { userInfo } = userRegister
 
-    const redirect = location.search ? location.search.split('=')[1] : '/login'
+    const redirect = location.search ? location.search.split('=')[1] : '/account/login'
 
     useEffect(() => {
         if (userInfo) {
