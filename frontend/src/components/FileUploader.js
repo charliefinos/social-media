@@ -6,7 +6,7 @@ import Modal from 'react-modal'
 import axios from 'axios'
 import '../components/FileUploader.scss'
 import Loader from '../components/Loader'
-
+import Message from '../components/Message'
 const FileUploader = () => {
     const dispatch = useDispatch()
 
@@ -79,9 +79,11 @@ const FileUploader = () => {
 
     return (
         <div className="file__uploader">
+
             <div className="file__uploader__button">
                 <button variant="primary" onClick={modalHandler}>New Post</button>
             </div>
+
             <Modal
                 ariaHideApp={false}
                 style={customStyles}
@@ -121,6 +123,7 @@ const FileUploader = () => {
                     </div>
                 </form>
             </Modal>
+
         </div >
     )
 }

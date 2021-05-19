@@ -68,7 +68,7 @@ const LoginScreen = ({ location, history }) => {
             </Form>
             <Row>
                 <Col>
-                    Are you new here?{' '}<Link to='/signup'>Signup</Link>
+                    Are you new here?{' '}<Link to='/account/signup'>Signup</Link>
                 </Col>
             </Row>
         </FormContainer >

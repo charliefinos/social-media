@@ -17,13 +17,16 @@ const SignupScreen = ({ location }) => {
     const [message, setMessage] = useState('')
 
     const userRegister = useSelector(state => state.userRegister)
-    const { userInfo } = userRegister
+    const { userInfo, error, loading } = userRegister
 
-    const redirect = location.search ? location.search.split('=')[1] : '/account/login'
+    const userLogin = useSelector(state => state.userLogin)
+    const { userInfo: userInfoLogin } = userLogin
+
+    const redirect = location.search ? location.search.split('=')[1] : '/'
 
     useEffect(() => {
-        if (userInfo) {
-            history.push(redirect)
+        if (userInfoLogin) {
+            history.push('/')
         }
     }, [userInfo, history, redirect])
 
