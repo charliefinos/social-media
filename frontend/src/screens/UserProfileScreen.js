@@ -52,9 +52,11 @@ const UserProfileScreen = ({ match }) => {
                 unfollowHandler={unfollowHandler} />)}
             {successPosts && (
                 <div className="app__posts">
-                    {posts.length === 0 && <Message variant="primary">
-                        Nothing to see here. Upload your first post!
-                        </Message>}
+                    {userInfo._id === user._id ? (
+                        posts.length === 0 && <Message variant="primary">Nothing to see here. Upload your first post!</Message>
+                    ) : (
+                        posts.length === 0 && <Message variant="primary">Nothing to see Here</Message>
+                    )}
                     {posts.map((post) => (
                         <Post
                             post={post}

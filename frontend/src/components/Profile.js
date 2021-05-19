@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
 import './Profile.scss'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Button } from 'react-bootstrap'
 
 
 const Profile = ({ user, loading, success, userInfo, followHandler, unfollowHandler }) => {
-
-    const dispatch = useDispatch()
 
     const [myProfile, setMyProfile] = useState(false)
     const [following, setFollowing] = useState(false)
@@ -34,7 +31,7 @@ const Profile = ({ user, loading, success, userInfo, followHandler, unfollowHand
             setFollowing(false)
         }
 
-    }, [success])
+    })
 
     return (
         <div className="profile" >
