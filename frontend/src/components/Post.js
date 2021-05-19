@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Dropdown, Form, Button, Container, Col, Row } from 'react-bootstrap'
+import { Dropdown } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { deletePost, deletePostComment, postPostComment } from '../actions/PostActions'
 import { BiCommentDetail } from 'react-icons/bi'
@@ -41,7 +41,7 @@ const Post = ({ post, match }) => {
 
     const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
         <a
-            href=""
+            href="#"
             ref={ref}
             onClick={e => {
                 e.preventDefault();
@@ -68,7 +68,7 @@ const Post = ({ post, match }) => {
             setDelPost(true)
         }
 
-    }, [success])
+    }, [success, url])
 
     return (
         <div className="post" >
@@ -97,6 +97,7 @@ const Post = ({ post, match }) => {
             </div>
             {/*Image*/}
             <img
+                alt={post.image}
                 className="post__image"
                 src={post.image}
             >

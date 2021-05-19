@@ -20,7 +20,7 @@ const EditProfileScreen = () => {
     const [bio, setBio] = useState('')
 
     const userDetails = useSelector(state => state.userDetails)
-    const { user, loading, success: successDetails } = userDetails
+    const { user } = userDetails
 
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin

@@ -6,7 +6,7 @@ import Modal from 'react-modal'
 import axios from 'axios'
 import '../components/FileUploader.scss'
 import Loader from '../components/Loader'
-import Message from '../components/Message'
+
 const FileUploader = () => {
     const dispatch = useDispatch()
 
@@ -28,7 +28,7 @@ const FileUploader = () => {
             })
         }
 
-    }, [dispatch, success])
+    }, [dispatch, success, modal])
 
     const customStyles = {
         content: {

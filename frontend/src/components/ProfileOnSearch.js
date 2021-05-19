@@ -1,13 +1,10 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Container, Col, Row, Image, Button } from 'react-bootstrap'
+import { Col, Row, Image, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { followUserById } from '../actions/UserActions'
 import { useHistory } from 'react-router-dom'
 
 const ProfileOnSearch = ({ user }) => {
 
-    const dispatch = useDispatch()
     const history = useHistory()
 
     const goToProfile = () => {

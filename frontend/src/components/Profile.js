@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './Profile.scss'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Button } from 'react-bootstrap'
-
+import { Link } from 'react-router-dom'
 
 const Profile = ({ user, loading, success, userInfo, followHandler, unfollowHandler }) => {
 
@@ -18,12 +18,7 @@ const Profile = ({ user, loading, success, userInfo, followHandler, unfollowHand
             console.log(myProfile)
         }
 
-        const exist = user.followers.find((x) => {
-            if (x.user === userInfo._id) {
-                return true
-            }
-        }
-        )
+        const exist = user.followers.find((x) => x.user === userInfo._id)
 
         if (exist) {
             setFollowing(true)
@@ -31,19 +26,20 @@ const Profile = ({ user, loading, success, userInfo, followHandler, unfollowHand
             setFollowing(false)
         }
 
-    })
+    }, [userInfo._id, user._id, user.followers, myProfile])
 
     return (
         <div className="profile" >
             <div className="profile__photo" >
                 <img
+                    alt={user.profileImg}
                     src={user.profileImg}
                 ></img>
 
             </div>
             <div className="profile__info" >
                 <h3 className="">{user.name}</h3>
-                <LinkContainer to={`/${user.username}`}><a className="username">@{user.username}</a></LinkContainer>
+                <Link href="#" to={`/${user.username}`} className="username">@{user.username}</Link>
 
                 <p className=""><strong>Followers:</strong> {user.followers.length}</p>
                 <p className=""><strong>Contact:</strong> {user.email}</p>
