@@ -5,7 +5,7 @@ import { getUserPosts } from '../actions/PostActions'
 import Post from '../components/Post'
 import Loader from '../components/Loader'
 import FileUploader from '../components/FileUploader'
-
+import Message from '../components/Message'
 const HomeScreen = ({ match }) => {
 
     const dispatch = useDispatch()
@@ -41,7 +41,8 @@ const HomeScreen = ({ match }) => {
 
             {posts.length === 0 ? (
                 <div>
-                    <h3>No Posts Found!</h3>
+                    <Message variant="primary">Nothing to see here. Search for your friends in the search bar and see their posts.
+                    </Message>
                 </div>
 
 

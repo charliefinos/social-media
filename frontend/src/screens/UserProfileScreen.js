@@ -5,6 +5,7 @@ import { getProfileDetailsByUsername, followUserById, unfollowUserById } from '.
 import Profile from '../components/Profile'
 import Post from '../components/Post'
 import Loader from '../components/Loader'
+import Message from '../components/Message'
 
 const UserProfileScreen = ({ match }) => {
     const dispatch = useDispatch()
@@ -36,7 +37,7 @@ const UserProfileScreen = ({ match }) => {
     useEffect(() => {
         dispatch(getProfileDetailsByUsername(username))
         dispatch(getUserProfilePostsByUsername(username))
-    }, [dispatch, followSuccess, unfollowSuccess])
+    }, [dispatch, followSuccess, unfollowSuccess, username])
 
     return (
         <div className="app__posts">
@@ -51,6 +52,9 @@ const UserProfileScreen = ({ match }) => {
                 unfollowHandler={unfollowHandler} />)}
             {successPosts && (
                 <div className="app__posts">
+                    {posts.length === 0 && <Message variant="primary">
+                        Nothing to see here. Upload your first post!
+                        </Message>}
                     {posts.map((post) => (
                         <Post
                             post={post}

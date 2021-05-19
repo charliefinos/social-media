@@ -4,7 +4,7 @@ import { Link, useHistory } from 'react-router-dom'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import FormContainer from '../components/FormContainer'
 import { register } from '../actions/UserActions'
-
+import Message from '../components/Message'
 
 const SignupScreen = ({ location }) => {
     const dispatch = useDispatch()
@@ -17,17 +17,11 @@ const SignupScreen = ({ location }) => {
     const [message, setMessage] = useState('')
 
     const userRegister = useSelector(state => state.userRegister)
-    const { userInfo, error, loading } = userRegister
-
-    const userLogin = useSelector(state => state.userLogin)
-    const { userInfo: userInfoLogin } = userLogin
+    const { userInfo, success } = userRegister
 
     const redirect = location.search ? location.search.split('=')[1] : '/'
 
     useEffect(() => {
-        if (userInfoLogin) {
-            history.push('/')
-        }
     }, [userInfo, history, redirect])
 
     const submitHandler = (e) => {
@@ -46,6 +40,7 @@ const SignupScreen = ({ location }) => {
     return (
         <>
             <FormContainer>
+                {success && <Message variant="success">User Created. Please Login!</Message>}
                 <h1>Sign Up</h1>
 
                 <Form onSubmit={submitHandler}>

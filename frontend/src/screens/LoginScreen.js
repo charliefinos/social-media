@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import FormContainer from '../components/FormContainer'
 import { login } from '../actions/UserActions'
+import Message from '../components/Message'
 
 const LoginScreen = ({ location, history }) => {
 
@@ -36,7 +37,7 @@ const LoginScreen = ({ location, history }) => {
 
         <FormContainer>
             <h1>Log In</h1>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
+            {error && <Message variant="danger" >{error}</Message>}
             <Form onSubmit={submitHandler}>
                 <Form.Group controlId='email'>
                     <Form.Label>Email</Form.Label>
