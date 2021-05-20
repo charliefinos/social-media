@@ -10,6 +10,7 @@ import PostScreen from './screens/PostScreen'
 import SearchUsers from './screens/SearchUsers';
 import UserProfileScreen from './screens/UserProfileScreen';
 import FollowingScreen from './screens/FollowingScreen'
+import FollowersScreen from './screens/FollowersScreen'
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path='/' component={HomeScreen} exact />
             <Route path='/:username' component={UserProfileScreen} exact />
             <Route path='/:username/following' component={FollowingScreen} exact />
+            <Route path='/:username/followers' component={FollowersScreen} exact />
             <Route path='/account/edit' component={EditProfileScreen} />
           </Container>
         </main>

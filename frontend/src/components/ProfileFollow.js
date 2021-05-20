@@ -15,7 +15,7 @@ const ProfileFollow = ({ user }) => {
     return (
         <div className='profile__follow'>
             <div className='profile__image' >
-                <img src='https://i.pinimg.com/474x/c5/ac/4b/c5ac4b6425a3cf5db6b7b56a1545b0d1.jpg'></img>
+                <img src={user.profileImg}></img>
             </div>
 
             <div className="profile__link">
