@@ -105,7 +105,7 @@ const getUserByUsername = asyncHandler(async (req, res) => {
 
     const username = (req.params.username).toLowerCase()
 
-    const user = await User.find({ username: username })
+    const user = await User.find({ username: username }).populate('user')
 
     if (user) {
         res.json(user[0])
@@ -161,11 +161,13 @@ const followUser = asyncHandler(async (req, res) => {
     if (userToFollow && userLogged) {
         const follower = {
             username: req.user.username,
+            profileImg: userLogged.profileImg,
             user: req.user._id
         }
 
         const following = {
             username: userToFollow.username,
+            profileImg: userToFollow.profileImg,
             user: userToFollow._id
         }
 

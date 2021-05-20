@@ -9,6 +9,7 @@ import EditProfileScreen from './screens/EditProfileScreen'
 import PostScreen from './screens/PostScreen'
 import SearchUsers from './screens/SearchUsers';
 import UserProfileScreen from './screens/UserProfileScreen';
+import FollowingScreen from './screens/FollowingScreen'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path='/search/:keyword' component={SearchUsers} />
             <Route path='/' component={HomeScreen} exact />
             <Route path='/:username' component={UserProfileScreen} exact />
+            <Route path='/:username/following' component={FollowingScreen} exact />
             <Route path='/account/edit' component={EditProfileScreen} />
           </Container>
         </main>

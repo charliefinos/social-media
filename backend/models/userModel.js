@@ -6,6 +6,10 @@ const followersSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    profileImg: {
+        type: String,
+        required: true
+    },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
@@ -17,6 +21,10 @@ const followersSchema = mongoose.Schema({
 
 const followingSchema = mongoose.Schema({
     username: {
+        type: String,
+        required: true
+    },
+    profileImg: {
         type: String,
         required: true
     },

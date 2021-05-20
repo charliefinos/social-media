@@ -41,7 +41,8 @@ const Profile = ({ user, loading, success, userInfo, followHandler, unfollowHand
                 <h3 className="">{user.name}</h3>
                 <Link href="#" to={`/${user.username}`} className="username">@{user.username}</Link>
 
-                <p className=""><strong>Followers:</strong> {user.followers.length}</p>
+                <Link className="link" to={`/${user.username}/followers`}><p className=""><strong>Followers:</strong> {user.followers.length}</p></Link>
+                <Link className="link" to={`/${user.username}/following`}><p className=""><strong>Following:</strong> {user.following.length}</p></Link>
                 <p className=""><strong>Contact:</strong> {user.email}</p>
                 {user.bio && <p><strong>Bio:</strong> {user.bio}</p>}
 
