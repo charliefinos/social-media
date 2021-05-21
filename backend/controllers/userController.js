@@ -1,6 +1,7 @@
 import asyncHandler from 'express-async-handler'
 import mongoose from 'mongoose'
 import User from '../models/userModel.js'
+import Post from '../models/postModel.js'
 import generateToken from '../utils/generateToken.js'
 
 //Login: Check the email, and if it exists check if the password is correct
@@ -116,6 +117,27 @@ const getUserByUsername = asyncHandler(async (req, res) => {
     }
 })
 
+const getUserPostsByUsername = asyncHandler(async (req, res) => {
+    const follow = []
+    const username = (req.params.username).toLowerCase()
+
+    const user = await User.find({ username: username }).populate('user')
+
+    user[0].following.map((x) => {
+        follow.push(x.user)
+    })
+
+    const posts = await Post.find({ 'user': { $in: follow } }).sort({ createdAt: -1 }).populate('user')
+
+    if (user) {
+        res.json(posts)
+        res.status(200)
+    } else {
+        res.status(404)
+        throw new Error("Posts Not Found!")
+    }
+})
+
 // Update the profile
 const updateUserProfile = asyncHandler(async (req, res) => {
 
@@ -213,6 +235,7 @@ export {
     getUserProfile,
     getUserByNameKeyword,
     getUserByUsername,
+    getUserPostsByUsername,
     updateUserProfile,
     followUser,
     unfollowUser

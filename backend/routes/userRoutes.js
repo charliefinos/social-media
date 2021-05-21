@@ -8,6 +8,7 @@ import {
     updateUserProfile,
     getUserByNameKeyword,
     getUserByUsername,
+    getUserPostsByUsername,
     followUser,
     unfollowUser
 } from '../controllers/userController.js'
@@ -15,6 +16,7 @@ import { protect } from '../middleware/authMiddleware.js'
 
 router.get('/', getUserByNameKeyword)
 router.get('/username/:username', protect, getUserByUsername)
+router.get('/following/:username', protect, getUserPostsByUsername)
 router.post('/login', authUser)
 router.route('/profile')
     .get(protect, getUserProfile)
