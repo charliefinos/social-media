@@ -123,6 +123,8 @@ const getUserPostsByUsername = asyncHandler(async (req, res) => {
 
     const user = await User.find({ username: username }).populate('user')
 
+    follow.push(user[0]._id)
+
     user[0].following.map((x) => {
         follow.push(x.user)
     })
