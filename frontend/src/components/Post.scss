@@ -89,7 +89,6 @@
 @media (max-width: 767px) {
   .post {
     max-width: 450px;
-    min-width: 450px;
   }
 }
 
@@ -138,4 +137,8 @@
       }
     }
   }
+}
+
+.icon {
+  margin: 0.4rem;
 }

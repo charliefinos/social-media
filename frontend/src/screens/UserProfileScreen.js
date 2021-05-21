@@ -55,6 +55,7 @@ const UserProfileScreen = ({ match }) => {
                     {posts.length === 0 && <Message variant="primary">Nothing to see here</Message>}
                     {posts.map((post) => (
                         <Post
+                            userInfo={userInfo}
                             post={post}
                             match={match} />
                     ))}

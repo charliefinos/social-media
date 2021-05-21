@@ -16,10 +16,9 @@ import Avatar from '@material-ui/core/Avatar'
 const Post = ({ post, match }) => {
 
     const url = match.url
-
-    const [delPost, setDelPost] = useState(false)
     const dispatch = useDispatch()
 
+    const [delPost, setDelPost] = useState(false)
     const [comment, setComment] = useState('')
 
     const userPost = useSelector(state => state.userPost)
@@ -41,7 +40,6 @@ const Post = ({ post, match }) => {
 
     const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
         <a
-            href="#"
             ref={ref}
             onClick={e => {
                 e.preventDefault();
@@ -67,7 +65,6 @@ const Post = ({ post, match }) => {
         if (url === '/') {
             setDelPost(true)
         }
-
     }, [success, url])
 
     return (
@@ -91,6 +88,7 @@ const Post = ({ post, match }) => {
 
                     <Dropdown.Menu>
                         <Dropdown.Item onClick={() => deletePostHandler(post._id)} eventKey="1">Delete Post</Dropdown.Item>
+
                         <Dropdown.Item eventKey="2">Report</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>

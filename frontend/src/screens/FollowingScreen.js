@@ -15,7 +15,7 @@ const FollowingScreen = ({ match }) => {
 
     useEffect(() => {
         dispatch(getProfileDetailsByUsername(username))
-    }, [username])
+    }, [username, dispatch])
 
     return (
         <div className="app__posts">
