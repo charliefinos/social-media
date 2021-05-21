@@ -18,6 +18,7 @@ const Post = ({ post, match }) => {
     const url = match.url
     const dispatch = useDispatch()
 
+    const [myProfile, setMyProfile] = useState(false)
     const [delPost, setDelPost] = useState(false)
     const [comment, setComment] = useState('')
 
@@ -26,6 +27,9 @@ const Post = ({ post, match }) => {
 
     const userPostComment = useSelector(state => state.userPostComment)
     const { success } = userPostComment
+
+    const userLogin = useSelector(state => state.userLogin)
+    const { userInfo } = userLogin
 
     const commentHandler = (e) => {
         e.preventDefault()
@@ -65,6 +69,14 @@ const Post = ({ post, match }) => {
         if (url === '/') {
             setDelPost(true)
         }
+        if (userInfo._id === post.user._id) {
+            setMyProfile(true)
+            console.log(myProfile)
+        } else {
+            setMyProfile(false)
+            console.log(myProfile)
+        }
+
     }, [success, url])
 
     return (
@@ -87,7 +99,7 @@ const Post = ({ post, match }) => {
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
-                        <Dropdown.Item onClick={() => deletePostHandler(post._id)} eventKey="1">Delete Post</Dropdown.Item>
+                        {myProfile && <Dropdown.Item onClick={() => deletePostHandler(post._id)} eventKey="1">Delete Post</Dropdown.Item>}
 
                         <Dropdown.Item eventKey="2">Report</Dropdown.Item>
                     </Dropdown.Menu>
