@@ -23,12 +23,12 @@ const HomeScreen = ({ match }) => {
 
     useEffect(() => {
         if (success) {
-            dispatch(getUserPosts())
+            dispatch(getUserPosts(userInfo.username))
         }
         if (userInfo === null) {
             history.push('/account/login')
         } else {
-            dispatch(getUserPosts())
+            dispatch(getUserPosts(userInfo.username))
         }
 
 

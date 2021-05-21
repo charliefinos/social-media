@@ -23,7 +23,7 @@ import {
     USER_PROFILE_POSTS_FAIL
 } from '../constants/PostConstants'
 
-export const getUserPosts = () => async (dispatch, getState) => {
+export const getUserPosts = (user) => async (dispatch, getState) => {
     try {
         dispatch({
             type: USER_POSTS_REQUEST
@@ -37,7 +37,7 @@ export const getUserPosts = () => async (dispatch, getState) => {
                 Authorization: `Bearer ${userInfo.token}`
             }
         }
-        const { data } = await axios.get('/api/posts/profile', config)
+        const { data } = await axios.get(`/api/users/following/${user}`, config)
 
         dispatch({
             type: USER_POSTS_SUCCESS,
