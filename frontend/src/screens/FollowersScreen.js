@@ -19,13 +19,14 @@ const FollowingScreen = ({ match }) => {
 
     return (
         <div className="app__posts">
+            <h2>Followers:</h2>
             {loading && <Loader />}
             {success && (user.followers.length === 0 ? (
                 <h1>Nothing to see here.</h1>
             ) :
                 (user.followers.map((user) => (
                     <div key={user._id}>
-                        <h2>Followers:</h2>
+
                         <br />
                         <ProfileFollow user={user} />
                     </div>

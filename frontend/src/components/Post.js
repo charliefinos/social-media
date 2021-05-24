@@ -77,7 +77,7 @@ const Post = ({ post, match }) => {
             console.log(myProfile)
         }
 
-    }, [success, url])
+    }, [success, url, userInfo._id, post.user._id, myProfile])
 
     return (
         <div className="post" >
