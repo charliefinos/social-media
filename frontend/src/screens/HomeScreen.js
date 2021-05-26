@@ -6,6 +6,7 @@ import Post from '../components/Post'
 import Loader from '../components/Loader'
 import FileUploader from '../components/FileUploader'
 import Message from '../components/Message'
+
 const HomeScreen = ({ match }) => {
 
     const dispatch = useDispatch()
@@ -19,6 +20,9 @@ const HomeScreen = ({ match }) => {
 
     const userDeletePost = useSelector(state => state.userDeletePost)
     const { success } = userDeletePost
+
+    const userCreatePost = useSelector(state => state.userCreatePost)
+    const { success: successCreate } = userCreatePost
 
 
     useEffect(() => {
@@ -36,7 +40,7 @@ const HomeScreen = ({ match }) => {
 
     return (
         <div className="app__posts">
-            <FileUploader />
+            <FileUploader userInfo={userInfo}/>
             {loading && <Loader />}
 
             {posts.length === 0 ? (

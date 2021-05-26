@@ -7,7 +7,7 @@ import axios from 'axios'
 import '../components/FileUploader.scss'
 import Loader from '../components/Loader'
 
-const FileUploader = () => {
+const FileUploader = ({userInfo}) => {
     const dispatch = useDispatch()
 
     const [modal, setModal] = useState(false)
@@ -22,7 +22,7 @@ const FileUploader = () => {
     useEffect(() => {
         if (success) {
             setModal(!modal)
-            dispatch(getUserPosts())
+            dispatch(getUserPosts(userInfo.username))
             dispatch({
                 type: USER_CREATE_POST_RESET
             })
