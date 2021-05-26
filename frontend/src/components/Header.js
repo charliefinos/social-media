@@ -21,7 +21,7 @@ const Header = ({ match }) => {
 
     return (
         <Navbar className="d-flex justify-content-between py-3" bg="primary" variant="dark">
-            <Navbar.Brand href="/">Social-Network</Navbar.Brand>
+            <Navbar.Brand href="/">Social-Media</Navbar.Brand>
 
             {userInfo ? (
                 <>

@@ -103,7 +103,7 @@ const SignupScreen = ({ location }) => {
                 </Form>
                 <Row>
                     <Col className='mt-2'>
-                        Already have an account?{' '}<Link to='/login'>Login</Link>
+                        Already have an account?{' '}<Link to='/account/login'>Login</Link>
                     </Col>
                 </Row>
             </FormContainer>
