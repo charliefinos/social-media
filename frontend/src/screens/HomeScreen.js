@@ -21,10 +21,6 @@ const HomeScreen = ({ match }) => {
     const userDeletePost = useSelector(state => state.userDeletePost)
     const { success } = userDeletePost
 
-    const userCreatePost = useSelector(state => state.userCreatePost)
-    const { success: successCreate } = userCreatePost
-
-
     useEffect(() => {
         if (success) {
             dispatch(getUserPosts(userInfo.username))
@@ -40,7 +36,7 @@ const HomeScreen = ({ match }) => {
 
     return (
         <div className="app__posts">
-            <FileUploader userInfo={userInfo}/>
+            <FileUploader userInfo={userInfo} />
             {loading && <Loader />}
 
             {posts.length === 0 ? (

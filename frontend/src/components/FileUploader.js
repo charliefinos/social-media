@@ -7,7 +7,7 @@ import axios from 'axios'
 import '../components/FileUploader.scss'
 import Loader from '../components/Loader'
 
-const FileUploader = ({userInfo}) => {
+const FileUploader = ({ userInfo }) => {
     const dispatch = useDispatch()
 
     const [modal, setModal] = useState(false)
@@ -28,7 +28,7 @@ const FileUploader = ({userInfo}) => {
             })
         }
 
-    }, [dispatch, success, modal])
+    }, [dispatch, success, modal, userInfo.username])
 
     const customStyles = {
         content: {
