@@ -4,6 +4,8 @@
 
 Check the live project on [MERN Simple Social Media](https://social-media-smpl.herokuapp.com/)
 
+![screenshot](https://scontent.xx.fbcdn.net/v/t1.15752-0/p206x206/192611633_1234553740332131_3874880960635280550_n.png?_nc_cat=111&ccb=1-3&_nc_sid=58c789&_nc_ohc=CSQMw1EeZikAX-2Vb7T&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&tp=30&oh=a130f7b8606aaac7834bbecb3871b751&oe=60D4CDF9)
+
 ## Features
 
 - Signin/Signup/Logout Users
