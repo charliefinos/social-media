@@ -2,7 +2,7 @@
 
 > Simple Social Media platform built with the MERN stack & Redux.
 
-Check the live project on [MERN Simple Social Media](https://github.com/charlyfinos)
+Check the live project on [MERN Simple Social Media](https://social-media-smpl.herokuapp.com/)
 
 ## Features
 
