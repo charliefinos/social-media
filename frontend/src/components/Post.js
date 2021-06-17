@@ -147,7 +147,7 @@ const Post = ({ post, match }) => {
                                 type='submit'
                                 variant='primary'>
                                 Submit
-                        </button>
+                            </button>
                         </div>
                     </form>
                 </div>

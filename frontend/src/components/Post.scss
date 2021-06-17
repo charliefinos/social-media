@@ -3,9 +3,9 @@
   width: 60vw;
   max-width: 550px;
   height: 100%;
-  border: 1px solid lightgray;
   margin-bottom: 45px;
   justify-content: center;
+  border-radius: 4%;
 
   .post__image {
     width: 100%;
@@ -141,4 +141,5 @@
 
 .icon {
   margin: 0.4rem;
+  padding: 1rem;
 }
