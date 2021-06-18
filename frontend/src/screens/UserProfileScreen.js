@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getUserProfilePostsByUsername } from '../actions/PostActions'
 import { getProfileDetailsByUsername, followUserById, unfollowUserById } from '../actions/UserActions'
 import Profile from '../components/Profile'
-import Post from '../components/Post'
+import Post from '../components/Post/Post'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 

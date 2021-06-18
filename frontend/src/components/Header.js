@@ -50,7 +50,7 @@ const Header = () => {
                         <Button variant="primary">Login</Button>
                     </LinkContainer>
                 </div>
-            )}P
+            )}
         </Navbar>
     );
 };

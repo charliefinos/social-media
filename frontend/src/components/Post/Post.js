@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { Dropdown } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { deletePost, deletePostComment, postPostComment } from '../actions/PostActions'
+import { deletePost, deletePostComment, postPostComment } from '../../actions/PostActions'
 import { BiCommentDetail } from 'react-icons/bi'
 import { BsThreeDotsVertical } from 'react-icons/bs'
-import { TiDeleteOutline } from 'react-icons/ti'
+import PostHeader from './PostHeader'
+import PostCaption from './PostCaption'
+import PostComment from './PostComment'
 import './Post.scss'
 import 'fontsource-roboto'
-
-import Avatar from '@material-ui/core/Avatar'
-
-
 
 const Post = ({ post, match }) => {
 
@@ -82,29 +78,14 @@ const Post = ({ post, match }) => {
     return (
         <div className="post" >
             <div className="post__header">
-                <div className="post__header__left">
-                    <Link className="link" to={`/${post.user.username}`}>
-                        <Avatar
-                            className="post__avatar"
-                            alt={post.user.username}
-                            src={post.user.profileImg}>
-                        </Avatar>
-                    </Link>
-                    <Link className="link" to={`/${post.user.username}`}><h3>{post.user.username}</h3></Link>
-                </div>
-
-                <Dropdown className='post__header__right' >
-                    <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
-
-                    </Dropdown.Toggle>
-
-                    <Dropdown.Menu>
-                        {myProfile && <Dropdown.Item onClick={() => deletePostHandler(post._id)} eventKey="1">Delete Post</Dropdown.Item>}
-
-                        <Dropdown.Item eventKey="2">Report</Dropdown.Item>
-                    </Dropdown.Menu>
-                </Dropdown>
+                <PostHeader
+                    post={post}
+                    CustomToggle={CustomToggle}
+                    myProfile={myProfile}
+                    deletePostHandler={deletePostHandler}
+                />
             </div>
+
             {/*Image*/}
             <img
                 alt={post.image}
@@ -113,24 +94,19 @@ const Post = ({ post, match }) => {
             >
             </img>
 
-
             {/*Username + Caption*/}
             {post.caption &&
-                <h5 className="post__text"><Link
-                    to={`/${post.user.username}`} className="link"><strong>{post.user.username}</strong></Link>{' '}{post.caption}</h5>}
+                <PostCaption post={post} />
+            }
 
             {/*Comments*/}
             {post.comments.map(x => (
-                <div className="post__text__comment" key={x._id}>
-                    <div className="post__comment">
-                        <Link className="link" to={`/${x.username}`}><strong>{x.username}</strong></Link>{' '}{x.comment}
-                    </div>
-                    <div className="mr-2">
-                        {!delPost && <Link onClick={(() => {
-                            deleteComment(post._id, x._id)
-                        })}><TiDeleteOutline color="light-gray" /></Link>}
-                    </div>
-                </div>
+                <PostComment
+                    x={x}
+                    post={post}
+                    delPost={delPost}
+                    deleteComment={deleteComment}
+                />
             ))}
 
             {loadingPost === false ? (

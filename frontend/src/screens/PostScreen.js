@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPost } from '../actions/PostActions'
-import Post from '../components/Post'
-import '../components/Post.scss'
+import Post from '../components/Post/Post'
+import '../components/Post/Post.scss'
 
 const PostScreen = ({ match }) => {
 
