@@ -1,11 +1,12 @@
 .post {
-  background-color: white;
+  background-color: #efefef;
   width: 60vw;
   max-width: 550px;
   height: 100%;
   margin-bottom: 45px;
   justify-content: center;
   border-radius: 4%;
+  box-shadow: 8px 8px 15px rgba(49, 49, 49, 0.6);
 
   .post__image {
     width: 100%;
