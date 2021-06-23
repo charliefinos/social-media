@@ -19,8 +19,6 @@ const app = express()
 
 app.use(express.json())
 
-app.use(bodyParser.json())
-
 // Cloudinary configs
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,

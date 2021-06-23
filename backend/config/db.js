@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 import colors from 'colors'
 import { MongoMemoryServer } from 'mongodb-memory-server'
-import { } from 'dotenv/config.js'
+
 
 const connectDB = async () => {
     try {
