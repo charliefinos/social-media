@@ -8,6 +8,7 @@ import { Button, Navbar, DropdownButton, Dropdown } from "react-bootstrap";
 import SearchBox from "./SearchBox";
 import './Header.scss'
 import { Link } from "react-router-dom";
+import logo from '../assets/logo-1.svg'
 
 const Header = () => {
     const dispatch = useDispatch();
@@ -31,13 +32,15 @@ const Header = () => {
         <>
             <div className="header">
                 <div className="header__logo">
-                    <h1>Logo</h1>
+                    <Link to='/'>
+                        <img src={logo}></img>
+                    </Link>
                 </div>
                 {userInfo ? (
                     <>
 
                         <div className="header__searchbar">
-                            <SearchBox />
+                            <Route render={({ history }) => <SearchBox history={history} />} />
                         </div>
 
                         <div className="header__right">
