@@ -8,6 +8,10 @@
   flex-direction: row;
   margin-bottom: 2.5rem;
   margin-top: 1.5rem;
+
+  @media screen and (max-width: 768px) {
+    width: 80vw;
+  }
 }
 
 .profile__photo {
@@ -19,6 +23,14 @@
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
+  }
+  @media screen and (max-width: 768px) {
+    width: 40%;
+    img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+    }
   }
 }
 
@@ -36,6 +48,11 @@
 
   .username {
     color: rgb(172, 167, 167);
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 30%;
+    height: 80%;
   }
 }
 

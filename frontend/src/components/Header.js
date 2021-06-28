@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Route } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import { LinkContainer } from "react-router-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
 import { logout } from "../actions/UserActions";
-import { Button, Navbar, DropdownButton, Dropdown } from "react-bootstrap";
 import SearchBox from "./SearchBox";
 import './Header.scss'
 import { Link } from "react-router-dom";
@@ -48,8 +47,8 @@ const Header = () => {
                             <div class="dropdown" >
                                 <img onClick={dropdownToggle} src={userInfo.profileImg}></img>
                                 <div class={`dropdown-content ${toggle ? 'display' : ''}`}>
-                                    <a onClick={dropdownToggle} to={`/${userInfo.username}`}>Profile</a>
-                                    <a onClick={logoutHandler}>Logout</a>
+                                    <Link onClick={dropdownToggle} to={`/${userInfo.username}`}>Profile</Link>
+                                    <Link onClick={logoutHandler}>Logout</Link>
                                 </div>
                             </div>
                         </div>
@@ -60,10 +59,7 @@ const Header = () => {
                         <Link className="btn-2" to={`/account/signup`}>Signup</Link>
                     </div>
                 )}
-
-
             </div>
-
         </>
     );
 };
