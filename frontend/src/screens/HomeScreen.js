@@ -22,21 +22,22 @@ const HomeScreen = ({ match }) => {
     const { success } = userDeletePost
 
     useEffect(() => {
-        if (success) {
-            dispatch(getUserPosts(userInfo.username))
-        }
         if (userInfo === null) {
             history.push('/account/login')
         } else {
-            dispatch(getUserPosts(userInfo.username))
+            if (success) {
+                dispatch(getUserPosts(userInfo.username))
+            }
+            else {
+                dispatch(getUserPosts(userInfo.username))
+            }
         }
-
 
     }, [history, userInfo, dispatch, success])
 
     return (
         <div className="app__posts">
-            <FileUploader userInfo={userInfo} />
+            <FileUploader history={history} userInfo={userInfo} />
             {loading && <Loader />}
 
             {posts.length === 0 ? (
