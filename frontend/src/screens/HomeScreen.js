@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { getUserPosts } from '../actions/PostActions'
+import { logout } from "../actions/UserActions";
 import Post from '../components/Post/Post'
 import Loader from '../components/Loader'
 import FileUploader from '../components/FileUploader'
@@ -13,7 +14,7 @@ const HomeScreen = ({ match }) => {
     const history = useHistory()
 
     const userPosts = useSelector(state => state.userPosts)
-    const { posts, loading } = userPosts
+    const { posts, loading, error } = userPosts
 
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
@@ -22,18 +23,18 @@ const HomeScreen = ({ match }) => {
     const { success } = userDeletePost
 
     useEffect(() => {
-        if (userInfo === null) {
+        if (userInfo === null || error === "Not authorized") {
+            dispatch(logout())
             history.push('/account/login')
         } else {
             if (success) {
                 dispatch(getUserPosts(userInfo.username))
-            }
-            else {
+            } else {
                 dispatch(getUserPosts(userInfo.username))
             }
         }
 
-    }, [history, userInfo, dispatch, success])
+    }, [history, userInfo, dispatch, success, error])
 
     return (
         <div className="app__posts">
